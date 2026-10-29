@@ -1,0 +1,17 @@
+@use './base.generated' as base;
+
+:root {
+  --vxe-ui-font-family: var(--font-sans);
+  --vxe-ui-font-color: var(--text-secondary);
+  --vxe-ui-font-primary-color: var(--primary);
+  // VxeUI dark ships a neutral #121212 body; keep the table on the CMS surface in both themes.
+  --vxe-ui-layout-background-color: var(--surface);
+  --vxe-ui-table-header-background-color: var(--subtle);
+  --vxe-ui-table-border-color: var(--line-soft);
+  --vxe-ui-table-row-hover-background-color: var(--primary-tint);
+}
+.vxe-table {
+  @include base.type-cell;
+  font-variant-numeric: tabular-nums;
+}
+.vxe-header--column { font-weight: 600; }

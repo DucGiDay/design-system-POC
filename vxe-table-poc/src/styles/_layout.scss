@@ -1,0 +1,36 @@
+@use './base.generated' as base;
+
+.workspace { max-width: 1600px; margin: 0 auto; padding: 32px; }
+.page-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 28px; }
+h1 { margin: 0 0 8px; @include base.type-page-title; }
+.page-header p { color: var(--ink-2); }
+.poc-label { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: var(--radius-sm); background: var(--primary-soft); color: var(--primary-text); font-size: 12px; line-height: 20px; letter-spacing: 0; vertical-align: middle; }
+.docs-link { flex-shrink: 0; color: var(--primary-text); text-underline-offset: 4px; font-size: 13px; }
+.table-panel { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
+.toolbar { padding: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.table-summary, .actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+h2 { margin: 0; @include base.type-card-title; }
+.table-summary span { color: var(--ink-muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.auto-load { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; min-height: 38px; }
+.auto-load input { width: 16px; height: 16px; accent-color: var(--primary); }
+.table-help { padding: 0 20px 16px; color: var(--ink-muted); font-size: 12px; }
+.table-footer { min-height: 52px; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: 12px; }
+.table-footer strong { color: var(--success-text); font-weight: 500; }
+.load-state { display: flex; gap: 8px; align-items: center; }
+.error-text { color: var(--danger); }
+.activity { margin-top: 28px; }
+.activity-heading { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px; }
+.activity-heading span, .empty-log { color: var(--ink-2); font-size: 12px; }
+.activity ol { padding-left: 22px; margin: 0; color: var(--ink-2); font-size: 13px; }
+.activity li { padding: 4px 0; }
+@media (max-width: 760px) {
+  .workspace { padding: 20px 12px; }
+  .page-header { display: block; margin-bottom: 20px; }
+  .docs-link { display: inline-block; margin-top: 12px; }
+  h1 { font-size: 24px; line-height: 32px; }
+  .toolbar { padding: 16px; }
+  .actions { gap: 8px; }
+  .auto-load { flex-basis: 100%; }
+  .table-help { padding: 0 16px 14px; }
+  .table-footer { padding: 12px 16px; }
+}

@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>01 · Màu sắc</title>
+<link rel="stylesheet" href="tokens.css" />
+<style>
+  /* Figma 40:25654 · 1312 × 676 */
+  .frame {
+    width: 1312px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .head .t-cell {
+    color: var(--ink-muted);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  /* Thẻ màu brand */
+  .brand {
+    flex: 1 0 0;
+    min-width: 1px;
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-fill {
+    height: 140px;
+    width: 100%;
+  }
+  .brand-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+  .brand-name {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .brand-name .t-cell {
+    color: var(--ink-muted);
+  }
+
+  /* Swatch */
+  .swatches {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .swatch-box {
+    width: 72px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+  .swatch.sm .swatch-box {
+    width: 52px;
+  }
+  .swatch .t-caption {
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+  }
+  .panel > .t-body-semibold {
+    white-space: nowrap;
+  }
+
+  /* Thang primary */
+  .scale {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 8px;
+  }
+  .scale .swatch-box {
+    width: 100%;
+    height: 56px;
+  }
+  .scale .t-label {
+    color: var(--ink);
+  }
+  .scale-note {
+    color: var(--ink-muted);
+  }
+
+  /* Dark theme preview */
+  .dark-preview {
+    width: 100%;
+    background: var(--ground);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .dark-preview .t-caption,
+  .dark-preview .t-cell {
+    color: var(--ink-muted);
+  }
+  .dark-preview .swatch-box {
+    border-color: var(--line);
+  }
+  .dark-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .dark-sample {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .dark-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .dark-btn {
+    padding: 8px 14px;
+    border: 0;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .dark-btn.primary {
+    background: var(--primary);
+    color: var(--surface);
+  }
+  .dark-btn.secondary {
+    background: var(--surface);
+    color: var(--ink-2);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .dark-btn.ai {
+    background: var(--violet);
+    color: var(--surface);
+  }
+  .dark-preview .pill.info {
+    background: var(--primary-tint);
+    color: var(--primary-text);
+  }
+
+  /* Gradient */
+  .gradient {
+    width: 420px;
+    height: 150px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 20px 24px;
+    border-radius: var(--radius-lg);
+    color: var(--surface);
+    white-space: nowrap;
+    background-image: linear-gradient(
+      138.24deg,
+      #0f79cb 0%,
+      #6039ef 39.286%,
+      #f7941d 71.429%
+    );
+  }
+  .status-panel {
+    flex: 1 0 0;
+    min-width: 1px;
+  }
+
+  /* Pill trạng thái */
+  .pills {
+    display: flex;
+    gap: 8px;
+  }
+  .pill {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+  .pill img {
+    width: 6px;
+    height: 6px;
+  }
+  .pill.success {
+    background: var(--success-soft);
+    color: var(--success-text);
+  }
+  .pill.warning {
+    background: var(--warning-soft);
+    color: var(--warning);
+  }
+  .pill.danger {
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+  .pill.accent {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+  }
+</style>
+</head>
+<body>
+<div class="ds-page">
+  <a class="ds-back" href="index.html">← Base components</a>
+
+  <div class="frame" data-node-id="40:25654">
+    <div class="head">
+      <p class="t-section">01 · Màu sắc</p>
+      <p class="t-cell">Xanh = hành động chính, tím = điểm nhấn số liệu / AI, cam = chú ý, mới, khuyến mãi. Mỗi màu có bản nhạt để làm nền.</p>
+    </div>
+
+    <div class="row">
+      <div class="card brand">
+        <div class="brand-fill" style="background: var(--primary)"></div>
+        <div class="brand-body">
+          <div class="brand-name">
+            <p class="t-card-title">Xanh iPOS</p>
+            <p class="t-cell">#0560A6</p>
+          </div>
+          <div class="swatches">
+            <div class="swatch"><div class="swatch-box" style="background: var(--primary-strong)"></div><p class="t-caption">primary-strong</p></div>
+            <div class="swatch"><div class="swatch-box" style="background: var(--primary-soft)"></div><p class="t-caption">primary-soft</p></div>
+            <div class="swatch"><div class="swatch-box" style="background: var(--primary-tint)"></div><p class="t-caption">primary-tint</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card brand">
+        <div class="brand-fill" style="background: var(--violet)"></div>
+        <div class="brand-body">
+          <div class="brand-name">
+            <p class="t-card-title">Tím iPOS</p>
+            <p class="t-cell">#6039EF</p>
+          </div>
+          <div class="swatches">
+            <div class="swatch"><div class="swatch-box" style="background: var(--violet-text)"></div><p class="t-caption">violet-text</p></div>
+            <div class="swatch"><div class="swatch-box" style="background: var(--violet-soft)"></div><p class="t-caption">violet-soft</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card brand">
+        <div class="brand-fill" style="background: var(--accent)"></div>
+        <div class="brand-body">
+          <div class="brand-name">
+            <p class="t-card-title">Cam iPOS</p>
+            <p class="t-cell">#F7941D</p>
+          </div>
+          <div class="swatches">
+            <div class="swatch"><div class="swatch-box" style="background: var(--accent-text)"></div><p class="t-caption">accent-text</p></div>
+            <div class="swatch"><div class="swatch-box" style="background: var(--accent-soft)"></div><p class="t-caption">accent-soft</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card panel" style="width: 100%">
+      <p class="t-body-semibold">Thang Xanh iPOS</p>
+      <div class="scale">
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-50)"></div><p class="t-label">50</p><p class="t-caption">#EEF4FF · tint</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-100)"></div><p class="t-label">100</p><p class="t-caption">#E3EEF9 · soft</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-200)"></div><p class="t-label">200</p><p class="t-caption">#B1D0F0</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-300)"></div><p class="t-label">300</p><p class="t-caption">#7EAFE3</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-400)"></div><p class="t-label">400</p><p class="t-caption">#498CCE</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-500)"></div><p class="t-label">500</p><p class="t-caption">#0560A6 · primary</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-600)"></div><p class="t-label">600</p><p class="t-caption">#044A80 · strong</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-700)"></div><p class="t-label">700</p><p class="t-caption">#013C6B</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-800)"></div><p class="t-label">800</p><p class="t-caption">#012F56</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-900)"></div><p class="t-label">900</p><p class="t-caption">#002242</p></div>
+        <div class="swatch"><div class="swatch-box" style="background: var(--primary-950)"></div><p class="t-label">950</p><p class="t-caption">#00172E</p></div>
+      </div>
+      <p class="t-caption scale-note">Dùng token ngữ nghĩa (primary, primary-strong…) cho component. Thang số dùng khi cần một bậc chưa có tên, ví dụ biểu đồ hoặc dark theme.</p>
+    </div>
+
+    <div class="card panel" style="width: 100%">
+      <p class="t-body-semibold">Trung tính</p>
+      <div class="swatches">
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--ink)"></div><p class="t-caption">ink</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--ink-2)"></div><p class="t-caption">ink-2</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--ink-muted)"></div><p class="t-caption">ink-muted</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--ink-faint)"></div><p class="t-caption">ink-faint</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--line-strong)"></div><p class="t-caption">line-strong</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--line)"></div><p class="t-caption">line</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--field)"></div><p class="t-caption">field</p></div>
+        <div class="swatch sm"><div class="swatch-box" style="background: var(--ground)"></div><p class="t-caption">ground</p></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="gradient">
+        <p class="t-card-title">Gradient điểm nhấn</p>
+        <p class="t-caption">#0F79CB → #6039EF → #F7941D · chỉ 1 chỗ / màn</p>
+      </div>
+      <div class="card panel status-panel">
+        <p class="t-body-semibold">Trạng thái</p>
+        <div class="pills">
+          <div class="pill success"><img src="assets/01-mau-sac/dot-success.svg" width="6" height="6" alt="" /><p class="t-label">Hoàn tất</p></div>
+          <div class="pill warning"><img src="assets/01-mau-sac/dot-warning.svg" width="6" height="6" alt="" /><p class="t-label">Chờ xử lý</p></div>
+          <div class="pill danger"><img src="assets/01-mau-sac/dot-danger.svg" width="6" height="6" alt="" /><p class="t-label">Lỗi</p></div>
+          <div class="pill accent"><img src="assets/01-mau-sac/dot-accent.svg" width="6" height="6" alt="" /><p class="t-label">Mới</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card panel dark-preview" data-theme="dark">
+      <p class="t-body-semibold">Chế độ tối</p>
+      <p class="t-cell">Chưa có trong Figma. Cùng tên token, chỉ đổi giá trị dưới <code>[data-theme="dark"]</code>. Primary lên bậc 300, nền sáng dần khi nổi lên.</p>
+      <div class="dark-row">
+        <div class="swatches">
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--ground)"></div><p class="t-caption">ground</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--surface)"></div><p class="t-caption">surface</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--subtle)"></div><p class="t-caption">subtle</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--field)"></div><p class="t-caption">field</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--line)"></div><p class="t-caption">line</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--ink-muted)"></div><p class="t-caption">ink-muted</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--ink)"></div><p class="t-caption">ink</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--primary)"></div><p class="t-caption">primary</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--violet)"></div><p class="t-caption">violet</p></div>
+          <div class="swatch sm"><div class="swatch-box" style="background: var(--accent)"></div><p class="t-caption">accent</p></div>
+        </div>
+        <div class="dark-sample">
+          <div class="dark-actions">
+            <button class="dark-btn primary" type="button">Lưu thay đổi</button>
+            <button class="dark-btn secondary" type="button">Huỷ</button>
+            <button class="dark-btn ai" type="button">Hỏi AI</button>
+          </div>
+          <div class="pills">
+            <div class="pill success"><p class="t-label">Hoàn tất</p></div>
+            <div class="pill warning"><p class="t-label">Chờ xử lý</p></div>
+            <div class="pill danger"><p class="t-label">Lỗi</p></div>
+            <div class="pill accent"><p class="t-label">Mới</p></div>
+            <div class="pill info"><p class="t-label">Đang làm</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

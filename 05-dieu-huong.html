@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Điều hướng & khối</title>
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="ds-page">
+  <a class="ds-back" href="index.html">← Base components</a>
+
+  <!-- Figma 38:369 · section 1560 × 758 -->
+  <div class="section" style="width: 1560px; height: 758px" data-node-id="38:369">
+    <p class="section-title" style="left: 40px; top: 20px">Điều hướng &amp; khối</p>
+
+    <!-- Nav/Item -->
+    <div class="set set-a" style="left: 40px; top: 80px; width: 266px; height: 150px" data-node-id="23:20" title="Nav/Item">
+      <div class="nav-item abs" style="left: 25px; top: 25px" data-node-id="23:8">
+        <img src="assets/05-dieu-huong/nav-item-icon.svg" width="18" height="18" alt="" />
+        <p class="label">Trang chủ</p>
+      </div>
+      <div class="nav-item active abs" style="left: 25px; top: 81px" data-node-id="23:14">
+        <img src="assets/05-dieu-huong/nav-item-icon-active.svg" width="18" height="18" alt="" />
+        <p class="label">Trang chủ</p>
+      </div>
+    </div>
+
+    <!-- Nav/Sub -->
+    <div class="set" style="left: 354px; top: 80px; width: 248px; height: 72px; border-radius: 14px; background: var(--ground)" data-node-id="38:131" title="Nav/Sub">
+      <div class="nav-sub abs" style="left: 20px; top: 20px" data-node-id="38:125">Khuyến mãi</div>
+      <div class="nav-sub active abs" style="left: 135px; top: 20px" data-node-id="38:128">Khuyến mãi</div>
+    </div>
+
+    <!-- Nav/Nhóm con -->
+    <div class="nav-group abs" style="left: 650px; top: 80px" data-node-id="38:156">
+      <div class="tree">
+        <div class="nav-sub active">Khuyến mãi</div>
+        <div class="nav-sub">Combo</div>
+        <div class="nav-sub">Giảm giá</div>
+      </div>
+    </div>
+
+    <!-- Segmented/Item -->
+    <div class="set" style="left: 914px; top: 80px; width: 416px; height: 80px; border-radius: 14px; background: #64748b" data-node-id="22:10" title="Segmented/Item">
+      <button class="seg-item selected abs" style="left: 24px; top: 24px" data-node-id="22:2">Nhãn</button>
+      <button class="seg-item abs" style="left: 120px; top: 24px" data-node-id="22:4">Nhãn</button>
+      <button class="seg-item dark selected abs" style="left: 216px; top: 24px" data-node-id="22:6">Nhãn</button>
+      <button class="seg-item dark abs" style="left: 312px; top: 24px" data-node-id="22:8">Nhãn</button>
+    </div>
+
+    <!-- Segmented: nửa trái nền ground, nửa phải gradient để xem bản Tối -->
+    <div class="set" style="left: 40px; top: 286px; width: 596px; height: 106px; border-radius: 14px; background: linear-gradient(90deg, #f4f6fa 0%, #f4f6fa 50%, #6039ef 50%, #0f79cb 100%)" data-node-id="22:25" title="Segmented">
+      <div class="segmented light abs" style="left: 32px; top: 32px" data-node-id="22:11">
+        <button class="seg-item selected">Hôm nay</button>
+        <button class="seg-item">7 ngày</button>
+        <button class="seg-item">Tháng này</button>
+      </div>
+      <div class="segmented dark abs" style="left: 310px; top: 32px" data-node-id="22:18">
+        <button class="seg-item dark selected">Hôm nay</button>
+        <button class="seg-item dark">7 ngày</button>
+        <button class="seg-item dark">Tháng này</button>
+      </div>
+    </div>
+
+    <!-- Card/KPI -->
+    <div class="card-kpi abs" style="left: 684px; top: 286px" data-node-id="38:167">
+      <div class="head">
+        <img src="assets/05-dieu-huong/card-kpi-icon.svg" width="16" height="16" alt="" />
+        <p class="name">Doanh thu thuần</p>
+        <span class="delta tang">+15%</span>
+      </div>
+      <div class="value-row">
+        <p class="value">12,8</p>
+        <p class="unit">triệu ₫</p>
+        <div class="spacer"></div>
+        <div class="mini-chart" data-node-id="38:179">
+          <div class="bar" style="left: 1px; top: 24px; height: 12px" data-node-id="38:180">
+            <i style="left: -12.304px; top: -6.409px; height: 21.6px"></i>
+            <i style="left: -7.304px; top: -6.409px; height: 21.6px"></i>
+            <i style="left: -2.304px; top: -6.409px; height: 21.6px"></i>
+            <i style="left: 2.696px; top: -6.409px; height: 21.6px"></i>
+            <i style="left: 7.696px; top: -6.409px; height: 21.6px"></i>
+            <i style="left: 12.696px; top: -6.409px; height: 21.6px"></i>
+            <i style="left: 17.696px; top: -6.409px; height: 21.6px"></i>
+          </div>
+          <div class="bar" style="left: 16px; top: 18px; height: 18px" data-node-id="38:188">
+            <i style="left: -18.396px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: -13.396px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: -8.396px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: -3.397px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: 1.603px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: 6.604px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: 11.604px; top: -9.785px; height: 32.4px"></i>
+            <i style="left: 16.603px; top: -9.785px; height: 32.4px"></i>
+          </div>
+          <div class="bar" style="left: 31px; top: 21px; height: 15px" data-node-id="38:197">
+            <i style="left: -15.355px; top: -8.098px; height: 27px"></i>
+            <i style="left: -10.355px; top: -8.098px; height: 27px"></i>
+            <i style="left: -5.355px; top: -8.098px; height: 27px"></i>
+            <i style="left: -0.355px; top: -8.098px; height: 27px"></i>
+            <i style="left: 4.645px; top: -8.098px; height: 27px"></i>
+            <i style="left: 9.645px; top: -8.098px; height: 27px"></i>
+            <i style="left: 14.645px; top: -8.098px; height: 27px"></i>
+          </div>
+          <div class="bar" style="left: 46px; top: 12px; height: 24px" data-node-id="38:205">
+            <i style="left: -24.5px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: -19.5px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: -14.5px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: -9.5px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: -4.5px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: 0.501px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: 5.5px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: 10.501px; top: -13.162px; height: 43.2px"></i>
+            <i style="left: 15.501px; top: -13.162px; height: 43.2px"></i>
+          </div>
+          <div class="bar solid" style="left: 61px; top: 2px; height: 34px" data-node-id="38:215"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card/Khối -->
+    <div class="card-block abs" style="left: 40px; top: 448px" data-node-id="38:304">
+      <div class="head">
+        <div class="titles">
+          <div class="title-row">
+            <img src="assets/05-dieu-huong/card-khoi-icon.svg" width="18" height="18" alt="" />
+            <p class="title">Tiêu đề khối</p>
+          </div>
+          <p class="desc">Mô tả ngắn cho khối</p>
+        </div>
+        <div class="spacer"></div>
+        <div class="select thuong stroke-in">
+          <span>Hôm nay</span>
+          <img src="assets/05-dieu-huong/card-khoi-select-icon.svg" width="14" height="14" alt="" />
+        </div>
+      </div>
+      <div class="body dash-line" data-node-id="38:318">
+        <p>Đặt biểu đồ / bảng vào đây</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

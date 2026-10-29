@@ -1,0 +1,24 @@
+@use './base.generated' as base;
+
+button {
+  @include base.button;
+  @include base.button-md;
+
+  &.primary {
+    @include base.button-primary;
+    &:hover { background: var(--primary-strong); }
+  }
+  &.secondary {
+    @include base.button-secondary;
+    box-shadow: inset 0 0 0 1px var(--line);
+    &:hover { background: var(--field); }
+  }
+  &:disabled { opacity: .55; cursor: wait; }
+}
+
+.status-badge {
+  @include base.badge;
+  &.success { @include base.badge-success; }
+  &.warning { @include base.badge-warning; }
+  &.danger { @include base.badge-danger; }
+}

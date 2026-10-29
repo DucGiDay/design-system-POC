@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Phân trang</title>
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="ds-page">
+  <a class="ds-back" href="index.html">← Base components</a>
+
+  <!-- Figma 197:228 · section 1116 × 448 -->
+  <div class="section" style="width: 1116px; height: 448px" data-node-id="197:228">
+
+    <!-- Phân trang/Nút -->
+    <div class="set" style="left: 40px; top: 60px; width: 208px; height: 236px" data-node-id="197:255" title="Phân trang/Nút">
+      <button class="pg-btn abs" style="left: 24px; top: 24px" data-node-id="197:229">1</button>
+      <button class="pg-btn hover abs" style="left: 88px; top: 24px" data-node-id="197:231">1</button>
+      <button class="pg-btn active abs" style="left: 152px; top: 24px" data-node-id="197:233">1</button>
+      <button class="pg-btn arrow abs" style="left: 24px; top: 76px" data-node-id="197:235" aria-label="Trang trước"><img src="assets/12-phan-trang/nut-truoc.svg" width="16" height="16" alt="" /></button>
+      <button class="pg-btn arrow hover abs" style="left: 88px; top: 76px" data-node-id="197:238" aria-label="Trang trước"><img src="assets/12-phan-trang/nut-truoc-hover.svg" width="16" height="16" alt="" /></button>
+      <button class="pg-btn arrow abs" style="left: 152px; top: 76px" data-node-id="197:241" aria-label="Trang trước" disabled><img src="assets/12-phan-trang/nut-truoc-tat.svg" width="16" height="16" alt="" /></button>
+      <button class="pg-btn arrow abs" style="left: 24px; top: 128px" data-node-id="197:244" aria-label="Trang sau"><img src="assets/12-phan-trang/nut-sau.svg" width="16" height="16" alt="" /></button>
+      <button class="pg-btn arrow hover abs" style="left: 88px; top: 128px" data-node-id="197:247" aria-label="Trang sau"><img src="assets/12-phan-trang/nut-sau-hover.svg" width="16" height="16" alt="" /></button>
+      <button class="pg-btn arrow abs" style="left: 152px; top: 128px" data-node-id="197:250" aria-label="Trang sau" disabled><img src="assets/12-phan-trang/nut-sau-tat.svg" width="16" height="16" alt="" /></button>
+      <span class="pg-btn ellipsis abs" style="left: 24px; top: 180px" data-node-id="197:253">…</span>
+    </div>
+
+    <!-- Phân trang -->
+    <div class="pagination abs" style="left: 40px; top: 336px" data-node-id="197:256">
+      <div class="summary">Hiển thị <b>1–10</b> trên <b>128</b> nhà hàng</div>
+      <div class="controls">
+        <div class="rows">
+          Số dòng / trang
+          <div class="rows-select">10<img src="assets/12-phan-trang/chan-mui-ten-xuong.svg" width="14" height="14" alt="" /></div>
+        </div>
+        <span class="divider"></span>
+        <div class="pages">
+          <button class="pg-btn arrow" aria-label="Trang trước" disabled><img src="assets/12-phan-trang/chan-truoc-tat.svg" width="16" height="16" alt="" /></button>
+          <button class="pg-btn active">1</button>
+          <button class="pg-btn">2</button>
+          <button class="pg-btn">3</button>
+          <span class="pg-btn ellipsis">…</span>
+          <button class="pg-btn">13</button>
+          <button class="pg-btn arrow" aria-label="Trang sau"><img src="assets/12-phan-trang/chan-sau.svg" width="16" height="16" alt="" /></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

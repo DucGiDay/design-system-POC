@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CMS-26 Base components</title>
+<link rel="stylesheet" href="tokens.css" />
+<style>
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 40px 16px 64px;
+  }
+  .wrap > .t-cell {
+    margin-top: 4px;
+    color: var(--ink-muted);
+  }
+  .wrap code {
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    color: inherit;
+    text-decoration: none;
+  }
+  .item:hover {
+    border-color: var(--line-strong);
+    background: var(--subtle);
+  }
+  .item .no {
+    color: var(--primary-text);
+  }
+  .item .t-caption {
+    color: var(--ink-muted);
+  }
+  .item a {
+    color: var(--primary-text);
+  }
+  .note {
+    margin-top: 24px;
+    padding: 12px 16px;
+    background: var(--ground);
+    border-radius: var(--radius-md);
+    color: var(--ink-2);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="t-section">CMS-26 · Base components</p>
+  <p class="t-cell">
+    Bản HTML dựng lại từ Figma <a href="https://www.figma.com/design/lksyF9cMWxH8sl4SPSuw17/CMS-26">CMS-26</a>.
+    Mỗi trang là 1 frame/section, giữ đúng toạ độ, kích thước, màu biến và asset gốc.
+    Token ở <code>tokens.css</code>, style component dùng chung ở <code>components.css</code>.
+  </p>
+
+  <div class="grid">
+    <a class="item" href="01-mau-sac.html"><span class="t-label no">01 · 40:25654</span><span class="t-card-title">Màu sắc</span><span class="t-caption">Brand, trung tính, gradient, trạng thái</span></a>
+    <a class="item" href="02-chu.html"><span class="t-label no">02 · 40:25747</span><span class="t-card-title">Chữ — Be Vietnam Pro</span><span class="t-caption">10 text style</span></a>
+    <a class="item" href="03-icon.html"><span class="t-label no">03 · 35:9</span><span class="t-card-title">Icon 24px</span><span class="t-caption">92 icon Lucide, nét 1.8 — <code>assets/icons</code></span></a>
+    <a class="item" href="04-dieu-khien.html"><span class="t-label no">04 · 36:136</span><span class="t-card-title">Điều khiển &amp; hiển thị nhỏ</span><span class="t-caption">Button, IconButton, Badge, Delta, Trạng thái, Select, Chip AI, Chú thích, Ô tìm kiếm, Người dùng</span></a>
+    <a class="item" href="05-dieu-huong.html"><span class="t-label no">05 · 38:369</span><span class="t-card-title">Điều hướng &amp; khối</span><span class="t-caption">Nav/Item, Nav/Sub, Nhóm con, Segmented, Card/KPI, Card/Khối</span></a>
+    <a class="item" href="06-menu-chinh.html"><span class="t-label no">06 · 52:203</span><span class="t-card-title">Menu chính</span><span class="t-caption">Mục, Nhãn nhóm, Mục ứng dụng, Launcher, Tooltip, Mục con</span></a>
+    <a class="item" href="07-the-trang-chu.html"><span class="t-label no">07 · 59:131</span><span class="t-card-title">Thẻ trang chủ</span><span class="t-caption">Tiêu đề báo cáo, Card/Chỉ số, minh hoạ trạng thái trống</span></a>
+    <a class="item" href="08-thuong-hieu.html"><span class="t-label no">08 · 113:136</span><span class="t-card-title">Thương hiệu &amp; Phạm vi</span><span class="t-caption">Bộ chọn thương hiệu, chip phạm vi cửa hàng</span></a>
+    <a class="item" href="09-sidebar-v2.html"><span class="t-label no">09 · 140:112</span><span class="t-card-title">Sidebar V2</span><span class="t-caption">Thanh icon, Bảng menu nhóm / mục 3 cấp, nhãn nhóm</span></a>
+    <a class="item" href="10-bang-tag.html"><span class="t-label no">10 · 178:215</span><span class="t-card-title">Bảng &amp; Tag</span><span class="t-caption">Tag, Loại hình, Biểu tượng bàn, 34 ô bảng, Ô cấu hình</span></a>
+    <a class="item" href="11-header-trang.html"><span class="t-label no">11 · 186:3357</span><span class="t-card-title">Header trang</span><span class="t-caption">Tiêu đề + cụm hành động chung</span></a>
+    <a class="item" href="12-phan-trang.html"><span class="t-label no">12 · 197:228</span><span class="t-card-title">Phân trang</span><span class="t-caption">Nút phân trang, chân bảng</span></a>
+    <a class="item" href="13-hop-thoai.html"><span class="t-label no">13 · 199:244</span><span class="t-card-title">Hộp thoại</span><span class="t-caption">Hộp thoại xác nhận 440px</span></a>
+    <a class="item" href="14-form.html"><span class="t-label no">14 · 210:270</span><span class="t-card-title">Form &amp; Mục lục</span><span class="t-caption">Trường, Đầu khối, Mục lục, Thẻ lựa chọn, Công tắc, Ô chọn, Tải ảnh, Dòng cài đặt</span></a>
+    <a class="item" href="15-dropdown.html"><span class="t-label no">15 · 311:949</span><span class="t-card-title">Dropdown</span><span class="t-caption">Dòng, Nhóm, Chọn nhiều, Menu/Mục, Menu tiện ích bàn</span></a>
+  </div>
+
+  <p class="note t-cell">
+    Ghi chú: ô bảng ở trang 10 dùng vạch dưới <code>line-soft #EEF0F3</code> theo biến Figma; ảnh chụp Figma hiện vạch đen do paint cache cũ (#000) của các variant đó.
+    Font Be Vietnam Pro tải từ Google Fonts (cần mạng); còn lại đều là file cục bộ, mở thẳng bằng trình duyệt.
+  </p>
+</div>
+</body>
+</html>

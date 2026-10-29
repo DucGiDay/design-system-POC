@@ -1,0 +1,17 @@
+@use './_base.generated.scss' as base;
+
+:root {
+  @include base.tokens;
+
+  // Elevation vocabulary from parent DESIGN.md; only selected items / overlays.
+  --shadow-raised: 0 2px 6px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-overlay: 0 2px 6px rgba(15, 23, 41, 0.06), 0 16px 40px rgba(15, 23, 41, 0.14);
+  --shadow-inside-stroke: inset 0 0 0 1px var(--line);
+  --focus-ring: 0 0 0 3px var(--primary-soft);
+  --motion-reorder: 160ms;
+}
+
+// Set on <html> so tokens composed above (focus ring, inside stroke) re-resolve against the dark values.
+:root[data-theme='dark'] {
+  @include base.tokens-dark;
+}

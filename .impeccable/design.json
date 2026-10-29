@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "title": "Design System: CMS-26",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Xanh iPOS", "canonical": "oklch(48.2% 0.134 250.1)", "tonalRamp": ["#000928", "#002652", "#044a80", "#0560a6", "#548dc7", "#85b2e2", "#e3eef9", "#eef4ff"] },
+      "violet": { "role": "secondary", "displayName": "Tím AI", "canonical": "oklch(51.6% 0.251 283.0)", "tonalRamp": ["#0d003b", "#250072", "#4c2bc4", "#6039ef", "#7d6eff", "#a19dff", "#c8c9ff", "#eeeafe"] },
+      "accent": { "role": "tertiary", "displayName": "Cam Bếp", "canonical": "oklch(75.4% 0.165 62.8)", "tonalRamp": ["#130902", "#382006", "#633a0d", "#b45f06", "#c27418", "#f7941d", "#ffbf6e", "#fff3e3"] },
+      "ink": { "role": "neutral", "displayName": "Mực", "canonical": "oklch(20.8% 0.040 265.8)", "tonalRamp": ["#0f172a", "#334155", "#64748b", "#94a3b8", "#cbd5e1", "#e8ecf2", "#f4f6fa", "#ffffff"] },
+      "line": { "role": "neutral", "displayName": "Viền", "tonalRamp": ["#0f172a", "#334155", "#64748b", "#94a3b8", "#cbd5e1", "#e8ecf2", "#eef0f3", "#f8fafc"] },
+      "surface": { "role": "neutral", "displayName": "Bề mặt" },
+      "ground": { "role": "neutral", "displayName": "Nền section" },
+      "field": { "role": "neutral", "displayName": "Nền nút nhạt" },
+      "subtle": { "role": "neutral", "displayName": "Nền Card/Khối" },
+      "success": { "role": "status", "displayName": "Thành công", "canonical": "oklch(62.7% 0.170 149.2)", "tonalRamp": ["#001101", "#00310c", "#00551f", "#15803d", "#16a34a", "#66c67c", "#9fe9ac", "#e8f7ee"] },
+      "warning": { "role": "status", "displayName": "Cảnh báo", "canonical": "oklch(66.6% 0.157 58.3)", "tonalRamp": ["#180600", "#3f1c00", "#6a3500", "#985100", "#d97706", "#ee964b", "#ffc289", "#fdf7f0"] },
+      "danger": { "role": "status", "displayName": "Lỗi", "canonical": "oklch(57.6% 0.209 29.5)", "tonalRamp": ["#250000", "#520000", "#840804", "#ba2116", "#d92d20", "#ff8371", "#ffb5a5", "#fdf2f2"] }
+    },
+    "typographyMeta": {
+      "display-number": { "displayName": "Display Number", "purpose": "Con số lớn nhất trên trang chủ báo cáo." },
+      "page-title": { "displayName": "Page Title", "purpose": "Tiêu đề trang." },
+      "section": { "displayName": "Section", "purpose": "Tiêu đề nhóm / section." },
+      "number-md": { "displayName": "Number MD", "purpose": "Số liệu cỡ vừa." },
+      "card-title": { "displayName": "Card Title", "purpose": "Tiêu đề card." },
+      "body": { "displayName": "Body", "purpose": "Chữ thân, giá trị trường nhập." },
+      "body-medium": { "displayName": "Body Medium", "purpose": "Nhãn menu." },
+      "body-semibold": { "displayName": "Body Semibold", "purpose": "Mục menu đang chọn, nhấn trong đoạn." },
+      "cell": { "displayName": "Cell", "purpose": "Ô bảng, chữ phụ dày đặc." },
+      "label": { "displayName": "Label", "purpose": "Nhãn nhỏ, chip, tag." },
+      "caption": { "displayName": "Caption", "purpose": "Mô tả, chú thích." },
+      "overline": { "displayName": "Overline", "purpose": "Nhãn nhóm menu." }
+    },
+    "shadows": [
+      { "name": "raised-select", "value": "0 2px 6px rgba(15,23,42,.04), 0 1px 2px rgba(15,23,42,.06)", "purpose": "Nav item / segment đang chọn." },
+      { "name": "overlay", "value": "0 2px 6px rgba(15,23,41,.06), 0 16px 40px rgba(15,23,41,.14)", "purpose": "Menu popover, dropdown." },
+      { "name": "dialog", "value": "0 16px 40px -4px rgba(15,23,41,.14), 0 2px 6px rgba(15,23,41,.06)", "purpose": "Hộp thoại." },
+      { "name": "tooltip", "value": "0 4px 12px rgba(15,23,41,.16)", "purpose": "Tooltip menu." },
+      { "name": "focus-field", "value": "0 0 0 3px #e3eef9", "purpose": "Vòng focus trường nhập." },
+      { "name": "focus-brand", "value": "0 0 0 3px rgba(5,96,166,.14)", "purpose": "Bộ chọn thương hiệu đang mở." },
+      { "name": "inside-stroke", "value": "inset 0 0 0 1px var(--line)", "purpose": "Stroke inside kiểu Figma, không chiếm layout." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Nút chính",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Hành động chính của màn hình.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Lưu thay đổi</button>",
+      "css": ".ds-btn { display:inline-flex; gap:6px; align-items:center; justify-content:center; border:0; border-radius:var(--radius-md,10px); font-family:'Be Vietnam Pro',sans-serif; font-weight:600; font-size:13px; line-height:20px; padding:8px 14px; cursor:pointer; white-space:nowrap; } .ds-btn-primary { background:var(--primary,#0560a6); color:#fff; } .ds-btn-primary:hover { background:var(--primary-strong,#044a80); } .ds-btn-primary:focus-visible { outline:none; box-shadow:0 0 0 3px #e3eef9; }"
+    },
+    {
+      "name": "Nút phụ",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Hành động thứ cấp, nền trắng viền trong 1px.",
+      "html": "<button class=\"ds-btn2 ds-btn-secondary\">Huỷ</button>",
+      "css": ".ds-btn2 { display:inline-flex; align-items:center; border:0; border-radius:var(--radius-md,10px); font-family:'Be Vietnam Pro',sans-serif; font-weight:600; font-size:13px; line-height:20px; padding:8px 14px; cursor:pointer; } .ds-btn-secondary { background:#fff; color:var(--ink-2,#334155); box-shadow:inset 0 0 0 1px var(--line,#e8ecf2); } .ds-btn-secondary:hover { box-shadow:inset 0 0 0 1px var(--line-strong,#cbd5e1); } .ds-btn-secondary:focus-visible { outline:none; box-shadow:inset 0 0 0 1px var(--primary,#0560a6), 0 0 0 3px #e3eef9; }"
+    },
+    {
+      "name": "Nút AI",
+      "kind": "button",
+      "refersTo": "button-ai",
+      "description": "Chỉ cho hành động AI.",
+      "html": "<button class=\"ds-btn3 ds-btn-ai\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z\"/></svg>Gợi ý AI</button>",
+      "css": ".ds-btn3 { display:inline-flex; gap:6px; align-items:center; border:0; border-radius:var(--radius-md,10px); font-family:'Be Vietnam Pro',sans-serif; font-weight:600; font-size:13px; line-height:20px; padding:8px 14px; cursor:pointer; } .ds-btn-ai { background:var(--violet,#6039ef); color:#fff; } .ds-btn-ai:hover { background:var(--violet-text,#4c2bc4); } .ds-btn-ai:focus-visible { outline:none; box-shadow:0 0 0 3px var(--violet-soft,#eeeafe); }"
+    },
+    {
+      "name": "Trường nhập",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Trường form 40px, hover viền đậm, focus viền primary + vòng 3px.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Tên cửa hàng <span class=\"ds-req\">*</span></span><span class=\"ds-field-box\"><input placeholder=\"Nhập tên cửa hàng\"></span></label>",
+      "css": ".ds-field { display:flex; flex-direction:column; gap:6px; width:350px; font-family:'Be Vietnam Pro',sans-serif; } .ds-field-label { font-weight:500; font-size:13px; color:var(--ink-2,#334155); } .ds-req { color:var(--danger,#d92d20); } .ds-field-box { display:flex; align-items:center; height:40px; padding:0 12px; background:#fff; border:1px solid var(--line,#e8ecf2); border-radius:var(--radius-md,10px); } .ds-field-box:hover { border-color:var(--line-strong,#cbd5e1); } .ds-field-box:focus-within { border-color:var(--primary,#0560a6); box-shadow:0 0 0 3px #e3eef9; } .ds-field-box input { flex:1; border:0; outline:0; background:transparent; font:inherit; font-size:14px; color:var(--ink,#0f172a); } .ds-field-box input::placeholder { color:var(--ink-muted,#64748b); }"
+    },
+    {
+      "name": "Nav item",
+      "kind": "nav",
+      "refersTo": "nav-item-active",
+      "description": "Mục menu; mục đang chọn nổi trắng trên nền xám.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item is-active\">Tổng quan</a><a class=\"ds-nav-item\">Báo cáo</a><a class=\"ds-nav-item\">Thực đơn</a></nav>",
+      "css": ".ds-nav { display:flex; flex-direction:column; gap:2px; padding:8px; background:var(--ground,#f4f6fa); width:232px; font-family:'Be Vietnam Pro',sans-serif; } .ds-nav-item { display:flex; align-items:center; height:44px; padding:8px 10px; border-radius:var(--radius-md,10px); font-weight:500; font-size:14px; line-height:22px; color:var(--ink-2,#334155); cursor:pointer; text-decoration:none; } .ds-nav-item:hover { background:var(--subtle,#f8fafc); } .ds-nav-item:focus-visible { outline:none; box-shadow:0 0 0 3px #e3eef9; } .ds-nav-item.is-active { background:#fff; color:var(--ink,#0f172a); font-weight:600; box-shadow:0 2px 6px rgba(15,23,42,.04), 0 1px 2px rgba(15,23,42,.06); }"
+    },
+    {
+      "name": "Tag trạng thái",
+      "kind": "chip",
+      "refersTo": "tag-success",
+      "description": "Cặp nền nhạt + chữ đậm, bo 6px.",
+      "html": "<span class=\"ds-tag ds-tag-ok\">Hoàn tất</span> <span class=\"ds-tag ds-tag-warn\">Chờ</span> <span class=\"ds-tag ds-tag-info\">Đang làm</span> <span class=\"ds-tag ds-tag-err\">Huỷ</span>",
+      "css": ".ds-tag { display:inline-flex; padding:2px 8px; border-radius:var(--radius-sm,6px); font-family:'Be Vietnam Pro',sans-serif; font-weight:500; font-size:12px; line-height:18px; } .ds-tag-ok { background:#e8f7ee; color:#15803d; } .ds-tag-warn { background:#fdf7f0; color:#b45f06; } .ds-tag-info { background:#eef4ff; color:#0b4f86; } .ds-tag-err { background:#fdf2f2; color:#d92d20; }"
+    },
+    {
+      "name": "Card/KPI",
+      "kind": "card",
+      "refersTo": "card-kpi",
+      "description": "Thẻ chỉ số phẳng, viền 1px, bo 14px.",
+      "html": "<div class=\"ds-kpi\"><span class=\"ds-kpi-name\">Doanh thu hôm nay</span><span class=\"ds-kpi-row\"><span class=\"ds-kpi-value\">24,8</span><span class=\"ds-kpi-unit\">triệu đ</span></span></div>",
+      "css": ".ds-kpi { display:flex; flex-direction:column; gap:14px; width:272px; padding:16px; background:#fff; border:1px solid var(--line,#e8ecf2); border-radius:var(--radius-lg,14px); font-family:'Be Vietnam Pro',sans-serif; } .ds-kpi-name { font-weight:500; font-size:13px; line-height:18px; color:var(--ink-2,#334155); } .ds-kpi-row { display:flex; gap:6px; align-items:flex-end; } .ds-kpi-value { font-weight:600; font-size:30px; line-height:36px; color:var(--ink,#0f172a); } .ds-kpi-unit { font-size:13px; line-height:22px; color:var(--ink-muted,#64748b); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Operations Desk (Phòng điều phối)",
+    "overview": "CMS-26 là một bàn điều phối: sáng, gọn, mọi công cụ nằm đúng chỗ, và dữ liệu vận hành của chuỗi là nhân vật chính. Nền là các lớp trắng và xám lạnh rất nhạt. Màu Xanh iPOS chỉ đánh dấu hành động chính và trạng thái đang chọn. Mọi thứ khác lùi lại để số liệu, bảng và form được đọc dễ dàng trong nhiều giờ làm việc.\n\nHệ thống có hai giọng, chia theo vùng. Vùng dữ liệu (bảng, ô bảng, số liệu, KPI) theo tinh thần tiết chế, chính xác: bo góc nhỏ, đường kẻ mảnh, nhịp chữ chặt, không trang trí. Khung layout, card bên ngoài và các giao diện còn lại theo tinh thần mềm, thân thiện: bo góc 10–14px, nền xám nhạt phân lớp, bóng rất nhẹ cho mục đang chọn. Hai giọng này dùng chung một bộ token. Khác biệt nằm ở cách áp dụng bo góc, mật độ và bóng.\n\nFigma CMS-26 là nguồn gốc. Mọi giá trị dưới đây được trích từ tokens.css và components.css, vốn được dựng để khớp Figma.",
+    "keyCharacteristics": [
+      "Phẳng khi tĩnh. Ranh giới chủ yếu là viền 1px lạnh (line), bóng chỉ dành cho lớp nổi.",
+      "Một màu hành động chính (Xanh iPOS). Tím chỉ cho AI, cam chỉ cho nhấn mạnh và cảnh báo.",
+      "Một font duy nhất, Be Vietnam Pro, với thang chữ chi tiết cho bảng và số liệu.",
+      "Desktop là chính. Các component có kích thước cố định theo Figma."
+    ],
+    "rules": [
+      { "name": "The One Action Color Rule", "body": "Xanh iPOS là màu hành động duy nhất. Tím chỉ cho AI, cam chỉ cho nhấn và cảnh báo. Không dùng hai màu này cho nút chính.", "section": "colors" },
+      { "name": "The Soft-Pair Rule", "body": "Mọi tag và trạng thái đều là nền nhạt kèm chữ đậm cùng họ màu, không bao giờ là nền đặc kèm chữ trắng.", "section": "colors" },
+      { "name": "The Tight-Large Rule", "body": "Chữ từ 20px trở lên dùng letter-spacing âm. Chữ dưới 20px giữ spacing 0, riêng Overline dùng +0.6px.", "section": "typography" },
+      { "name": "The Cell Is 13 Rule", "body": "Nội dung bảng dùng 13/20. Không dùng 14px trong ô bảng, để bảng giữ được mật độ.", "section": "typography" },
+      { "name": "The Flat-At-Rest Rule", "body": "Card và bảng không có bóng. Bóng chỉ dành cho trạng thái được chọn hoặc lớp nổi lên trên nội dung.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do lấy màu, bo góc và chữ từ token trong tokens.css. Khi Figma CMS-26 và code khác nhau thì Figma thắng.",
+      "Do dùng bo 6px và chữ Cell 13/20 trong vùng bảng và số liệu, và bo 10–14px cho khung, card, form.",
+      "Do để card và bảng phẳng. Chỉ dùng bóng cho mục đang chọn, popover, dialog và tooltip.",
+      "Do dùng cặp nền nhạt kèm chữ đậm cho mọi tag và trạng thái.",
+      "Do thể hiện focus của trường nhập bằng viền primary và vòng 3px primary-soft."
+    ],
+    "donts": [
+      "Don't dùng tím ngoài các tính năng AI, hoặc dùng cam làm màu cho nút chính.",
+      "Don't dùng nền đỏ đặc cho hành động nguy hiểm. Dùng danger-soft kèm chữ danger.",
+      "Don't thêm font thứ hai. Be Vietnam Pro đảm nhận mọi vai trò.",
+      "Don't thêm bóng cho card hay bảng khi chúng ở trạng thái tĩnh.",
+      "Don't hardcode hex khi đã có token tương ứng."
+    ]
+  }
+}

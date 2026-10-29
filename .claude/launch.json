@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ag-grid-poc",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "ag-grid-poc", "run", "dev", "--", "--port", "5173", "--strictPort"],
+      "port": 5173
+    },
+    {
+      "name": "virtual-table-poc",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "virtual-table-poc", "run", "dev", "--", "--port", "5174", "--strictPort"],
+      "port": 5174
+    },
+    {
+      "name": "vxe-table-poc",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "vxe-table-poc", "run", "dev", "--", "--port", "5175", "--strictPort"],
+      "port": 5175
+    },
+    {
+      "name": "design-docs",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5199", "--bind", "127.0.0.1"],
+      "port": 5199
+    }
+  ]
+}

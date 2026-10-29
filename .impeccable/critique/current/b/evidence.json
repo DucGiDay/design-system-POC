@@ -1,0 +1,29 @@
+{
+  "assessment": "B",
+  "detector": {
+    "invocations": 1,
+    "command": "C:/Users/duc.hoang01/.agents/skills/impeccable/scripts/impeccable.cmd detect --json virtual-table-poc/src/components/navigation vxe-table-poc/src/components/navigation",
+    "exitCode": 0,
+    "findings": 0,
+    "rules": [],
+    "locations": [],
+    "output": "detector.json"
+  },
+  "browser": {
+    "tool": "native CUA in-app browser",
+    "urls": ["http://127.0.0.1:5174/", "http://127.0.0.1:5174/reports/a/a01/a01-1", "http://127.0.0.1:5175/reports/a/a01/a01-1"],
+    "viewports": [[1440,900],[1280,720]],
+    "documentHorizontalOverflow": false,
+    "compactActiveVisible1280": {"navTop":160,"navBottom":584,"activeTop":545.7999877929688,"activeBottom":583.7999877929688,"scrollTop":163.1999969482422},
+    "expandedOverlayActiveHidden1280": {"navTop":136,"navBottom":620,"activeTop":684,"activeBottom":718,"scrollTop":0},
+    "railBottomReachable1280": {"scrollTop":308,"appsTop":544,"appsBottom":582,"navBottom":584},
+    "focus": {"open":"FABI CMS - Trang chu link","reverseTabFromFirst":"Che do toi switch","escape":"closed after animation, restored Mo menu chinh button"},
+    "search": {"empty":"Khong tim thay bao cao plus Xoa tim kiem, recovery works","accentless":"doanh thu theo cua hang returned A01.1 leaf"},
+    "overlayInjection":"preflight failed: Cannot set property title of [object Object] which has only a getter",
+    "liveServer":"not started because mutable injection unavailable",
+    "visibility":"background inspection only; second explicit hidden tab creation returned IAB visibility is not supported in a subagent thread; reused own fresh evidence tab",
+    "cleanup":"viewport reset and owned tab closed; no tabs remain in B session; no server started"
+  },
+  "sourceParity": "All seven navigation module files have equal SHA256 hashes between virtual and vxe variants",
+  "sourceEdits": false
+}

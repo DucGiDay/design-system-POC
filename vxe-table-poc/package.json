@@ -1,0 +1,32 @@
+{
+  "name": "vxe-table-poc",
+  "version": "1.0.0",
+  "description": "Vue 3 TypeScript VxeTable virtual scrolling PoC",
+  "scripts": {
+    "test": "playwright test",
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "sync:design": "node scripts/sync-design.mjs",
+    "predev": "npm run sync:design",
+    "prebuild": "npm run sync:design"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0",
+    "vxe-pc-ui": "^4.20.33",
+    "vxe-table": "^4.23.12"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "postcss": "^8.5.32",
+    "sass": "^1.106.1",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.5",
+    "vue-tsc": "^3.3.13"
+  },
+  "type": "module",
+  "private": true
+}

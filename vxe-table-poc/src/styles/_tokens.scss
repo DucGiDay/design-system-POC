@@ -1,0 +1,18 @@
+@use './base.generated' as base;
+
+:root {
+  @include base.tokens;
+
+  // Semantic aliases reference the parent palette; no independent color palette.
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--ink-muted);
+  --background-page: var(--ground);
+  --background-panel: var(--surface);
+  --border-default: var(--line);
+}
+
+// Set on <html> so aliases above re-resolve against the dark values.
+:root[data-theme='dark'] {
+  @include base.tokens-dark;
+}

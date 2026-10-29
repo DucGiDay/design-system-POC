@@ -1,0 +1,30 @@
+@use './_base.generated.scss' as base;
+
+@layer components {
+  .fb-button {
+    @include base.button;
+    @include base.button-sm;
+
+    &:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    &:disabled { cursor: not-allowed; opacity: 0.5; }
+
+    &--secondary {
+      @include base.button-secondary;
+      box-shadow: var(--shadow-inside-stroke);
+      &:hover:not(:disabled) { background: var(--subtle); }
+    }
+    &--subtle {
+      @include base.button-subtle;
+      &:hover:not(:disabled) { background: var(--line); }
+    }
+  }
+
+  .fb-status-badge {
+    @include base.badge;
+    &--pending { @include base.badge-pending; }
+    &--processing { @include base.badge-processing; }
+    &--completed { @include base.badge-completed; }
+    &--cancelled { @include base.badge-cancelled; }
+    &--paused { @include base.badge-paused; }
+  }
+}

@@ -1,0 +1,33 @@
+@use './styles/tokens';
+@use './styles/components';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--primary);
+}
+::selection { background: var(--primary-soft); color: var(--primary-text); }
+
+@layer components {
+  // FormKit assigns these classes directly to DOM, including its drag clone.
+  .vt-dragging { background: var(--surface); box-shadow: var(--shadow-overlay); }
+  .vt-row {
+    transition: transform var(--motion-reorder) ease;
+    &.vt-placeholder {
+      background: var(--primary-tint);
+      > * { opacity: 0.4; }
+    }
+  }
+  .vt-th.vt-placeholder { background: var(--primary-soft); color: var(--primary-text); }
+  .vt-scroll { scrollbar-color: var(--line-strong) var(--subtle); }
+  @media (prefers-reduced-motion: reduce) {
+    .vt-row { transition: none; }
+    .vt-scroll .fb-animate-spin { animation: none; }
+  }
+}

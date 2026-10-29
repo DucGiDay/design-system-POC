@@ -1,0 +1,187 @@
+// Generated from parent tokens.css and components.css. Run npm run sync:design; do not edit.
+@mixin tokens {
+  --primary: #0560a6;
+  --primary-strong: #044a80;
+  --primary-text: #0b4f86;
+  --primary-soft: #e3eef9;
+  --primary-tint: #eef4ff;
+  --violet: #6039ef;
+  --violet-text: #4c2bc4;
+  --violet-soft: #eeeafe;
+  --accent: #f7941d;
+  --accent-text: #b45f06;
+  --accent-soft: #fff3e3;
+  --primary-50: #eef4ff;
+  --primary-100: #e3eef9;
+  --primary-200: #b1d0f0;
+  --primary-300: #7eafe3;
+  --primary-400: #498cce;
+  --primary-500: #0560a6;
+  --primary-600: #044a80;
+  --primary-700: #013c6b;
+  --primary-800: #012f56;
+  --primary-900: #002242;
+  --primary-950: #00172e;
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --ink-muted: #64748b;
+  --ink-faint: #94a3b8;
+  --line-strong: #cbd5e1;
+  --line: #e8ecf2;
+  --line-soft: #eef0f3;
+  --surface: #ffffff;
+  --field: #f3f5f8;
+  --ground: #f4f6fa;
+  --subtle: #f8fafc;
+  --success: #16a34a;
+  --success-text: #15803d;
+  --success-soft: #e8f7ee;
+  --warning: #d97706;
+  --warning-soft: #fdf7f0;
+  --danger: #d92d20;
+  --danger-soft: #fdf2f2;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+  --font-sans: "Be Vietnam Pro", sans-serif;
+  --type-display-number-font-weight: 300;
+  --type-display-number-font-size: 44px;
+  --type-display-number-line-height: 52px;
+  --type-display-number-letter-spacing: -1.5px;
+  --type-page-title-font-weight: 600;
+  --type-page-title-font-size: 28px;
+  --type-page-title-line-height: 36px;
+  --type-page-title-letter-spacing: -0.5px;
+  --type-section-font-weight: 600;
+  --type-section-font-size: 20px;
+  --type-section-line-height: 28px;
+  --type-section-letter-spacing: -0.2px;
+  --type-number-md-font-weight: 500;
+  --type-number-md-font-size: 24px;
+  --type-number-md-line-height: 32px;
+  --type-number-md-letter-spacing: -0.5px;
+  --type-card-title-font-weight: 600;
+  --type-card-title-font-size: 16px;
+  --type-card-title-line-height: 24px;
+  --type-body-font-weight: 400;
+  --type-body-font-size: 14px;
+  --type-body-line-height: 22px;
+  --type-body-medium-font-weight: 500;
+  --type-body-medium-font-size: 14px;
+  --type-body-medium-line-height: 22px;
+  --type-body-semibold-font-weight: 600;
+  --type-body-semibold-font-size: 14px;
+  --type-body-semibold-line-height: 22px;
+  --type-cell-font-weight: 400;
+  --type-cell-font-size: 13px;
+  --type-cell-line-height: 20px;
+  --type-label-font-weight: 500;
+  --type-label-font-size: 12px;
+  --type-label-line-height: 16px;
+  --type-caption-font-weight: 400;
+  --type-caption-font-size: 12px;
+  --type-caption-line-height: 18px;
+  --type-overline-font-weight: 600;
+  --type-overline-font-size: 11px;
+  --type-overline-line-height: 16px;
+  --type-overline-letter-spacing: 0.6px;
+}
+
+@mixin tokens-dark {
+  --primary: var(--primary-300);
+  --primary-strong: var(--primary-200);
+  --primary-text: var(--primary-200);
+  --primary-soft: var(--primary-800);
+  --primary-tint: var(--primary-900);
+  --violet: #9996ff;
+  --violet-text: #bbbdff;
+  --violet-soft: #222047;
+  --accent: #f3993b;
+  --accent-text: #febb7d;
+  --accent-soft: #36210d;
+  --ink: #f1f4f7;
+  --ink-2: #cdd5df;
+  --ink-muted: #9ba6b4;
+  --ink-faint: #707b8a;
+  --line-strong: #485463;
+  --line: #2a3542;
+  --line-soft: #1f2732;
+  --surface: #141c27;
+  --field: #222c39;
+  --ground: #0d141e;
+  --subtle: #19222e;
+  --success: #54c671;
+  --success-text: #84dc95;
+  --success-soft: #132a18;
+  --warning: #ffa65e;
+  --warning-soft: #37210f;
+  --danger: #f87967;
+  --danger-soft: #3a1814;
+  color-scheme: dark;
+}
+
+@mixin button {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@mixin button-sm {
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@mixin button-secondary {
+  background: var(--surface);
+  color: var(--ink-2);
+}
+
+@mixin button-subtle {
+  background: var(--field);
+  color: var(--ink-2);
+}
+
+@mixin badge {
+  display: inline-flex;
+  align-items: flex-start;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+@mixin badge-pending {
+  background: var(--warning-soft);
+  color: var(--accent-text);
+}
+
+@mixin badge-processing {
+  background: var(--primary-tint);
+  color: var(--primary-text);
+}
+
+@mixin badge-completed {
+  background: var(--success-soft);
+  color: var(--success-text);
+}
+
+@mixin badge-cancelled {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+@mixin badge-paused {
+  background: var(--ground);
+  color: var(--ink-muted);
+}

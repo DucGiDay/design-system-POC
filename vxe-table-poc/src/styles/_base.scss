@@ -1,0 +1,22 @@
+@use './base.generated' as base;
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  @include base.type-body;
+  min-width: 320px;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--background-page);
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--primary);
+}
+p { margin: 0; }
+::selection { background: var(--primary-soft); color: var(--primary-text); }
+* { scrollbar-color: var(--line-strong) var(--subtle); scrollbar-width: thin; }
+button, input { font: inherit; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
