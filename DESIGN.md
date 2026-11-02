@@ -57,10 +57,10 @@ colors:
 typography:
   dashboard-revenue:
     fontFamily: "Be Vietnam Pro, sans-serif"
-    fontSize: "56px"
-    fontWeight: 700
-    lineHeight: "64px"
-    letterSpacing: "-0.03em"
+    fontSize: "36px"
+    fontWeight: 600
+    lineHeight: "44px"
+    letterSpacing: "-0.02em"
   metric:
     fontFamily: "Be Vietnam Pro, sans-serif"
     fontSize: "26px"
@@ -330,7 +330,7 @@ Chưa có trong Figma, được dựng trong `tokens.css` dưới `[data-theme="
 - **Label** (500, 12/16): nhãn nhỏ, chip, tag.
 - **Caption** (400, 12/18): mô tả, chú thích.
 - **Overline** (600, 11/16, +0.6px): nhãn nhóm menu.
-- **Dashboard Revenue / Metric / Report Title / Chart**: vai trò bổ sung từ Figma `136:4080`, lần lượt dùng trong banner doanh thu, giá trị `CmsMetricCard`, tiêu đề `CmsReportCard` và nhãn biểu đồ. Kích thước lấy từ token `--type-dashboard-revenue-*`, `--type-metric-*`, `--type-report-title-*`, `--type-chart-*`; không thay thang chữ của ô bảng.
+- **Dashboard Revenue / Metric / Report Title / Chart**: vai trò bổ sung từ Figma `136:4080`, lần lượt dùng trong banner doanh thu, giá trị `CmsMetricCard`, tiêu đề `CmsReportCard` và nhãn biểu đồ. Kích thước lấy từ token `--type-dashboard-revenue-*`, `--type-metric-*`, `--type-report-title-*`, `--type-chart-*`; không thay thang chữ của ô bảng. Riêng con số doanh thu đã hạ từ 56/64 (Figma) xuống 36/44, đậm 600, giữ màu `primary`: dashboard ưu tiên taste skill, con số trả lời câu hỏi chính ở 30–36px và lớn hơn giá trị chỉ số (26px) ít nhất 1,3 lần, không có số nào từ 48px trở lên.
 
 ### Named Rules
 **The Tight-Large Rule.** Chữ từ 20px trở lên dùng letter-spacing âm. Chữ dưới 20px giữ spacing 0, riêng Overline dùng +0.6px.
