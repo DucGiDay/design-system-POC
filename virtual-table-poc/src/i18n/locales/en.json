@@ -17,6 +17,7 @@
     "allAppsOpenMenu": "All apps — Open main menu",
     "darkMode": "Dark mode",
     "language": "Language",
+    "logout": "Sign out",
     "languageSwitch": "Language: {current}. Switch to {next}",
     "scrollUp": "Scroll menu up",
     "scrollDown": "Scroll menu down"
@@ -67,5 +68,103 @@
     "viewChildren": "Show items under {name}",
     "expand": "Expand {name}",
     "collapse": "Collapse {name}"
+  },
+  "auth": {
+    "pageTitle": {
+      "login": "Sign in",
+      "register": "Sign up",
+      "forgotPassword": "Forgot password",
+      "loginToken": "Sign in with token",
+      "verifyEmail": "Verify email"
+    },
+    "layout": {
+      "logo": "iPOS.vn",
+      "bannerTitle": "FABI Solution",
+      "bannerSubtitle": "Restaurant management software",
+      "bannerDesc": "With deep expertise in the F&B industry, IPOS.vn provides a comprehensive ecosystem of solutions suitable for all business models, helping standardize operations, optimize costs, and achieve sustainable growth.",
+      "copyright": "© IPOS.VN {year}",
+      "openInNewTab": "(opens in a new tab)"
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Welcome back! Please enter your information.",
+      "account": "Account",
+      "accountPlaceholder": "Enter your email or phone",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "withToken": "Sign in with support token",
+      "noAccount": "Don't have an iPOS account yet?",
+      "register": "Sign up",
+      "manual": "FABI CMS user manual",
+      "errorAccountRequired": "Please enter your account",
+      "errorAccountInvalid": "Invalid account",
+      "errorPasswordRequired": "Please enter your password",
+      "errorGeneric": "There was an error, please try again!",
+      "registeredNotice": "Sign-up complete. Please sign in to access the system!"
+    },
+    "company": {
+      "title": "Select a company to access",
+      "code": "Company code: {code}",
+      "brands": "Brands",
+      "seeMore": "Show {count} more brands",
+      "collapse": "Collapse",
+      "back": "Back to sign in",
+      "continue": "Continue",
+      "error": "There was an error, please try again!"
+    },
+    "access": {
+      "title": "You do not have access to FABi",
+      "sentTitle": "FABi access request sent",
+      "desc": "Please contact the administrator to gain access",
+      "send": "Send access request",
+      "sendAgainIn": "You can send it again in {seconds}s",
+      "back": "Back to sign in",
+      "error": "There was an error, please try again!"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Sign up for an iPOS account quickly and for free, with no commitment or long-term contract.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Enter full name",
+      "country": "Country",
+      "countryVN": "Vietnam",
+      "email": "Email",
+      "emailPlaceholder": "Enter email",
+      "confirmEmail": "Confirm email",
+      "confirmEmailPlaceholder": "Re-enter email",
+      "password": "Create password",
+      "passwordHint": "At least 6 characters, including letters and numbers",
+      "agree": "I agree to the {terms} and {privacy} of iPOS",
+      "terms": "General provisions, Warranty policy",
+      "privacy": "Privacy policy",
+      "submit": "Sign up",
+      "hasAccount": "Already have an iPOS account?",
+      "login": "Sign in",
+      "errorFullNameRequired": "Please enter your full name",
+      "errorEmailRequired": "Please enter your email",
+      "errorEmailInvalid": "Invalid email",
+      "errorEmailMismatch": "Emails do not match",
+      "errorPasswordRequired": "Please create a password",
+      "errorPassword": "Password must contain at least 6 characters including letters and numbers",
+      "errorAgree": "Please accept the terms and policies",
+      "errorGeneric": "There was an error, please try again!",
+      "intro": {
+        "easyTitle": "Easy to use",
+        "easyDesc": "IPOS.vn sales software handles simple to complex restaurant operations with an intuitive interface, smart features and friendly operation.",
+        "flexibleTitle": "Flexible to apply",
+        "flexibleDesc": "IPOS.vn products fit many restaurant business models and are easy to upgrade and change as you scale up.",
+        "chainTitle": "Whole-chain management",
+        "chainDesc": "Business data at every point of sale is reported accurately, helping managers make important decisions for the entire restaurant chain."
+      }
+    },
+    "pending": {
+      "desc": "This screen has not been moved to the new CMS yet.",
+      "verifyEmailSent": "Sign-up complete. We sent a verification email to {email}. Please verify it to access the system.",
+      "back": "Back to sign in"
+    }
   }
 }

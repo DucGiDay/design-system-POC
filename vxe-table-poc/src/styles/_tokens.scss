@@ -10,6 +10,11 @@
   --background-page: var(--ground);
   --background-panel: var(--surface);
   --border-default: var(--line);
+
+  // Elevation theo DESIGN.md, cùng giá trị với virtual-table-poc; chỉ cho mục đang chọn / lớp nổi.
+  --shadow-overlay: 0 2px 6px rgba(15, 23, 41, 0.06), 0 16px 40px rgba(15, 23, 41, 0.14);
+  --shadow-inside-stroke: inset 0 0 0 1px var(--line);
+  --focus-ring: 0 0 0 3px var(--primary-soft);
 }
 
 // Set on <html> so aliases above re-resolve against the dark values.

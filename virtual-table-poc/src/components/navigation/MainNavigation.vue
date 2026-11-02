@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { hasSession, logout } from '@/components/auth/session'
 import { availableLocales, currentLocale, setLocale } from '@/i18n'
 import { LOCALE_NAMES } from '@/i18n/locales'
 import NavScrollButton from './NavScrollButton.vue'
@@ -9,6 +11,15 @@ import { allModules, extensionModules, home, moduleGroups, moduleHref, type Modu
 const props = defineProps<{ compact?: boolean; activeModule: string; overlay?: boolean; mobile?: boolean; dark: boolean }>()
 const emit = defineEmits<{ navigate: [id: string]; toggle: []; theme: [] }>()
 const { t } = useI18n()
+const router = useRouter()
+// POC còn chạy khung CMS khi chưa đăng nhập (demo, test), nên chỉ hiện Đăng xuất khi có phiên
+const loggedIn = ref(hasSession())
+const loggingOut = ref(false)
+async function signOut() {
+  loggingOut.value = true
+  await logout()
+  void router.push('/login')
+}
 // POC có 2 ngôn ngữ nên bấm là xoay vòng; thêm ngôn ngữ thì đổi sang menu chọn
 const nextLocale = computed(() => availableLocales[(availableLocales.indexOf(currentLocale.value) + 1) % availableLocales.length]!)
 const icon = (item: ModuleItem, active: boolean) => '/navigation/' + (active ? item.activeIcon ?? item.icon : item.icon)
@@ -120,6 +131,9 @@ onBeforeUnmount(() => observer?.disconnect())
       </button>
       <button v-if="availableLocales.length > 1" class="cms-module-link" type="button" :aria-label="t('shell.languageSwitch', { current: LOCALE_NAMES[currentLocale], next: LOCALE_NAMES[nextLocale] })" :data-tooltip="compact ? t('shell.language') + ': ' + LOCALE_NAMES[currentLocale] : undefined" @click="setLocale(nextLocale)">
         <span class="cms-locale-code" aria-hidden="true">{{ currentLocale }}</span><span v-if="!compact">{{ t('shell.language') }}</span><span v-if="!compact" class="cms-count">{{ LOCALE_NAMES[currentLocale] }}</span>
+      </button>
+      <button v-if="loggedIn" class="cms-module-link" type="button" :aria-label="compact ? t('shell.logout') : undefined" :data-tooltip="compact ? t('shell.logout') : undefined" :disabled="loggingOut" :aria-busy="loggingOut" @click="signOut">
+        <img src="/navigation/dang-xuat.svg" width="18" height="18" alt="" /><span v-if="!compact">{{ t('shell.logout') }}</span>
       </button>
     </div>
   </div>

@@ -1,0 +1,181 @@
+// Component form dùng chung trong module auth: trường nhập, nút, ô tick, thông báo, hộp thoại.
+// Giá trị theo components.css (cms-field, cms-btn, cms-check, cms-dialog), đổi px -> rem.
+// Bọc dưới .cms-auth để không đụng class cùng tên của module navigation.
+// Khi màn khác cũng cần các component này thì chuyển sang src/styles/_components.scss.
+
+.cms-auth {
+  // Trường nhập
+  .cms-field { display: flex; flex-direction: column; gap: .375rem; min-width: 0; }
+  .cms-field__label { display: flex; gap: .25rem; align-items: center; color: var(--ink-2); font-size: .8125rem; font-weight: 500; line-height: 1.25rem; }
+  .cms-field__box {
+    position: relative;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    height: 2.5rem;
+    padding: 0 .75rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+
+    &:hover { border-color: var(--line-strong); }
+    &:focus-within { border-color: var(--primary); box-shadow: var(--focus-ring); }
+
+    input, select {
+      flex: 1 0 0;
+      min-width: 0;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: .875rem;
+
+      &::placeholder { color: var(--ink-faint); }
+    }
+    select { appearance: none; cursor: pointer; }
+  }
+  // TODO(design): chờ Figma — trạng thái lỗi validate theo quy ước tạm trong AGENTS.md
+  .cms-field.is-invalid .cms-field__box {
+    border-color: var(--danger);
+    &:focus-within { box-shadow: 0 0 0 3px var(--danger-soft); }
+  }
+  .cms-field__error { color: var(--danger); font-size: .75rem; line-height: 1.125rem; }
+  .cms-field__hint { color: var(--ink-muted); font-size: .75rem; line-height: 1.125rem; }
+
+  // Nút icon nằm trong ô nhập (hiện/ẩn mật khẩu)
+  .cms-field__action {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: -.375rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-sm);
+    color: var(--ink-muted);
+    background: transparent;
+    cursor: pointer;
+
+    &:hover { color: var(--ink-2); background: var(--subtle); }
+    &:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+  }
+
+  // Nút
+  .cms-btn {
+    display: inline-flex;
+    gap: .375rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: .5rem .875rem;
+    border: 0;
+    border-radius: var(--radius-md);
+    font: inherit;
+    font-size: .8125rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 120ms ease, box-shadow 120ms ease;
+
+    &:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    // TODO(design): chờ Figma — disabled theo quy ước tạm
+    &:disabled { cursor: not-allowed; opacity: .5; }
+  }
+  .cms-btn--block { width: 100%; }
+  .cms-btn--primary {
+    color: var(--surface);
+    background: var(--primary);
+    &:hover:not(:disabled) { background: var(--primary-strong); }
+  }
+  .cms-btn--secondary {
+    color: var(--ink-2);
+    background: var(--surface);
+    box-shadow: var(--shadow-inside-stroke);
+    &:hover:not(:disabled) { background: var(--subtle); }
+  }
+  .cms-btn--subtle {
+    color: var(--ink-2);
+    background: var(--field);
+    &:hover:not(:disabled) { background: var(--line); }
+  }
+
+  // TODO(design): chờ Figma — vòng xoay khi nút đang xử lý, giữ nguyên kích thước nút
+  .cms-spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: var(--radius-full);
+    animation: cms-spin 700ms linear infinite;
+  }
+
+  .cms-link {
+    color: var(--primary-text);
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+
+    &:hover { text-decoration: underline; }
+    &:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  }
+
+  // Ô tick dùng input thật để giữ bàn phím và trình đọc màn hình
+  .cms-check { display: flex; gap: .5rem; align-items: flex-start; color: var(--ink-2); font-size: .875rem; line-height: 1.375rem; cursor: pointer; }
+  .cms-check input {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: .125rem 0 0;
+    accent-color: var(--primary);
+    cursor: pointer;
+
+    &:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  }
+
+  // TODO(design): chờ Figma — thông báo cấp form, theo Soft-Pair
+  .cms-alert {
+    display: flex;
+    gap: .5rem;
+    align-items: flex-start;
+    padding: .625rem .75rem;
+    border-radius: var(--radius-md);
+    font-size: .875rem;
+    line-height: 1.375rem;
+
+    &--danger { color: var(--danger); background: var(--danger-soft); }
+    &--success { color: var(--success-text); background: var(--success-soft); }
+  }
+
+  // Hộp thoại
+  .cms-dialog {
+    width: min(27.5rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    // Reset margin toàn cục đè mất margin:auto mặc định của <dialog> -> phải đặt lại để căn giữa
+    margin: auto;
+    padding: 1.5rem;
+    border: 0;
+    border-radius: var(--radius-lg);
+    color: var(--ink);
+    background: var(--surface);
+    box-shadow: var(--shadow-overlay);
+
+    &::backdrop { background: color-mix(in srgb, var(--ink) 40%, transparent); }
+  }
+  .cms-dialog__body { display: flex; flex-direction: column; gap: 1rem; }
+  .cms-dialog__title { margin: 0; font-size: 1.125rem; font-weight: 600; line-height: 1.625rem; }
+  .cms-dialog__desc { margin: 0; color: var(--ink-muted); font-size: .875rem; line-height: 1.375rem; }
+  .cms-dialog__foot { display: flex; gap: .5rem; justify-content: flex-end; padding-top: .5rem; }
+}
+
+@keyframes cms-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cms-auth .cms-spinner { animation-duration: 1.6s; }
+  .cms-auth .cms-field__box, .cms-auth .cms-btn { transition: none; }
+}

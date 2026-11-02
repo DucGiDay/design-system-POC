@@ -17,6 +17,7 @@
     "allAppsOpenMenu": "Tất cả ứng dụng — Mở menu chính",
     "darkMode": "Chế độ tối",
     "language": "Ngôn ngữ",
+    "logout": "Đăng xuất",
     "languageSwitch": "Ngôn ngữ: {current}. Chuyển sang {next}",
     "scrollUp": "Cuộn menu lên",
     "scrollDown": "Cuộn menu xuống"
@@ -67,5 +68,103 @@
     "viewChildren": "Xem mục con của {name}",
     "expand": "Mở rộng {name}",
     "collapse": "Thu gọn {name}"
+  },
+  "auth": {
+    "pageTitle": {
+      "login": "Đăng nhập",
+      "register": "Đăng ký",
+      "forgotPassword": "Quên mật khẩu",
+      "loginToken": "Đăng nhập với mã hỗ trợ",
+      "verifyEmail": "Xác thực email"
+    },
+    "layout": {
+      "logo": "iPOS.vn",
+      "bannerTitle": "FABI Giải pháp",
+      "bannerSubtitle": "Phần mềm quản lý bán hàng ngành dịch vụ ẩm thực",
+      "bannerDesc": "Với kinh nghiệm chuyên sâu trong ngành F&B, IPOS.vn mang đến hệ sinh thái giải pháp phù hợp cho mọi mô hình kinh doanh, giúp chuẩn hóa quy trình, tiết kiệm chi phí và tăng trưởng bền vững",
+      "copyright": "© IPOS.VN {year}",
+      "openInNewTab": "(mở tab mới)"
+    },
+    "login": {
+      "title": "Chào mừng trở lại",
+      "subtitle": "Chào mừng trở lại! Vui lòng nhập thông tin của bạn.",
+      "account": "Tài khoản",
+      "accountPlaceholder": "Nhập tài khoản",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "Nhập mật khẩu",
+      "showPassword": "Hiện mật khẩu",
+      "hidePassword": "Ẩn mật khẩu",
+      "forgotPassword": "Quên mật khẩu?",
+      "submit": "Đăng nhập",
+      "withToken": "Đăng nhập với mã hỗ trợ",
+      "noAccount": "Bạn chưa có tài khoản hệ thống iPOS?",
+      "register": "Đăng ký",
+      "manual": "Hướng dẫn sử dụng CMS FABI",
+      "errorAccountRequired": "Vui lòng nhập tài khoản",
+      "errorAccountInvalid": "Thông tin tài khoản không hợp lệ",
+      "errorPasswordRequired": "Vui lòng nhập mật khẩu",
+      "errorGeneric": "Có lỗi xảy ra, mời bạn thử lại!",
+      "registeredNotice": "Đăng ký thành công, vui lòng đăng nhập để truy cập hệ thống!"
+    },
+    "company": {
+      "title": "Chọn công ty bạn muốn vào",
+      "code": "Mã công ty: {code}",
+      "brands": "Thương hiệu",
+      "seeMore": "Xem thêm {count} thương hiệu",
+      "collapse": "Thu gọn",
+      "back": "Trở lại đăng nhập",
+      "continue": "Tiếp tục",
+      "error": "Có lỗi xảy ra, mời bạn thử lại!"
+    },
+    "access": {
+      "title": "Bạn chưa có quyền truy cập FABi",
+      "sentTitle": "Đã gửi quyền truy cập FABi",
+      "desc": "Vui lòng liên hệ quản trị viên để có thể truy cập",
+      "send": "Gửi quyền truy cập",
+      "sendAgainIn": "Bạn có thể gửi lại sau {seconds} giây",
+      "back": "Trở lại đăng nhập",
+      "error": "Có lỗi xảy ra, mời bạn thử lại!"
+    },
+    "register": {
+      "title": "Hãy tạo tài khoản của bạn",
+      "subtitle": "Đăng ký tài khoản hệ thống iPOS nhanh chóng và miễn phí, không cam kết hay hợp đồng dài hạn.",
+      "fullName": "Tên tài khoản",
+      "fullNamePlaceholder": "Nhập tên tài khoản",
+      "country": "Quốc gia",
+      "countryVN": "Việt Nam",
+      "email": "Email",
+      "emailPlaceholder": "Nhập email",
+      "confirmEmail": "Xác nhận email",
+      "confirmEmailPlaceholder": "Nhập lại email",
+      "password": "Tạo mật khẩu",
+      "passwordHint": "Ít nhất 6 ký tự, gồm cả chữ và số",
+      "agree": "Tôi đồng ý với {terms} và {privacy} với iPOS",
+      "terms": "Quy định chung, Chính sách bảo hành",
+      "privacy": "Chính sách bảo mật",
+      "submit": "Đăng ký",
+      "hasAccount": "Bạn đã có tài khoản hệ thống iPOS?",
+      "login": "Đăng nhập",
+      "errorFullNameRequired": "Vui lòng nhập tên tài khoản",
+      "errorEmailRequired": "Vui lòng nhập email",
+      "errorEmailInvalid": "Email không hợp lệ",
+      "errorEmailMismatch": "Email không trùng khớp",
+      "errorPasswordRequired": "Vui lòng tạo mật khẩu",
+      "errorPassword": "Mật khẩu phải chứa ít nhất 6 ký tự bao gồm chữ và số",
+      "errorAgree": "Vui lòng đồng ý với quy định và chính sách",
+      "errorGeneric": "Có lỗi xảy ra, mời bạn thử lại!",
+      "intro": {
+        "easyTitle": "Sử dụng dễ dàng",
+        "easyDesc": "Phần mềm bán hàng iPOS.vn giúp xử lý các nghiệp vụ từ đơn giản tới phức tạp trong kinh doanh nhà hàng với giao diện trực quan, tính năng thông minh, thao tác thân thiện.",
+        "flexibleTitle": "Áp dụng linh hoạt",
+        "flexibleDesc": "Sản phẩm của iPOS.vn phù hợp nhiều mô hình đa dạng trong kinh doanh nhà hàng cũng như dễ dàng nâng cấp, thay đổi để đáp ứng việc mở rộng quy mô trong tương lai.",
+        "chainTitle": "Quản trị toàn chuỗi",
+        "chainDesc": "Mọi thông tin kinh doanh tại từng điểm bán cụ thể được thống kê hiệu quả và chính xác, trợ giúp nhà quản trị trong việc ra các quyết định quan trọng cho toàn chuỗi nhà hàng."
+      }
+    },
+    "pending": {
+      "desc": "Màn này chưa được chuyển sang CMS mới.",
+      "verifyEmailSent": "Đăng ký thành công. Chúng tôi đã gửi email xác thực tới {email}, vui lòng xác thực để truy cập hệ thống.",
+      "back": "Trở lại đăng nhập"
+    }
   }
 }

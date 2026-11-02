@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { hasSession, logout } from '../auth/session'
 import NavScrollButton from './NavScrollButton.vue'
 import { allModules, extensionModules, home, moduleGroups, moduleHref, type ModuleItem } from './navigation'
 
 const props = defineProps<{ compact?: boolean; activeModule: string; overlay?: boolean; mobile?: boolean; dark: boolean }>()
 const emit = defineEmits<{ navigate: [id: string]; toggle: []; theme: [] }>()
+const router = useRouter()
+// POC còn chạy khung CMS khi chưa đăng nhập (demo, test), nên chỉ hiện Đăng xuất khi có phiên
+const loggedIn = ref(hasSession())
+const loggingOut = ref(false)
+async function signOut() {
+  loggingOut.value = true
+  await logout()
+  void router.push('/login')
+}
 const icon = (item: ModuleItem, active: boolean) => '/navigation/' + (active ? item.activeIcon ?? item.icon : item.icon)
 const viewport = ref<HTMLElement>()
 const modules = ref<HTMLElement>()
@@ -111,6 +122,9 @@ onBeforeUnmount(() => observer?.disconnect())
       </a>
       <button class="cms-module-link" type="button" role="switch" :aria-checked="dark" aria-label="Chế độ tối" :data-tooltip="compact ? 'Chế độ tối' : undefined" @click="emit('theme')">
         <img src="/navigation/d631a.svg" width="18" height="18" alt="" /><span v-if="!compact">Chế độ tối</span><span v-if="!compact" class="cms-switch" :class="{ 'is-on': dark }"><i /></span>
+      </button>
+      <button v-if="loggedIn" class="cms-module-link" type="button" :aria-label="compact ? 'Đăng xuất' : undefined" :data-tooltip="compact ? 'Đăng xuất' : undefined" :disabled="loggingOut" :aria-busy="loggingOut" @click="signOut">
+        <img src="/navigation/dang-xuat.svg" width="18" height="18" alt="" /><span v-if="!compact">Đăng xuất</span>
       </button>
     </div>
   </div>
