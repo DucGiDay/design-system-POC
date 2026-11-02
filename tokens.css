@@ -10,8 +10,9 @@
   --dashboard-hero-start: #eaf3ff;
   --dashboard-hero-middle: #f6faff;
   --dashboard-hero-end: #dcebff;
-  --type-dashboard-revenue-font-size: 56px;
-  --type-dashboard-revenue-line-height: 64px;
+  /* Figma đặt 56/64; dashboard ưu tiên taste skill: con số trả lời 30–36px, lớn hơn số chỉ số (26px) ít nhất 1,3 lần */
+  --type-dashboard-revenue-font-size: 36px;
+  --type-dashboard-revenue-line-height: 44px;
   --type-metric-font-size: 26px;
   --type-metric-line-height: 32px;
   --type-report-title-font-size: 15px;

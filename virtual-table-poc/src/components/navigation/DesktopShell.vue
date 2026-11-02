@@ -5,7 +5,10 @@ import { useRoute, useRouter } from 'vue-router'
 import MainNavigation from './MainNavigation.vue'
 import MobileReportNavigation from './MobileReportNavigation.vue'
 import ReportTree from './ReportTree.vue'
+import CmsBanner from '../ui/CmsBanner.vue'
+import CmsButton from '../ui/CmsButton.vue'
 import { allModules, filterReports, moduleHref, reportHref, reportPath, reports } from './navigation'
+import { BANNERS, useAppBanner } from './app-banner'
 import './navigation.scss'
 
 defineProps<{ stackLabel: string }>()
@@ -42,6 +45,7 @@ const pageTitle = computed(() => selected.value ? `${selected.value.code ? selec
 const filtered = computed(() => filterReports(reports, query.value))
 const compact = computed(() => activeModule.value !== 'home' || homeCollapsed.value)
 const mobileParent = computed(() => path.value.length > 1 ? path.value[path.value.length - 2] : undefined)
+const { kind: bannerKind, dismiss: dismissBanner } = useAppBanner()
 
 function readRoute() {
   const parts = route.path.split('/').filter(Boolean)
@@ -135,8 +139,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <div class="cms-app">
+  <a class="cms-skip" href="#cms-content" @click.prevent="content?.focus()">{{ t('shell.skipToContent') }}</a>
+  <CmsBanner v-if="bannerKind" :tone="BANNERS[bannerKind].tone" :icon="BANNERS[bannerKind].icon" :dismiss-label="BANNERS[bannerKind].dismissible ? t('shell.banner.dismiss') : undefined" @dismiss="dismissBanner(bannerKind)">
+    {{ t(`shell.banner.${bannerKind}`, BANNERS[bannerKind].params) }}
+    <template v-if="bannerKind === 'expiry'" #action><CmsButton size="sm" @click="go('marketplace')">{{ t('shell.banner.renew') }}</CmsButton></template>
+  </CmsBanner>
   <div class="cms-shell" :class="{ 'is-dark': dark, 'has-drawer': drawerOpen, 'is-rail-layout': compact, 'has-context': activeModule === 'reports' && !reportMenuCollapsed }">
-    <a class="cms-skip" href="#cms-content" @click.prevent="content?.focus()">{{ t('shell.skipToContent') }}</a>
     <aside v-if="!isMobile" class="cms-global-sidebar" :class="{ 'is-compact': compact }" :aria-label="t('shell.appNavigation')">
       <MainNavigation :compact="compact" :active-module="activeModule" :dark="dark" @navigate="go" @toggle="toggleMenu" @theme="dark = !dark" />
     </aside>
@@ -205,5 +214,6 @@ onBeforeUnmount(() => {
         <MainNavigation v-else :active-module="activeModule" :dark="dark" :mobile="isMobile" overlay @navigate="go" @toggle="closeMenu" @theme="dark = !dark" />
       </div>
     </dialog>
+  </div>
   </div>
 </template>

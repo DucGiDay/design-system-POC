@@ -36,12 +36,13 @@
     "invoiceHint": "Average {amount} / invoice",
     "customerHint": "Average {amount} / customer",
     "packageHint": "Cafe so 1 pro plan · +1 other",
+    "serviceFee": "Service fees",
+    "serviceFeeHint": "3.9% of net revenue",
+    "deltaWindow": {"today": "vs. yesterday", "week": "vs. the previous 7 days", "month": "vs. last month", "custom": "vs. the previous period"},
     "reportHeading": "Statistics for the previous 7 days",
     "reportSubtitle": "From {from} 00:00 to {to} 23:59 · {count}/12 stores",
     "detail": "Details",
     "detailOf": "View {title}",
-    "exportOf": "Export {title}",
-    "download": "Download {format}",
     "revenue": "7-day revenue",
     "products": "Top 5 products",
     "payments": "Top 5 payments",
@@ -148,7 +149,14 @@
     "logout": "Sign out",
     "languageSwitch": "Language: {current}. Switch to {next}",
     "scrollUp": "Scroll menu up",
-    "scrollDown": "Scroll menu down"
+    "scrollDown": "Scroll menu down",
+    "banner": {
+      "expiry": "The {plan} plan expires in {days} days, on {date}. Renew early to keep selling without interruption.",
+      "renew": "Renew",
+      "maintenance": "Scheduled maintenance from {from} to {to} on {date}. Reports may update slowly during this time.",
+      "incident": "Order sync from {channel} is delayed. We are fixing it; all orders will be filled in once sync resumes.",
+      "dismiss": "Dismiss notice"
+    }
   },
   "groups": {
     "storeSales": "STORES & SALES",

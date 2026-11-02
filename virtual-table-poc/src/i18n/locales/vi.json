@@ -37,12 +37,13 @@
     "invoiceHint": "Trung bình {amount} / hoá đơn",
     "customerHint": "Trung bình {amount} / khách",
     "packageHint": "Gói cafe so 1 pro · +1 gói khác",
+    "serviceFee": "Phí dịch vụ",
+    "serviceFeeHint": "3,9% trên doanh thu net",
+    "deltaWindow": {"today": "so với hôm qua", "week": "so với 7 ngày trước đó", "month": "so với tháng trước", "custom": "so với kỳ trước"},
     "reportHeading": "Báo cáo thống kê 7 ngày trước",
     "reportSubtitle": "Tính từ {from} 00:00 đến {to} 23:59 · {count}/12 cửa hàng",
     "detail": "Chi tiết",
     "detailOf": "Xem chi tiết {title}",
-    "exportOf": "Xuất {title}",
-    "download": "Tải {format}",
     "revenue": "Doanh thu 7 ngày",
     "products": "Top 5 mặt hàng",
     "payments": "Top 5 thanh toán",
@@ -148,7 +149,14 @@
     "logout": "Đăng xuất",
     "languageSwitch": "Ngôn ngữ: {current}. Chuyển sang {next}",
     "scrollUp": "Cuộn menu lên",
-    "scrollDown": "Cuộn menu xuống"
+    "scrollDown": "Cuộn menu xuống",
+    "banner": {
+      "expiry": "Gói {plan} hết hạn sau {days} ngày, vào {date}. Gia hạn trước hạn để không gián đoạn bán hàng.",
+      "renew": "Gia hạn",
+      "maintenance": "Bảo trì hệ thống từ {from} đến {to} ngày {date}. Báo cáo có thể cập nhật chậm trong thời gian này.",
+      "incident": "Đồng bộ đơn từ {channel} đang chậm. Chúng tôi đang khắc phục; đơn sẽ được bù đủ khi đồng bộ lại.",
+      "dismiss": "Ẩn thông báo"
+    }
   },
   "groups": {
     "storeSales": "CỬA HÀNG & BÁN HÀNG",
