@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 defineProps<{ direction: 'up' | 'down'; controls: string }>()
 const emit = defineEmits<{ scroll: [] }>()
+const { t } = useI18n()
 </script>
 
 <template>
-  <button class="cms-rail-scroll" :class="'cms-scroll-' + direction" type="button" :aria-label="direction === 'up' ? 'Cuộn menu lên' : 'Cuộn menu xuống'" :aria-controls="controls" @click="emit('scroll')">
+  <button class="cms-rail-scroll" :class="'cms-scroll-' + direction" type="button" :aria-label="direction === 'up' ? t('shell.scrollUp') : t('shell.scrollDown')" :aria-controls="controls" @click="emit('scroll')">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path :d="direction === 'up' ? 'M6 15L12 9L18 15' : 'M6 9L12 15L18 9'" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
   </button>
 </template>

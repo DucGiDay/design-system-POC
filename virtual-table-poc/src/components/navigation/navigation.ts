@@ -1,41 +1,42 @@
 export interface ModuleItem {
   id: string
+  /** Khoá i18n của host — render bằng t(label) */
   label: string
   icon: string
   activeIcon?: string
   external?: boolean
 }
 
-export const home: ModuleItem = { id: 'home', label: 'Trang chủ', icon: '19c02.svg', activeIcon: 'ce4a6.svg' }
+export const home: ModuleItem = { id: 'home', label: 'modules.home', icon: '19c02.svg', activeIcon: 'ce4a6.svg' }
 export const moduleGroups = [
-  { label: 'CỬA HÀNG & BÁN HÀNG', items: [
-    { id: 'restaurants', label: 'Nhà hàng', icon: '3bb26.svg' },
-    { id: 'menu', label: 'Thực đơn', icon: '7a99f.svg' },
-    { id: 'promotions', label: 'Chương trình', icon: 'ccdb7.svg' },
-    { id: 'channels', label: 'Kênh bán hàng', icon: '28374.svg' },
-    { id: 'orders', label: 'Nhận đơn đa kênh', icon: 'd6316.svg' },
-    { id: 'canteen', label: 'Canteen', icon: 'b470e.svg' },
-    { id: 'marketplace', label: 'Marketplace', icon: 'e9bed.svg' },
+  { label: 'groups.storeSales', items: [
+    { id: 'restaurants', label: 'modules.restaurants', icon: '3bb26.svg' },
+    { id: 'menu', label: 'modules.menu', icon: '7a99f.svg' },
+    { id: 'promotions', label: 'modules.promotions', icon: 'ccdb7.svg' },
+    { id: 'channels', label: 'modules.channels', icon: '28374.svg' },
+    { id: 'orders', label: 'modules.orders', icon: 'd6316.svg' },
+    { id: 'canteen', label: 'modules.canteen', icon: 'b470e.svg' },
+    { id: 'marketplace', label: 'modules.marketplace', icon: 'e9bed.svg' },
   ] },
-  { label: 'VẬN HÀNH', items: [
-    { id: 'devices', label: 'Thiết bị', icon: '1d3ba.svg' },
-    { id: 'employees', label: 'Nhân viên', icon: '38e0f.svg' },
-    { id: 'attendance', label: 'Chấm công, lương', icon: '4bc3b.svg', external: true },
-    { id: 'inventory', label: 'Kho & Cung ứng', icon: '89e55.svg', external: true },
+  { label: 'groups.operations', items: [
+    { id: 'devices', label: 'modules.devices', icon: '1d3ba.svg' },
+    { id: 'employees', label: 'modules.employees', icon: '38e0f.svg' },
+    { id: 'attendance', label: 'modules.attendance', icon: '4bc3b.svg', external: true },
+    { id: 'inventory', label: 'modules.inventory', icon: '89e55.svg', external: true },
   ] },
-  { label: 'BÁO CÁO & TÀI CHÍNH', items: [
-    { id: 'reports', label: 'Báo cáo', icon: '06ad4.svg', activeIcon: '3507a.svg' },
-    { id: 'accounting', label: 'Kế toán vo', icon: '6ed80.svg' },
-    { id: 'invoices', label: 'Hoá đơn điện tử', icon: '37dd9.svg' },
+  { label: 'groups.reportsFinance', items: [
+    { id: 'reports', label: 'modules.reports', icon: '06ad4.svg', activeIcon: '3507a.svg' },
+    { id: 'accounting', label: 'modules.accounting', icon: '6ed80.svg' },
+    { id: 'invoices', label: 'modules.invoices', icon: '37dd9.svg' },
   ] },
-] satisfies { label: string; items: ModuleItem[] }[]
+] satisfies { /** khoá i18n */ label: string; items: ModuleItem[] }[]
 export const extensionModules: ModuleItem[] = [
-  { id: 'momo', label: 'MoMo', icon: 'b18ad.png' },
-  { id: 'vnpay', label: 'VNPAY-QR', icon: '024d8.png' },
+  { id: 'momo', label: 'modules.momo', icon: 'b18ad.png' },
+  { id: 'vnpay', label: 'modules.vnpay', icon: '024d8.png' },
 ]
 export const allModules: ModuleItem[] = [home, ...moduleGroups.flatMap(group => group.items), ...extensionModules,
-  { id: 'apps', label: 'Tất cả ứng dụng', icon: '1c7b2.svg' },
-  { id: 'support', label: 'Góp ý, hỗ trợ', icon: 'ed25a.svg' },
+  { id: 'apps', label: 'modules.apps', icon: '1c7b2.svg' },
+  { id: 'support', label: 'modules.support', icon: 'ed25a.svg' },
 ]
 
 export interface ReportNode {

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { reportCount, reportHref, type ReportNode } from './navigation'
 defineOptions({ name: 'ReportTree' })
 defineProps<{ nodes: ReportNode[]; path: string[]; expanded: Set<string>; selected: string; searching: boolean; level?: number }>()
 const emit = defineEmits<{ toggle: [id: string]; navigate: [path: string[]] }>()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const emit = defineEmits<{ toggle: [id: string]; navigate: [path: string[]] }>()
         </a>
         <template v-if="node.children">
           <span class="cms-report-count">{{ reportCount(node.children) }}</span>
-          <button type="button" class="cms-tree-toggle" :aria-label="(searching || expanded.has(node.id) ? 'Thu gọn ' : 'Mở rộng ') + (node.code ?? node.label)" :aria-expanded="searching || expanded.has(node.id)" :aria-controls="'branch-' + node.id" :disabled="searching" @click="emit('toggle', node.id)">
+          <button type="button" class="cms-tree-toggle" :aria-label="t(searching || expanded.has(node.id) ? 'reports.collapse' : 'reports.expand', { name: node.code ?? node.label })" :aria-expanded="searching || expanded.has(node.id)" :aria-controls="'branch-' + node.id" :disabled="searching" @click="emit('toggle', node.id)">
             <img src="/navigation/05f6c.svg" width="14" height="14" alt="" />
           </button>
         </template>

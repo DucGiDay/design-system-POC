@@ -38,6 +38,12 @@ Playwright kiểm tra các viewport 390×844, 320×568 và 844×390, gồm tap v
 
 Khi base design thay đổi, chạy lại `npm run sync:design` hoặc khởi động lại dev server. Đồng bộ tự chạy trước `npm run dev` và `npm run build`, đồng thời chạy khi Vite nạp config để hỗ trợ cả khởi động trực tiếp qua IDE hoặc lệnh `vite`. Shadow trong `_tokens.scss` cần đối chiếu thủ công khi vocabulary trong `DESIGN.md` thay đổi.
 
+## i18n (host micro-frontend)
+
+POC này là host mới. Host tự cấu hình `vue-i18n` (`src/i18n/`, bản dịch ở `src/i18n/locales/*.json`, chỉ `vi` được đóng gói sẵn) và chỉ chia sẻ mã ngôn ngữ cho sub-app qua `props.localeBridge`. Mỗi sub tự giữ i18n của mình. Contract và mẫu Vue 2/Vue 3 cho các team sub: [docs/i18n-micro-frontend.md](docs/i18n-micro-frontend.md).
+
+Nút đổi ngôn ngữ nằm ở chân menu chính, chỉ hiện các ngôn ngữ host có file dịch. Tên báo cáo trong `navigation.ts` vẫn là dữ liệu mẫu tiếng Việt, chưa dịch.
+
 ## Chạy
 
 ```sh

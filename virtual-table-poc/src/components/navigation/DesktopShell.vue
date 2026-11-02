@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import MainNavigation from './MainNavigation.vue'
 import MobileReportNavigation from './MobileReportNavigation.vue'
@@ -9,6 +10,7 @@ import './navigation.scss'
 
 defineProps<{ stackLabel: string }>()
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const activeModule = ref('home')
@@ -32,7 +34,7 @@ let closeResolvers: (() => void)[] = []
 const currentModule = computed(() => allModules.find(item => item.id === activeModule.value) ?? allModules[0]!)
 const path = computed(() => reportPath(selectedIds.value))
 const selected = computed(() => path.value.at(-1))
-const pageTitle = computed(() => selected.value ? `${selected.value.code ? selected.value.code + ' · ' : ''}${selected.value.label}` : currentModule.value.label)
+const pageTitle = computed(() => selected.value ? `${selected.value.code ? selected.value.code + ' · ' : ''}${selected.value.label}` : t(currentModule.value.label))
 const filtered = computed(() => filterReports(reports, query.value))
 const compact = computed(() => activeModule.value !== 'home' || homeCollapsed.value)
 const mobileParent = computed(() => path.value.length > 1 ? path.value[path.value.length - 2] : undefined)
@@ -130,68 +132,68 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="cms-shell" :class="{ 'is-dark': dark, 'has-drawer': drawerOpen, 'is-rail-layout': compact, 'has-context': activeModule === 'reports' && !reportMenuCollapsed }">
-    <a class="cms-skip" href="#cms-content" @click.prevent="content?.focus()">Đến nội dung chính</a>
-    <aside v-if="!isMobile" class="cms-global-sidebar" :class="{ 'is-compact': compact }" aria-label="Điều hướng ứng dụng">
+    <a class="cms-skip" href="#cms-content" @click.prevent="content?.focus()">{{ t('shell.skipToContent') }}</a>
+    <aside v-if="!isMobile" class="cms-global-sidebar" :class="{ 'is-compact': compact }" :aria-label="t('shell.appNavigation')">
       <MainNavigation :compact="compact" :active-module="activeModule" :dark="dark" @navigate="go" @toggle="toggleMenu" @theme="dark = !dark" />
     </aside>
 
-    <aside v-if="!isMobile && activeModule === 'reports'" v-show="!reportMenuCollapsed" id="cms-report-navigation" class="cms-context-sidebar" aria-label="Menu Báo cáo">
+    <aside v-if="!isMobile && activeModule === 'reports'" v-show="!reportMenuCollapsed" id="cms-report-navigation" class="cms-context-sidebar" :aria-label="t('reports.menu')">
       <div class="cms-context-heading">
-        <h2>Báo cáo</h2>
-        <button v-if="!reportMenuCollapsed" ref="reportMenuToggle" type="button" class="cms-icon-button" aria-label="Đóng menu Báo cáo" aria-controls="cms-report-navigation" aria-expanded="true" title="Đóng menu Báo cáo" @click="toggleReportMenu">
+        <h2>{{ t('modules.reports') }}</h2>
+        <button v-if="!reportMenuCollapsed" ref="reportMenuToggle" type="button" class="cms-icon-button" :aria-label="t('reports.closeMenu')" aria-controls="cms-report-navigation" aria-expanded="true" :title="t('reports.closeMenu')" @click="toggleReportMenu">
           <img src="/navigation/c9074.svg" width="16" height="16" alt="" />
         </button>
       </div>
       <div class="cms-search">
         <img src="/navigation/a2c6c.svg" width="16" height="16" alt="" />
-        <input v-model="query" type="search" aria-label="Tìm báo cáo" placeholder="Tìm tên hoặc mã (vd A01)" />
+        <input v-model="query" type="search" :aria-label="t('reports.search')" :placeholder="t('reports.searchPlaceholder')" />
       </div>
       <div class="cms-report-scroll">
-        <nav aria-label="Danh sách báo cáo">
+        <nav :aria-label="t('reports.list')">
           <ReportTree :nodes="filtered" :path="[]" :expanded="expanded" :selected="selected?.id ?? ''" :searching="!!query.trim()" @toggle="toggleBranch" @navigate="go('reports', $event)" />
         </nav>
-        <div v-if="!filtered.length" class="cms-search-empty" role="status"><p>Không tìm thấy báo cáo</p><button type="button" @click="query = ''">Xoá tìm kiếm</button></div>
+        <div v-if="!filtered.length" class="cms-search-empty" role="status"><p>{{ t('reports.notFound') }}</p><button type="button" @click="query = ''">{{ t('reports.clearSearch') }}</button></div>
       </div>
     </aside>
 
     <div class="cms-workspace">
       <header class="cms-workspace-header">
         <div v-if="isMobile" class="cms-mobile-controls">
-          <button class="cms-icon-button" type="button" aria-label="Mở menu chính" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'main'" @click="openMenu('main')"><img src="/navigation/menu.svg" width="20" height="20" alt="" /></button>
-          <button v-if="activeModule === 'reports'" class="cms-mobile-module" type="button" aria-label="Mở menu Báo cáo" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'reports'" @click="openMenu('reports')">Báo cáo<img src="/navigation/05f6c.svg" width="14" height="14" alt="" /></button>
-          <span v-else class="cms-mobile-module">{{ currentModule.label }}</span>
+          <button class="cms-icon-button" type="button" :aria-label="t('shell.openMainMenu')" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'main'" @click="openMenu('main')"><img src="/navigation/menu.svg" width="20" height="20" alt="" /></button>
+          <button v-if="activeModule === 'reports'" class="cms-mobile-module" type="button" :aria-label="t('reports.openMenu')" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'reports'" @click="openMenu('reports')">{{ t('modules.reports') }}<img src="/navigation/05f6c.svg" width="14" height="14" alt="" /></button>
+          <span v-else class="cms-mobile-module">{{ t(currentModule.label) }}</span>
         </div>
-        <nav v-if="!isMobile" class="cms-breadcrumb" aria-label="Đường dẫn">
-          <button v-if="activeModule === 'reports' && reportMenuCollapsed" ref="reportMenuToggle" type="button" class="cms-icon-button" aria-label="Mở menu Báo cáo" aria-controls="cms-report-navigation" aria-expanded="false" title="Mở menu Báo cáo" @click="toggleReportMenu">
+        <nav v-if="!isMobile" class="cms-breadcrumb" :aria-label="t('shell.breadcrumb')">
+          <button v-if="activeModule === 'reports' && reportMenuCollapsed" ref="reportMenuToggle" type="button" class="cms-icon-button" :aria-label="t('reports.openMenu')" aria-controls="cms-report-navigation" aria-expanded="false" :title="t('reports.openMenu')" @click="toggleReportMenu">
             <img src="/navigation/c9074.svg" width="16" height="16" alt="" />
           </button>
-          <a :href="moduleHref('home')" @click.prevent="go('home')"><img src="/navigation/19c02.svg" width="18" height="18" alt="Trang chủ" /></a>
+          <a :href="moduleHref('home')" @click.prevent="go('home')"><img src="/navigation/19c02.svg" width="18" height="18" :alt="t('modules.home')" /></a>
           <template v-if="activeModule !== 'home'">
             <span class="cms-breadcrumb-divider">/</span>
-            <a v-if="path.length" :href="moduleHref(activeModule)" @click.prevent="go(activeModule)">{{ currentModule.label }}</a><span v-else aria-current="page">{{ currentModule.label }}</span>
+            <a v-if="path.length" :href="moduleHref(activeModule)" @click.prevent="go(activeModule)">{{ t(currentModule.label) }}</a><span v-else aria-current="page">{{ t(currentModule.label) }}</span>
           </template>
           <template v-for="(node, index) in path" :key="node.id">
             <span class="cms-breadcrumb-divider">/</span>
             <a v-if="index < path.length - 1" :href="reportHref(selectedIds.slice(0, index + 1))" @click.prevent="go('reports', selectedIds.slice(0, index + 1))">{{ node.code ?? node.label }}</a><span v-else aria-current="page">{{ node.code ?? node.label }}</span>
           </template>
-          <span v-if="activeModule === 'home'" aria-current="page">Trang chủ</span>
+          <span v-if="activeModule === 'home'" aria-current="page">{{ t('modules.home') }}</span>
         </nav>
         <div class="cms-workspace-meta">
-          <RouterLink class="cms-stack-label" to="/table" :title="'Mở bảng dữ liệu PoC: ' + stackLabel" aria-label="Mở bảng dữ liệu PoC"><span>Vue 3</span><strong>{{ stackLabel }}</strong></RouterLink>
+          <RouterLink class="cms-stack-label" to="/table" :title="t('shell.openPocTableWith', { stack: stackLabel })" :aria-label="t('shell.openPocTable')"><span>Vue 3</span><strong>{{ stackLabel }}</strong></RouterLink>
           <span class="cms-workspace-brand">Chanh Dev</span>
         </div>
-        <nav v-if="isMobile && path.length" class="cms-breadcrumb cms-mobile-breadcrumb" aria-label="Đường dẫn">
-          <a :href="reportHref(selectedIds.slice(0, -1))" @click.prevent="go('reports', selectedIds.slice(0, -1))">{{ mobileParent?.code ?? mobileParent?.label ?? 'Báo cáo' }}</a>
+        <nav v-if="isMobile && path.length" class="cms-breadcrumb cms-mobile-breadcrumb" :aria-label="t('shell.breadcrumb')">
+          <a :href="reportHref(selectedIds.slice(0, -1))" @click.prevent="go('reports', selectedIds.slice(0, -1))">{{ mobileParent?.code ?? mobileParent?.label ?? t('modules.reports') }}</a>
           <span class="cms-breadcrumb-divider">/</span><span aria-current="page">{{ selected?.code ?? selected?.label }}</span>
         </nav>
       </header>
       <main id="cms-content" ref="content" class="cms-content" tabindex="-1">
         <h1>{{ pageTitle }}</h1>
-        <p class="cms-content-placeholder">Nội dung {{ selected?.code ?? currentModule.label }}.</p>
+        <p class="cms-content-placeholder">{{ t('shell.contentPlaceholder', { name: selected?.code ?? t(currentModule.label) }) }}</p>
       </main>
     </div>
 
-    <dialog ref="dialog" class="cms-menu-dialog" :class="{ 'is-closing': drawerClosing, 'is-mobile-drawer': isMobile }" :aria-label="drawerMode === 'reports' ? 'Menu Báo cáo' : 'Menu chính'" @click="backdropClick" @keydown="dialogKeydown" @cancel.prevent="closeMenu()" @close="dialogClosed" @animationend="drawerAnimationEnd">
+    <dialog ref="dialog" class="cms-menu-dialog" :class="{ 'is-closing': drawerClosing, 'is-mobile-drawer': isMobile }" :aria-label="drawerMode === 'reports' ? t('reports.menu') : t('shell.mainMenu')" @click="backdropClick" @keydown="dialogKeydown" @cancel.prevent="closeMenu()" @close="dialogClosed" @animationend="drawerAnimationEnd">
       <div class="cms-drawer-content">
         <MobileReportNavigation v-if="isMobile && drawerMode === 'reports'" :key="reportOpenVersion" :selected-ids="selectedIds" @navigate="go('reports', $event)" @main="drawerMode = 'main'" @close="closeMenu" />
         <MainNavigation v-else :active-module="activeModule" :dark="dark" :mobile="isMobile" overlay @navigate="go" @toggle="closeMenu" @theme="dark = !dark" />

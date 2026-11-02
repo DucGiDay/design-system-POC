@@ -58,10 +58,12 @@
   .cms-module-link { position: relative; display: flex; align-items: center; gap: 10px; width: 100%; min-height: 34px; padding: 7px 10px; margin-bottom: 2px; background: transparent; border-radius: var(--radius-md); color: var(--ink-2); font-weight: 500; text-align: left; line-height: 20px; }
   .cms-module-link:hover { background: var(--subtle); }
   .cms-module-link.is-active { color: var(--ink); font-weight: 600; background: var(--surface); box-shadow: var(--cms-selected-shadow); }
-  .cms-module-link > span:not(.cms-count, .cms-switch) { flex: 1; white-space: nowrap; }
+  .cms-module-link > span:not(.cms-count, .cms-switch, .cms-locale-code) { flex: 1; white-space: nowrap; }
   .cms-module-tail { margin-left: auto; }
   .cms-group-label { padding: 16px 12px 6px; font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .6px; color: color-mix(in srgb, var(--ink-muted) 65%, var(--ink-2)); }
   .cms-count { margin-left: auto; padding: 0 6px; border-radius: var(--radius-full); color: var(--ink-muted); background: var(--surface); font-size: 11px; line-height: 18px; }
+  // Ô mã ngôn ngữ đứng chỗ icon 18px để thẳng hàng với các mục khác
+  .cms-locale-code { display: grid; place-items: center; flex: none; width: 1.125rem; height: 1.125rem; border: 1px solid currentColor; border-radius: var(--radius-sm); font-size: .5625rem; font-weight: 700; line-height: 1; text-transform: uppercase; }
   .cms-apps-link { background: var(--subtle); }
   .cms-nav-footer { padding-top: 14px; flex-shrink: 0; }
   .cms-switch { display: inline-flex; align-items: center; margin-left: auto; width: 34px; height: 20px; padding: 3px; border-radius: var(--radius-full); background: var(--line-strong); }
@@ -191,7 +193,7 @@
     .cms-brand-row { min-height: 44px; align-items: center; }
     .cms-brand-picker { margin-top: 12px; }
     .cms-module-link { min-height: 44px; padding: 10px; font-size: 16px; line-height: 24px; }
-    .cms-module-link > span:not(.cms-count, .cms-switch) { white-space: normal; overflow-wrap: anywhere; }
+    .cms-module-link > span:not(.cms-count, .cms-switch, .cms-locale-code) { white-space: normal; overflow-wrap: anywhere; }
     .cms-group-label { font-size: 11px; line-height: 16px; }
     .cms-search input { font-size: 16px; line-height: 24px; }
     .cms-search { min-height: 44px; }
