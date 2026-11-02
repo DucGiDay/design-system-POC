@@ -1,0 +1,21 @@
+// Table skin switch, driven by `data-table-skin` on <html> (src/table-skin/tableSkin.ts).
+// `cms`: CMS-26 overrides apply to vxe. `vxe`: nothing of ours reaches what vxe renders.
+
+// Prefix for rules that only exist to restyle vxe. :where() keeps the original specificity.
+$cms: ":where(:root[data-table-skin='cms'])";
+
+// Elements vxe renders, its own nodes and everything inside them (teleported popups included).
+$vxe-owned: ":is([class*='vxe-'], [class*='vxe-'] *)";
+
+// Append to app-wide element rules (`button`, `*`) so they skip vxe-owned nodes under the vxe skin.
+$app-owned: ":where(:not(:root[data-table-skin='vxe'] #{$vxe-owned}))";
+
+// Outermost vxe nodes inherit from <body>. Under the vxe skin, give them what a bare page would.
+// Zero specificity: any property vxe sets on its own root still wins.
+:where(:root[data-table-skin='vxe']) :where([class*='vxe-']:not([class*='vxe-'] *)) {
+  font-weight: normal;
+  line-height: normal;
+  caret-color: auto;
+  scrollbar-color: auto;
+  -webkit-font-smoothing: auto;
+}

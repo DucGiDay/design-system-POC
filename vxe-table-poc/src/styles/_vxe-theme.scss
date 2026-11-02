@@ -1,6 +1,8 @@
 @use './base.generated' as base;
+@use './table-skin' as skin;
 
-:root {
+// Everything here is CMS-26 only. Under `data-table-skin="vxe"` vxe keeps its own defaults.
+:root[data-table-skin='cms'] {
   --vxe-ui-font-family: var(--font-sans);
   --vxe-ui-font-color: var(--text-secondary);
   --vxe-ui-font-primary-color: var(--primary);
@@ -10,8 +12,8 @@
   --vxe-ui-table-border-color: var(--line-soft);
   --vxe-ui-table-row-hover-background-color: var(--primary-tint);
 }
-.vxe-table {
+#{skin.$cms} .vxe-table {
   @include base.type-cell;
   font-variant-numeric: tabular-nums;
 }
-.vxe-header--column { font-weight: 600; }
+#{skin.$cms} .vxe-header--column { font-weight: 600; }

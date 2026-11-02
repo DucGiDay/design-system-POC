@@ -1,6 +1,7 @@
 @use './base.generated' as base;
+@use './table-skin' as skin;
 
-button {
+button#{skin.$app-owned} {
   @include base.button;
   @include base.button-md;
 

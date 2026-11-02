@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import VxeUI from 'vxe-pc-ui'
 import MainNavigation from './MainNavigation.vue'
 import MobileReportNavigation from './MobileReportNavigation.vue'
 import ReportTree from './ReportTree.vue'
+import TableSkinToggle from '../../table-skin/TableSkinToggle.vue'
 import { allModules, filterReports, moduleHref, reportHref, reportPath, reports } from './navigation'
 import './navigation.scss'
 
 defineProps<{ stackLabel: string }>()
+
+// Report A01 shows the sample table; loaded on demand so other pages skip the table bundle.
+const ReportTable = defineAsyncComponent(() => import('../table/VxeProductTable.vue'))
 
 const route = useRoute()
 const router = useRouter()
@@ -180,6 +184,7 @@ onBeforeUnmount(() => {
         </nav>
         <div class="cms-workspace-meta">
           <RouterLink class="cms-stack-label" to="/table" :title="'Mở bảng dữ liệu PoC: ' + stackLabel" aria-label="Mở bảng dữ liệu PoC"><span>Vue 3</span><strong>{{ stackLabel }}</strong></RouterLink>
+          <TableSkinToggle />
           <span class="cms-workspace-brand">Chanh Dev</span>
         </div>
         <nav v-if="isMobile && path.length" class="cms-breadcrumb cms-mobile-breadcrumb" aria-label="Đường dẫn">
@@ -189,7 +194,8 @@ onBeforeUnmount(() => {
       </header>
       <main id="cms-content" ref="content" class="cms-content" tabindex="-1">
         <h1>{{ pageTitle }}</h1>
-        <p class="cms-content-placeholder">Nội dung {{ selected?.code ?? currentModule.label }}.</p>
+        <ReportTable v-if="activeModule === 'reports' && selected?.id === 'a01'" />
+        <p v-else class="cms-content-placeholder">Nội dung {{ selected?.code ?? currentModule.label }}.</p>
       </main>
     </div>
 

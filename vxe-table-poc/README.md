@@ -15,6 +15,15 @@ Trang mặc định là layout CMS-26 với nội dung text placeholder. Home đ
 - Desktop được kiểm tra tại 1440×1000 và 1280×720.
 - `tests/navigation.spec.ts` kiểm tra cùng hành vi trên cả hai repo. Trước khi chạy, mở thêm virtual-table-poc tại cổng 5174: `npm run dev -- --port 5174 --strictPort`. VXE dùng cổng 5175.
 
+## Đổi giao diện bảng (skin)
+
+Công tắc **Bảng: CMS-26 / vxe gốc** nằm cạnh nhãn `Vue 3 · VxeTable` trên topbar và trên đầu trang `/table`. Dùng để so bảng đã chỉnh theo CMS-26 với giao diện mặc định của `vxe-pc-ui` / `vxe-table`.
+
+- `CMS-26` (mặc định): style của mình đè lên vxe như trước.
+- `vxe gốc`: không rule nào của app tác động lên phần vxe vẽ. Layout, navigation, nút và token CMS bên ngoài bảng giữ nguyên. Cột Trạng thái đổi sang `vxe-tag` của vxe-pc-ui.
+- Lựa chọn lưu trong `localStorage` (khoá `vxe-poc:table-skin`). Mở thẳng một skin bằng query `?skin=vxe` hoặc `?skin=cms`, ví dụ `/table?skin=vxe`; query không ghi đè lựa chọn đã lưu.
+- Cơ chế: `src/table-skin/tableSkin.ts` đặt `data-table-skin="cms|vxe"` trên `<html>` trước khi mount. Mọi phần đè lên vxe nằm sau `[data-table-skin="cms"]` (`_vxe-theme.scss`). Rule chung của app (`button`, `*` scrollbar, `::selection`, focus) bỏ qua phần tử `vxe-*` khi skin là `vxe` (biến `$app-owned` trong `_table-skin.scss`). Thêm style đè lên vxe sau này thì đặt trong `_vxe-theme.scss`, sau `#{skin.$cms}`.
+
 ## Mobile web
 
 Dưới 960px, topbar có nút mở menu chính và nút tên module Báo cáo để mở menu con trong cùng một drawer. Báo cáo đi từng cấp bằng nút mũi tên, có quay lại và tìm toàn bộ báo cáo kèm đường dẫn; bấm tên mở trang, chọn trang đóng drawer. Mỗi lần mở lại hiển thị cấp chứa mục đang chọn và xoá tìm kiếm cũ. Nhãn stack luôn hiện trên topbar. Resize sang desktop đóng drawer cũ. Vùng chạm của menu chính và mục báo cáo tối thiểu 44px, xử lý safe area và giảm chuyển động.

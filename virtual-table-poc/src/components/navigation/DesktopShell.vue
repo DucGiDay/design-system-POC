@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import MainNavigation from './MainNavigation.vue'
@@ -9,6 +9,9 @@ import { allModules, filterReports, moduleHref, reportHref, reportPath, reports 
 import './navigation.scss'
 
 defineProps<{ stackLabel: string }>()
+
+// Report A01 shows the sample table; loaded on demand so other pages skip the table bundle.
+const ReportTable = defineAsyncComponent(() => import('../table/VirtualTanStackTable.vue'))
 
 const { t } = useI18n()
 const route = useRoute()
@@ -189,7 +192,8 @@ onBeforeUnmount(() => {
       </header>
       <main id="cms-content" ref="content" class="cms-content" tabindex="-1">
         <h1>{{ pageTitle }}</h1>
-        <p class="cms-content-placeholder">{{ t('shell.contentPlaceholder', { name: selected?.code ?? t(currentModule.label) }) }}</p>
+        <ReportTable v-if="activeModule === 'reports' && selected?.id === 'a01'" />
+        <p v-else class="cms-content-placeholder">{{ t('shell.contentPlaceholder', { name: selected?.code ?? t(currentModule.label) }) }}</p>
       </main>
     </div>
 

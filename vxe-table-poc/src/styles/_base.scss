@@ -1,4 +1,5 @@
 @use './base.generated' as base;
+@use './table-skin' as skin;
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -12,11 +13,11 @@ body {
   caret-color: var(--primary);
 }
 p { margin: 0; }
-::selection { background: var(--primary-soft); color: var(--primary-text); }
-* { scrollbar-color: var(--line-strong) var(--subtle); scrollbar-width: thin; }
-button, input { font: inherit; }
+#{skin.$app-owned}::selection { background: var(--primary-soft); color: var(--primary-text); }
+*#{skin.$app-owned} { scrollbar-color: var(--line-strong) var(--subtle); scrollbar-width: thin; }
+:is(button, input)#{skin.$app-owned} { font: inherit; }
 button, a, input { -webkit-tap-highlight-color: transparent; }
-button:focus-visible, a:focus-visible, input:focus-visible {
+:is(button, a, input)#{skin.$app-owned}:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
 }

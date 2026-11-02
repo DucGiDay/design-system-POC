@@ -5,6 +5,7 @@
 h1 { margin: 0 0 8px; @include base.type-page-title; }
 .page-header p { color: var(--ink-2); }
 .poc-label { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: var(--radius-sm); background: var(--primary-soft); color: var(--primary-text); font-size: 12px; line-height: 20px; letter-spacing: 0; vertical-align: middle; }
+.page-header__aside { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; flex-wrap: wrap; }
 .docs-link { flex-shrink: 0; color: var(--primary-text); text-underline-offset: 4px; font-size: 13px; }
 .table-panel { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
 .toolbar { padding: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -26,7 +27,7 @@ h2 { margin: 0; @include base.type-card-title; }
 @media (max-width: 760px) {
   .workspace { padding: 20px 12px; }
   .page-header { display: block; margin-bottom: 20px; }
-  .docs-link { display: inline-block; margin-top: 12px; }
+  .page-header__aside { margin-top: 0.75rem; }
   h1 { font-size: 24px; line-height: 32px; }
   .toolbar { padding: 16px; }
   .actions { gap: 8px; }
