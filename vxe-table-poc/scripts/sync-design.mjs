@@ -18,14 +18,14 @@ let output = '// GENERATED from ../../tokens.css and ../../components.css. Do no
 tokens.walkAtRules('import', rule => { output += `@import ${rule.params};\n` })
 output += `\n@mixin tokens {\n${lines(properties)}\n}\n`
 output += `\n@mixin tokens-dark {\n${lines(declarations(tokens, '[data-theme="dark"]'))}\n}\n`
-tokens.walkRules(/^\.t-/, rule => {
-  const name = rule.selector.slice(3)
+tokens.walkRules(/^\.cms-text-/, rule => {
+  const name = rule.selector.slice('.cms-text-'.length)
   output += `\n@mixin type-${name} {\n${lines(declarations(tokens, rule.selector))}\n}\n`
 })
 const mixins = {
-  button: '.btn', 'button-md': '.btn.md', 'button-primary': '.btn.chinh',
-  'button-secondary': '.btn.phu', badge: '.tag',
-  'badge-success': '.tag.thanh-cong', 'badge-warning': '.tag.canh-bao', 'badge-danger': '.tag.loi',
+  button: '.cms-btn', 'button-md': '.cms-btn.cms-btn--md', 'button-primary': '.cms-btn.cms-btn--primary',
+  'button-secondary': '.cms-btn.cms-btn--secondary', badge: '.cms-tag',
+  'badge-success': '.cms-tag.cms-tag--success', 'badge-warning': '.cms-tag.cms-tag--warning', 'badge-danger': '.cms-tag.cms-tag--danger',
 }
 for (const [name, selector] of Object.entries(mixins)) {
   output += `\n@mixin ${name} {\n${lines(declarations(components, selector))}\n}\n`

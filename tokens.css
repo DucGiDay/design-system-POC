@@ -161,84 +161,84 @@ img {
 }
 
 /* ===== Text styles (Figma) ===== */
-.t-display-number {
+.cms-text-display-number {
   font-weight: 300;
   font-size: 44px;
   line-height: 52px;
   letter-spacing: -1.5px;
 }
-.t-page-title {
+.cms-text-page-title {
   font-weight: 600;
   font-size: 28px;
   line-height: 36px;
   letter-spacing: -0.5px;
 }
-.t-section {
+.cms-text-section {
   font-weight: 600;
   font-size: 20px;
   line-height: 28px;
   letter-spacing: -0.2px;
 }
-.t-number-md {
+.cms-text-number-md {
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
   letter-spacing: -0.5px;
 }
-.t-card-title {
+.cms-text-card-title {
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
 }
-.t-body {
+.cms-text-body {
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
 }
-.t-body-medium {
+.cms-text-body-medium {
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
 }
-.t-body-semibold {
+.cms-text-body-semibold {
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
 }
-.t-cell {
+.cms-text-cell {
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
 }
-.t-label {
+.cms-text-label {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
 }
-.t-caption {
+.cms-text-caption {
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
 }
-.t-overline {
+.cms-text-overline {
   font-weight: 600;
   font-size: 11px;
   line-height: 16px;
   letter-spacing: 0.6px;
 }
 
-.nowrap {
+.cms-nowrap {
   white-space: nowrap;
 }
 
 /* ===== Khung section / component set trên canvas Figma ===== */
-.section {
+.ds-section {
   position: relative;
   background: var(--ground);
   border-radius: 2px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
-.section-title {
+.ds-section-title {
   position: absolute;
   font-weight: 600;
   font-size: 20px;
@@ -251,47 +251,47 @@ img {
  * Nét đứt vẽ bằng SVG (stroke 2px bị cắt nửa ngoài = stroke inside 1px của Figma)
  * để giữ đúng dash pattern; children đặt tuyệt đối theo toạ độ Figma.
  */
-.set {
+.ds-set {
   position: absolute;
   border-radius: 5px;
   overflow: hidden;
 }
 /* trắng · #9980F2 · dash 6,4 · bo 14 */
-.set.set-a {
+.ds-set.ds-set-a {
   border-radius: 14px;
   background: #fff
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='14' fill='none' stroke='%239980F2' stroke-width='2' stroke-dasharray='6 4'/%3E%3C/svg%3E");
 }
 /* trong suốt · #9959FF · dash 4,4 · bo 8 */
-.set.set-b {
+.ds-set.ds-set-b {
   border-radius: 8px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='8' fill='none' stroke='%239959FF' stroke-width='2' stroke-dasharray='4 4'/%3E%3C/svg%3E");
 }
 /* trong suốt · #9747FF · dash 6,4 · bo 8 */
-.set.set-c {
+.ds-set.ds-set-c {
   border-radius: 8px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='8' fill='none' stroke='%239747FF' stroke-width='2' stroke-dasharray='6 4'/%3E%3C/svg%3E");
 }
 /* trắng · #9966FF · dash 4,4 · bo 8 */
-.set.set-d {
+.ds-set.ds-set-d {
   border-radius: 8px;
   background: #fff
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='8' fill='none' stroke='%239966FF' stroke-width='2' stroke-dasharray='4 4'/%3E%3C/svg%3E");
 }
-.abs {
+.ds-abs {
   position: absolute;
 }
 /* Khung nét đứt 4,4 · bo 10 (vùng đặt nội dung / vùng tải ảnh) */
-.dash-line {
+.cms-dashed {
   border-radius: 10px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='10' fill='none' stroke='%23E8ECF2' stroke-width='2' stroke-dasharray='4 4'/%3E%3C/svg%3E");
 }
-.dash-line-strong {
+.cms-dashed-strong {
   border-radius: 10px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='10' fill='none' stroke='%23CBD5E1' stroke-width='2' stroke-dasharray='4 4'/%3E%3C/svg%3E");
 }
 
 /* Stroke "inside" không chiếm layout trong Figma */
-.stroke-in {
+.cms-inside-stroke {
   box-shadow: inset 0 0 0 1px var(--line);
 }

@@ -15,14 +15,15 @@ const properties = declarations(ruleFor(base, ':root')).map((d) => `  ${d.prop}:
 const font = declarations(ruleFor(base, 'body')).find((d) => d.prop === 'font-family')
 if (!font) throw new Error('Missing base font-family')
 properties.push(`  --font-sans: ${font.value};`)
-base.walkRules(/^\.t-/, (rule) => {
-  for (const d of declarations(rule)) properties.push(`  --type-${rule.selector.slice(3)}-${d.prop}: ${d.value};`)
+base.walkRules(/^\.cms-text-/, (rule) => {
+  const name = rule.selector.slice('.cms-text-'.length)
+  for (const d of declarations(rule)) properties.push(`  --type-${name}-${d.prop}: ${d.value};`)
 })
 const mixins = {
-  button: '.btn', 'button-sm': '.btn.sm', 'button-secondary': '.btn.phu',
-  'button-subtle': '.btn.nhat', badge: '.tag', 'badge-pending': '.tag.canh-bao',
-  'badge-processing': '.tag.thong-tin', 'badge-completed': '.tag.thanh-cong',
-  'badge-cancelled': '.tag.loi', 'badge-paused': '.tag.trung-tinh',
+  button: '.cms-btn', 'button-sm': '.cms-btn.cms-btn--sm', 'button-secondary': '.cms-btn.cms-btn--secondary',
+  'button-subtle': '.cms-btn.cms-btn--subtle', badge: '.cms-tag', 'badge-pending': '.cms-tag.cms-tag--warning',
+  'badge-processing': '.cms-tag.cms-tag--info', 'badge-completed': '.cms-tag.cms-tag--success',
+  'badge-cancelled': '.cms-tag.cms-tag--danger', 'badge-paused': '.cms-tag.cms-tag--neutral',
 }
 let output = '// Generated from parent tokens.css and components.css. Run npm run sync:design; do not edit.\n'
 output += `@mixin tokens {\n${properties.join('\n')}\n}\n`
