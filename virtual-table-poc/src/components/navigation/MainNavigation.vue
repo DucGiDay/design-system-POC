@@ -37,7 +37,8 @@ function stepScroll(direction: number) {
 }
 async function revealActive() {
   await nextTick()
-  if (props.compact) modules.value?.querySelector<HTMLElement>('[aria-current="page"]')?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+  // Rail and drawer both open with the current module in view.
+  if (props.compact || props.overlay) modules.value?.querySelector<HTMLElement>('[aria-current="page"]')?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
   measureScroll()
 }
 watch(() => [props.compact, props.activeModule], revealActive)

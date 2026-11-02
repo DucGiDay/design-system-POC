@@ -31,7 +31,7 @@ npm ci
 npm run dev
 ```
 
-Mở http://127.0.0.1:5175. `npm run build` kiểm tra TypeScript rồi build production. `npm run preview` xem bản build.
+Mở URL Vite in trong terminal. Mặc định Vite bắt đầu tại `localhost:5173` và tự tăng cổng nếu cổng đang được dùng. `npm run build` kiểm tra TypeScript rồi build production. `npm run preview` xem bản build.
 
 ## File chính
 

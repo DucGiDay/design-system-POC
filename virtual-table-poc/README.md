@@ -46,4 +46,4 @@ npm run dev
 npm run build
 ```
 
-Giữ folder cha khi build vì đó là nguồn thiết kế. Có thể chọn port bằng `npm run dev -- --port 5180 --strictPort`.
+Giữ folder cha khi build vì đó là nguồn thiết kế. Mở URL Vite in trong terminal; mặc định Vite bắt đầu tại `localhost:5173` và tự tăng cổng nếu cổng đang được dùng.

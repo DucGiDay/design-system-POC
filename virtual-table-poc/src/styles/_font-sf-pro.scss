@@ -1,0 +1,17 @@
+// SF Pro Display thay cho Be Vietnam Pro (font gốc lấy từ tokens.css của design system).
+// Quay về font cũ: comment dòng `@use './styles/font-sf-pro';` trong style.scss.
+// Chỉ khai báo các weight 300–700 mà thang chữ CMS-26 dùng.
+$weights: (300: 'Light', 400: 'Regular', 500: 'Medium', 600: 'Semibold', 700: 'Bold');
+
+@each $weight, $name in $weights {
+  @font-face {
+    font-family: 'SF Pro Display';
+    src: url('../assets/fonts/SF-Pro-Display/SF-Pro-Display-#{$name}.otf') format('opentype');
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+// Be Vietnam Pro vẫn là fallback cho glyph SF Pro không có.
+:root { --font-sans: 'SF Pro Display', 'Be Vietnam Pro', sans-serif; }

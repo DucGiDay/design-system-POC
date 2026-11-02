@@ -8,7 +8,7 @@ const emit = defineEmits<{ toggle: [id: string]; navigate: [path: string[]] }>()
 <template>
   <ul class="cms-report-tree" :class="{ 'is-nested': (level ?? 0) > 0 }">
     <li v-for="node in nodes" :key="node.id" :class="{ 'is-open': node.children && (searching || expanded.has(node.id)), 'has-children': node.children }">
-      <div class="cms-report-row" :class="{ 'is-active': selected === node.id, 'is-ancestor': selected !== node.id && path.length === 0 && expanded.has(node.id) }">
+      <div class="cms-report-row" :class="{ 'is-active': selected === node.id }">
         <a :href="reportHref([...path, node.id])" :aria-current="selected === node.id ? 'page' : undefined" class="cms-report-link" @click.prevent="emit('navigate', [...path, node.id])">
           <img v-if="node.icon" :src="'/navigation/' + node.icon" width="16" height="16" alt="" />
           <span v-if="node.code" class="cms-report-code">{{ node.code }}</span>

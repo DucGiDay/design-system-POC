@@ -144,10 +144,9 @@ onBeforeUnmount(() => {
       </div>
       <div class="cms-search">
         <img src="/navigation/a2c6c.svg" width="16" height="16" alt="" />
-        <input v-model="query" type="search" aria-label="Tìm báo cáo" placeholder="Tìm theo tên hoặc mã (vd A01)" />
+        <input v-model="query" type="search" aria-label="Tìm báo cáo" placeholder="Tìm tên hoặc mã (vd A01)" />
       </div>
       <div class="cms-report-scroll">
-        <p class="cms-report-section">TẤT CẢ BÁO CÁO</p>
         <nav aria-label="Danh sách báo cáo">
           <ReportTree :nodes="filtered" :path="[]" :expanded="expanded" :selected="selected?.id ?? ''" :searching="!!query.trim()" @toggle="toggleBranch" @navigate="go('reports', $event)" />
         </nav>
