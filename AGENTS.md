@@ -29,7 +29,7 @@ Các mục dưới đây chưa được chốt chính thức. Cứ làm theo m�
 | Ngôn ngữ / i18n | Copy viết tiếng Việt. Option 1: mọi chuỗi hiển thị đi qua `vue-i18n` (`virtual-table-poc/src/i18n/locales/vi.json`), không hardcode trong template. Option 2: chưa có `vue-i18n`; phần chữ có sẵn của bảng (nút, thông báo) dùng gói tiếng Việt `vi-VN` của `vxe-pc-ui` | Chờ chốt |
 | Dark theme | Token có sẵn dưới `[data-theme="dark"]`. Không bắt buộc thiết kế riêng cho dark, nhưng không hardcode màu để dark không bị vỡ | Chờ chốt |
 | Tính năng AI | Màu tím, nút AI và Chip AI chỉ dùng khi màn hình thật sự có tính năng AI (iOne) | Chờ chốt phạm vi |
-| Spacing | Chưa có token. Chỉ dùng các bước 2/4/6/8/10/12/14/16/24px (đổi sang rem trong Vue) | Sẽ token hoá thành `--space-*` |
+| Spacing | Dùng token `--space-2` … `--space-24` (tên theo số px: 2/4/6/8/10/12/14/16/24). `tokens.css` viết px, `sync:design` đổi sang rem cho Vue. Option 1: class Tailwind `fb-p-2`, `fb-gap-3`… đã trỏ sẵn vào token (bậc Tailwind × 4 = số px). `components.css` vẫn còn px trực tiếp, sẽ chuyển dần | Đã token hoá |
 | Icon | Dùng `assets/icons/*.svg`. Các SVG trong `assets/<số-trang>/` là bản export riêng cho trang tham chiếu, không dùng cho UI mới | Sẽ có component `<Icon name>` |
 
 ## Hai phương án thư viện bảng
@@ -70,7 +70,7 @@ Khi code: giao diện bảng do vxe vẽ, nên muốn giống CMS-26 thì gán c
 
 Rút gọn từ `DESIGN.md`. Khi có mâu thuẫn, `DESIGN.md` và Figma thắng.
 
-1. **Không hardcode giá trị đã có token.** Màu, bo góc, font, text style đều lấy từ `tokens.css`.
+1. **Không hardcode giá trị đã có token.** Màu, bo góc, khoảng cách, font, text style đều lấy từ `tokens.css`.
 2. **Một màu hành động.** Xanh iPOS (`--primary`) là màu duy nhất cho nút chính, mục đang chọn và focus. Mỗi màn hình chỉ có một nút Chính. Tím chỉ cho AI. Cam chỉ để nhấn mạnh và cảnh báo, không bao giờ làm nút chính.
 3. **Soft-Pair.** Tag và trạng thái luôn dùng nền `-soft` kèm chữ đậm cùng họ màu. Không dùng nền đặc kèm chữ trắng. Hành động nguy hiểm dùng `danger-soft` + chữ `danger`, không dùng nền đỏ đặc.
 4. **Một font.** Chỉ dùng Be Vietnam Pro (`tokens.css` đặt sẵn trên `body`; code Vue dùng `var(--font-sans)` do `sync:design` sinh ra) và text style có sẵn (`cms-text-page-title`, `cms-text-body`, `cms-text-cell`…). Không tự đặt cỡ chữ ngoài thang.
@@ -210,7 +210,7 @@ Figma CMS-26 chưa vẽ một số trạng thái và component hay gặp. Nếu 
 | Tình huống | Làm tạm như sau |
 | --- | --- |
 | Nút hoặc ô bị khoá (disabled) | Làm mờ 50%, con trỏ hình cấm, rê chuột không đổi màu |
-| Nhập sai (lỗi validate) | Viền ô màu đỏ `--danger`, quầng 3px đỏ nhạt `--danger-soft`. Dưới ô có một dòng báo lỗi chữ 12px màu `--danger` |
+| Nhập sai (lỗi validate) | Viền ô màu đỏ `--danger`. Khi focus thêm quầng 3px `--danger` pha 20% (`--danger-soft` quá nhạt, nhìn không ra). Dưới ô có một dòng báo lỗi chữ 12px màu `--danger` |
 | Nút đang xử lý | Giữ nguyên kích thước nút, thay icon bằng vòng xoay, thêm `aria-busy="true"` |
 | Bảng hoặc card đang tải | Hiện khối xám nhạt (`--field`) có hình dạng giống nội dung sắp hiện (skeleton) |
 | Bảng trống hoặc tìm không ra | Hình `assets/07-the-trang-chu/khong-tim-thay-mon.svg`, một dòng giải thích màu `--ink-muted`, thêm nút hành động nếu có |
@@ -225,7 +225,7 @@ Class mới thêm cho các trường hợp này cũng theo quy ước BEM ở tr
 
 Cả hai POC đều có lệnh `npm run sync:design`, tự chạy mỗi khi `npm run dev` hoặc `npm run build`. Lệnh này đọc `tokens.css` và `components.css` ở thư mục gốc (theo tên class `cms-*`) rồi sinh file `src/styles/_base.generated.scss` của POC. Vì vậy:
 
-- Muốn đổi màu, bo góc, cỡ chữ: sửa `tokens.css` ở thư mục gốc. Không sửa `_base.generated.scss`, vì file này bị ghi đè mỗi lần chạy.
+- Muốn đổi màu, bo góc, khoảng cách, cỡ chữ: sửa `tokens.css` ở thư mục gốc. Không sửa `_base.generated.scss`, vì file này bị ghi đè mỗi lần chạy.
 - Đổi tên class trong `components.css` thì phải sửa bảng `mixins` trong `scripts/sync-design.mjs` của cả hai POC, nếu không lệnh sync sẽ báo lỗi.
 - Trong code dùng biến CSS như `var(--primary)`, hoặc mixin có sẵn như `base.button`, `base.badge`.
 
@@ -234,6 +234,20 @@ Cả hai POC đều có lệnh `npm run sync:design`, tự chạy mỗi khi `npm
 - Có Tailwind với prefix `fb-`: viết `fb-flex`, `hover:fb-bg-subtle`. Màu của Tailwind đã nối sẵn với token, không thêm mã hex vào `tailwind.config.ts`.
 - Chuỗi hiển thị đi qua `vue-i18n`.
 - Bảng tự viết HTML, nên ô bảng phải theo đúng nhóm "Bảng" ở trên.
+- Có sẵn bộ component Vue đợt 1 trong `virtual-table-poc/src/components/ui/`. Dùng các component này, không tự dựng lại từ class `cms-*`. Xem mọi trạng thái ở route `/ui`.
+
+| Cần | Component | Props chính |
+| --- | --- | --- |
+| Nút | `CmsButton` | `variant` (`primary` / `secondary` / `subtle` / `ai` / `danger`), `size` (`md` / `sm`), `icon`, `loading`, `disabled` |
+| Nút chỉ có icon | `CmsIconButton` | `icon`, `label` (bắt buộc, làm `aria-label`), `outline`, `disabled` |
+| Tag trong bảng | `CmsTag` | `tone` (`success` / `warning` / `info` / `neutral` / `danger`), chữ qua slot |
+| Trạng thái đơn, quy trình | `CmsStatus` | `status` (`pending` / `processing` / `completed` / `cancelled` / `paused`), chữ qua slot |
+| Ô nhập một dòng | `CmsInput` | `v-model`, `label`, `required`, `hint`, `error`, `readonly`, `disabled`, `type`, `placeholder`. Attr khác (`name`, `autocomplete`…) đi thẳng vào `<input>` |
+| Ô nhập nhiều dòng | `CmsTextarea` | Như `CmsInput` |
+| Ô chọn ngắn | `CmsSelect` | Như `CmsInput`, thêm `options: { value, label, disabled? }[]` |
+| Hộp thoại | `CmsDialog` | `v-model:open`, `title`, `description`, `width`, `closable`. Slot mặc định cho nội dung, `#footer` cho nút |
+| Phân trang chân bảng | `CmsPagination` | `v-model:page`, `v-model:page-size`, `total`, `pageSizeOptions` |
+| Header trang | `CmsPageHeader` | `title`, `description`, slot `#actions` |
 
 ### Riêng Option 2 (`vxe-table-poc`)
 

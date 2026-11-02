@@ -13,7 +13,13 @@ const declarations = (root, selector) => {
 const lines = (items) => items.map(({ prop, value }) => `  ${prop}: ${value};`).join('\n')
 const font = declarations(tokens, 'body').find(node => node.prop === 'font-family')
 if (!font) throw new Error('Missing base font-family')
-const properties = [...declarations(tokens, ':root'), { prop: '--font-sans', value: font.value }]
+// Spacing in tokens.css stays px to match Figma; Vue code uses rem (px / 16).
+const toRem = ({ prop, value }) => {
+  if (!prop.startsWith('--space-')) return { prop, value }
+  if (!/^\d+(\.\d+)?px$/.test(value)) throw new Error(`Spacing token must be px: ${prop}: ${value}`)
+  return { prop, value: `${parseFloat(value) / 16}rem` }
+}
+const properties = [...declarations(tokens, ':root').map(toRem), { prop: '--font-sans', value: font.value }]
 let output = '// GENERATED from ../../tokens.css and ../../components.css. Do not edit.\n'
 tokens.walkAtRules('import', rule => { output += `@import ${rule.params};\n` })
 output += `\n@mixin tokens {\n${lines(properties)}\n}\n`
@@ -36,4 +42,4 @@ const destination = new URL('_base.generated.scss', directory)
 let previous = ''
 try { previous = readFileSync(destination, 'utf8') } catch (error) { if (error.code !== 'ENOENT') throw error }
 if (previous !== output) writeFileSync(destination, output)
-console.log('Synced parent CMS-26 colors, radii, typography, fonts, buttons and badges.')
+console.log('Synced parent CMS-26 colors, radii, spacing, typography, fonts, buttons and badges.')

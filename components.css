@@ -44,7 +44,7 @@
 }
 .cms-btn.cms-btn--danger {
   background: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 /* IconButton */
@@ -76,7 +76,7 @@
   white-space: nowrap;
 }
 .cms-badge.cms-badge--notification {
-  background: #ef4444;
+  background: var(--notification);
   color: var(--surface);
 }
 .cms-badge.cms-badge--count {
@@ -110,7 +110,7 @@
 }
 .cms-delta.cms-delta--down {
   background: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 /* Trạng thái */
@@ -126,7 +126,7 @@
 }
 .cms-status.cms-status--pending {
   background: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 .cms-status.cms-status--processing {
   background: var(--primary-tint);
@@ -138,7 +138,7 @@
 }
 .cms-status.cms-status--cancelled {
   background: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 .cms-status.cms-status--paused {
   background: var(--field);
@@ -294,7 +294,7 @@
 }
 .cms-nav-item.cms-nav-item--active {
   background: var(--surface);
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-raised);
 }
 .cms-nav-item.cms-nav-item--active .cms-nav-item__label {
   font-weight: 600;
@@ -557,7 +557,7 @@
 .cms-menu-item.cms-menu-item--active,
 .cms-menu-item.cms-menu-item--active:hover {
   background: var(--surface);
-  box-shadow: 0 2px 6px rgba(15, 23, 41, 0.04), 0 1px 2px rgba(15, 23, 41, 0.06);
+  box-shadow: var(--shadow-raised);
 }
 .cms-menu-item.cms-menu-item--active .cms-menu-item__label,
 .cms-menu-item.cms-menu-item--open .cms-menu-item__label {
@@ -665,7 +665,7 @@
   padding: 6px 10px;
   border-radius: var(--radius-sm);
   background: var(--ink);
-  box-shadow: 0 4px 12px rgba(15, 23, 41, 0.16);
+  box-shadow: var(--shadow-tooltip);
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -722,7 +722,7 @@
 .cms-menu-sub.cms-menu-sub--active .cms-menu-sub__card,
 .cms-menu-sub.cms-menu-sub--active:hover .cms-menu-sub__card {
   background: var(--surface);
-  box-shadow: 0 2px 6px rgba(15, 23, 41, 0.04), 0 1px 2px rgba(15, 23, 41, 0.06);
+  box-shadow: var(--shadow-raised);
 }
 .cms-menu-sub.cms-menu-sub--active .cms-menu-sub__card p {
   font-weight: 600;
@@ -1226,11 +1226,11 @@ button.cms-icon-box {
 }
 .cms-tag.cms-tag--warning {
   background: var(--warning-soft);
-  color: var(--accent-text);
+  color: var(--warning-text);
 }
 .cms-tag.cms-tag--info {
-  background: var(--primary-tint);
-  color: var(--primary-text);
+  background: var(--info-soft);
+  color: var(--info-text);
 }
 .cms-tag.cms-tag--neutral {
   background: var(--ground);
@@ -1238,7 +1238,7 @@ button.cms-icon-box {
 }
 .cms-tag.cms-tag--danger {
   background: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 /* Loại hình nhà hàng — Chuỗi (xanh) / Nhượng quyền (cam) */
@@ -1591,16 +1591,16 @@ button.cms-icon-box {
   height: 16px;
   padding: 0 4px;
   border-radius: var(--radius-full);
-  background: #db2626;
+  background: var(--notification);
   font-weight: 600;
   font-size: 10px;
   line-height: 14px;
-  color: #fff;
+  color: var(--surface);
   white-space: nowrap;
 }
 .cms-page-header .cms-user .cms-avatar {
-  border: 1px solid #0560a6;
-  box-shadow: 0 0 0 1px #0f79cb;
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 0 1px var(--primary-400);
 }
 
 /* ===== 197:228 · Phân trang ===== */
@@ -1738,7 +1738,7 @@ button.cms-icon-box {
   padding: 24px;
   background: var(--surface);
   border-radius: var(--radius-lg);
-  box-shadow: 0 16px 40px -4px rgba(15, 23, 41, 0.14), 0 2px 6px rgba(15, 23, 41, 0.06);
+  box-shadow: var(--shadow-dialog);
 }
 .cms-dialog .cms-dialog__head {
   display: flex;
@@ -1839,7 +1839,7 @@ button.cms-icon-box {
 .cms-field .cms-field__box.cms-field__box--focus,
 .cms-field .cms-field__box:focus-within {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px #e3eef9;
+  box-shadow: var(--focus-ring);
 }
 .cms-field .cms-field__box input,
 .cms-field .cms-field__box textarea,
@@ -2322,7 +2322,7 @@ button.cms-icon-box {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 2px 6px rgba(15, 23, 41, 0.06), 0 16px 40px rgba(15, 23, 41, 0.14);
+  box-shadow: var(--shadow-overlay);
   overflow: hidden;
 }
 .cms-dropdown-multi .cms-search {
@@ -2402,5 +2402,5 @@ button.cms-icon-box {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 2px 6px rgba(15, 23, 41, 0.06), 0 16px 40px rgba(15, 23, 41, 0.14);
+  box-shadow: var(--shadow-overlay);
 }

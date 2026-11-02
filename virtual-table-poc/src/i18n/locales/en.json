@@ -166,5 +166,84 @@
       "verifyEmailSent": "Sign-up complete. We sent a verification email to {email}. Please verify it to access the system.",
       "back": "Back to sign in"
     }
+  },
+  "ui": {
+    "dialog": {
+      "close": "Close"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "summary": "Showing {range} of {total} rows",
+      "rowsPerPage": "Rows per page",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    }
+  },
+  "uiPreview": {
+    "title": "Components, batch 1",
+    "description": "Button, Field, Tag/Status, Dialog, Pagination, PageHeader. For reviewing states, not a product screen.",
+    "export": "Export",
+    "addItem": "Add item",
+    "sections": {
+      "buttons": "Buttons",
+      "iconButtons": "Icon buttons",
+      "tags": "Tags and statuses",
+      "fields": "Fields",
+      "dialog": "Dialog",
+      "pagination": "Pagination"
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "filter": "Filters",
+      "delete": "Delete",
+      "ai": "Suggest with iOne",
+      "disabled": "Unavailable",
+      "loading": "Click to process"
+    },
+    "iconButtons": {
+      "edit": "Edit",
+      "download": "Download",
+      "delete": "Delete"
+    },
+    "tags": {
+      "active": "On sale",
+      "lowStock": "Low stock",
+      "new": "New",
+      "draft": "Draft",
+      "stopped": "Discontinued"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "paused": "Paused"
+    },
+    "fields": {
+      "name": "Item name",
+      "namePlaceholder": "e.g. Lemon tea",
+      "nameHint": "Shown on the menu and on receipts.",
+      "price": "Price",
+      "priceError": "Price must be greater than 0.",
+      "code": "Item code",
+      "brand": "Brand",
+      "brandValue": "Chanh Dev",
+      "store": "Store",
+      "storePlaceholder": "Choose a store",
+      "storeCauGiay": "Cau Giay",
+      "storeHoanKiem": "Hoan Kiem",
+      "storeDongDa": "Dong Da",
+      "note": "Note",
+      "notePlaceholder": "Extra details for the kitchen",
+      "disabled": "Category"
+    },
+    "dialog": {
+      "open": "Open delete dialog",
+      "title": "Delete this item?",
+      "description": "The item will be removed from the menu of every store. This cannot be undone.",
+      "confirm": "Delete item"
+    }
   }
 }

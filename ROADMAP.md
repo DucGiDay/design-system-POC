@@ -14,13 +14,13 @@ Cập nhật lần cuối: 2026-11-02
 | --- | --- | --- |
 | 1 | Chốt quyết định | 🟡 Đã ghi mặc định tạm, chưa chốt mục nào |
 | 2 | `AGENTS.md` ở gốc repo | ✅ Đã viết (chưa commit) |
-| 3 | Token hoá spacing, chuẩn hoá icon | 🟡 Icon có `AppIcon`, spacing chưa làm |
-| 4 | Bộ component Vue cơ bản | ⬜ Mới có navigation và `StatusBadge` |
+| 3 | Token hoá spacing, chuẩn hoá icon | 🟡 Spacing xong, icon có `AppIcon` nhưng chưa lấy từ bộ gốc |
+| 4 | Bộ component Vue cơ bản | 🟡 Đợt 1 xong ở `virtual-table-poc`, đợt 2 và đóng gói bảng chưa làm |
 | 5 | Mẫu trang | ⬜ |
 | 6 | Bổ sung thiết kế còn thiếu (Figma) | 🟡 Có quy ước tạm, chờ designer |
 | 7 | Dọn tài liệu tham chiếu | ⬜ |
 
-**Việc tiếp theo trên đường găng:** chốt 4 quyết định ở Ưu tiên 1, rồi làm `--space-*` (mục 5).
+**Việc tiếp theo trên đường găng:** chốt 4 quyết định ở Ưu tiên 1, hoàn tất icon (mục 6), rồi làm mẫu trang danh sách (mục 10).
 
 ## Ưu tiên 1 · Chốt quyết định (1–2 ngày, cần người quyết)
 
@@ -53,7 +53,7 @@ Phải xong trước khi viết component, để component dùng token ngay từ
 
 | # | Việc | Trạng thái | Hiện tại |
 | --- | --- | --- | --- |
-| 5 | Thêm `--space-*` vào `tokens.css` (bước 2/4/6/8/10/12/14/16/24), cập nhật `sync:design` của cả hai POC | ⬜ | `tokens.css` chưa có biến spacing |
+| 5 | Thêm `--space-*` vào `tokens.css` (bước 2/4/6/8/10/12/14/16/24), cập nhật `sync:design` của cả hai POC | ✅ | `--space-2` … `--space-24` (px) trong `tokens.css`. `sync:design` của hai POC đổi sang rem. Tailwind của Option 1 trỏ bậc `0.5`…`6` vào token. Đã ghi vào `DESIGN.md`, `AGENTS.md`. Việc sau: chuyển px trong `components.css` sang token |
 | 6 | Component `<Icon name>` dùng bộ `assets/icons`, bỏ dần SVG export riêng từng trang | 🟡 | Cả hai POC đã có `src/components/icon/AppIcon.vue` (vẽ bằng mask, ăn theo `color`). Nhưng icon được chép tay vào `src/assets/icons` (mới 8/92), chưa lấy thẳng từ `assets/icons` gốc. `AGENTS.md` vẫn ghi "Sẽ có component `<Icon name>`" |
 
 Còn lại cho mục 6: cho `sync:design` (hoặc alias Vite) lấy icon từ `assets/icons` gốc, rồi cập nhật dòng Icon trong `AGENTS.md` trỏ tới `AppIcon`.
@@ -62,16 +62,25 @@ Còn lại cho mục 6: cho `sync:design` (hoặc alias Vite) lấy icon từ `a
 
 Lõi của tính nhất quán. Mỗi component có props và variant rõ, đủ state default / hover / focus / disabled, có error / loading khi phù hợp.
 
-### 7. Đợt 1 (dùng trên mọi màn hình)
+### 7. Đợt 1 (dùng trên mọi màn hình) ✅
+
+Làm trong `virtual-table-poc/src/components/ui/` (chỉ Option 1, theo quyết định ngày 2026-11-02). Xem mọi trạng thái ở route `/ui`. Bảng tra props nằm trong `AGENTS.md`.
 
 | Component | Trạng thái | Ghi chú |
 | --- | --- | --- |
-| Button, IconButton | ⬜ | Hiện style nút viết riêng trong `auth.scss` |
-| Field (input, textarea, select) | ⬜ | Trang auth tự làm field, có error/disabled theo quy ước tạm |
-| Tag/Status | 🟡 | `virtual-table-poc/src/components/table/StatusBadge.vue`, chưa thành component dùng chung |
-| Dialog | ⬜ | Có `RequestAccessDialog`, `SelectCompanyDialog` nhưng là dialog nghiệp vụ |
-| Pagination | ⬜ | |
-| PageHeader | ⬜ | |
+| Button, IconButton | ✅ | `CmsButton` (5 variant, md/sm, icon, loading, disabled), `CmsIconButton` (ghost/outline) |
+| Field (input, textarea, select) | ✅ | `CmsField` làm khung, `CmsInput`, `CmsTextarea`, `CmsSelect`. Có hint, error, readonly (icon khoá), disabled |
+| Tag/Status | ✅ | `CmsTag` (5 tone), `CmsStatus` (5 trạng thái) |
+| Dialog | ✅ | `CmsDialog` dựng trên `<dialog>` gốc: khoá focus, Esc, bấm nền mờ để đóng, `closable` |
+| Pagination | ✅ | `CmsPagination`: tổng dòng, số dòng mỗi trang, tối đa 7 nút trang |
+| PageHeader | ✅ | `CmsPageHeader`: tiêu đề, mô tả, slot `#actions` |
+
+Còn lại:
+- Đã xem `/ui` ở 1440×1000 và 1280×720 (2026-11-02): sửa focus ô chỉ xem, quầng đỏ ô lỗi, mũi tên ô số, khoá cuộn khi mở hộp thoại.
+- Token màu còn thiếu vai trò (warning-text, danger-text, backdrop, bóng…): danh sách đề xuất đang chờ duyệt.
+- Các màn cũ chưa chuyển sang component mới: auth (`auth.scss`), `StatusBadge.vue` và `.fb-button` trong `_components.scss`.
+- `vxe-table-poc` chưa có bộ này. Nếu chọn Option 2 thì chuyển sang (bỏ Tailwind ở trang `/ui`).
+- Chưa có component cho các nút trên header (`cms-header-btn`: gia hạn, ngôn ngữ).
 
 ### 8. Đợt 2
 
@@ -107,9 +116,13 @@ Có mẫu trang thì prompt kiểu "tạo trang danh sách món ăn" sẽ ra đ�
 - [ ] 13. Trạng thái: error/validation của field, disabled đầy đủ, loading/skeleton, trạng thái trống của bảng
 - [ ] 14. Component mới: Toast, Tabs, DatePicker, Tooltip chung, Breadcrumb
 
-Trong lúc chờ: ✅ đã ghi cách xử lý tạm từng case vào mục "Khi Figma chưa có thiết kế" của `AGENTS.md`. Các chỗ đang dùng cách tạm (`TODO(design)`): `src/components/auth/auth.scss` ở cả hai POC (lỗi validate, disabled, nút đang xử lý, thông báo cấp form).
+Trong lúc chờ: ✅ đã ghi cách xử lý tạm từng case vào mục "Khi Figma chưa có thiết kế" của `AGENTS.md`. Các chỗ đang dùng cách tạm (`TODO(design)`): `src/components/auth/auth.scss` ở cả hai POC (lỗi validate, disabled, nút đang xử lý, thông báo cấp form); `virtual-table-poc/src/components/ui/` (`CmsButton` disabled và loading, `CmsIconButton` disabled, `CmsField` lỗi validate và disabled).
 
 ## Ưu tiên 7 · Dọn tài liệu tham chiếu (làm khi rảnh) ⬜
 
 - [ ] 15. Trang ví dụ cách dùng (layout flex/grid, trạng thái bằng pseudo-class thật) bên cạnh các trang bản sao canvas Figma
 - [ ] 16. Trang tài liệu cho từng component Vue: props, ví dụ, Do/Don't
+
+- 2026-11-02: Bổ sung token nhóm A cho màu trạng thái, backdrop, bóng và focus; đồng bộ hai POC.
+
+- 2026-11-02: Bổ sung token nhóm B cho thông báo và thông tin; đồng bộ viền avatar theo thang primary.

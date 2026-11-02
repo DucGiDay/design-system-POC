@@ -11,7 +11,13 @@ const ruleFor = (root, selector) => {
   if (!rule) throw new Error(`Missing base design selector: ${selector}`)
   return rule
 }
-const properties = declarations(ruleFor(base, ':root')).map((d) => `  ${d.prop}: ${d.value};`)
+// Spacing in tokens.css stays px to match Figma; Vue code uses rem (px / 16).
+const toRem = ({ prop, value }) => {
+  if (!prop.startsWith('--space-')) return { prop, value }
+  if (!/^\d+(\.\d+)?px$/.test(value)) throw new Error(`Spacing token must be px: ${prop}: ${value}`)
+  return { prop, value: `${parseFloat(value) / 16}rem` }
+}
+const properties = declarations(ruleFor(base, ':root')).map(toRem).map((d) => `  ${d.prop}: ${d.value};`)
 const font = declarations(ruleFor(base, 'body')).find((d) => d.prop === 'font-family')
 if (!font) throw new Error('Missing base font-family')
 properties.push(`  --font-sans: ${font.value};`)

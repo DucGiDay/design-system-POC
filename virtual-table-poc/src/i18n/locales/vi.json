@@ -166,5 +166,84 @@
       "verifyEmailSent": "Đăng ký thành công. Chúng tôi đã gửi email xác thực tới {email}, vui lòng xác thực để truy cập hệ thống.",
       "back": "Trở lại đăng nhập"
     }
+  },
+  "ui": {
+    "dialog": {
+      "close": "Đóng"
+    },
+    "pagination": {
+      "label": "Phân trang",
+      "summary": "Hiển thị {range} trên {total} dòng",
+      "rowsPerPage": "Số dòng mỗi trang",
+      "previous": "Trang trước",
+      "next": "Trang sau",
+      "page": "Trang {page}"
+    }
+  },
+  "uiPreview": {
+    "title": "Component đợt 1",
+    "description": "Button, Field, Tag/Status, Dialog, Pagination, PageHeader. Dùng để xem trạng thái, không phải màn hình sản phẩm.",
+    "export": "Xuất file",
+    "addItem": "Thêm món",
+    "sections": {
+      "buttons": "Nút",
+      "iconButtons": "Nút icon",
+      "tags": "Tag và trạng thái",
+      "fields": "Trường nhập",
+      "dialog": "Hộp thoại",
+      "pagination": "Phân trang"
+    },
+    "buttons": {
+      "save": "Lưu",
+      "cancel": "Huỷ",
+      "filter": "Bộ lọc",
+      "delete": "Xoá",
+      "ai": "Gợi ý bằng iOne",
+      "disabled": "Không bấm được",
+      "loading": "Bấm để xử lý"
+    },
+    "iconButtons": {
+      "edit": "Sửa",
+      "download": "Tải xuống",
+      "delete": "Xoá"
+    },
+    "tags": {
+      "active": "Đang bán",
+      "lowStock": "Sắp hết",
+      "new": "Mới",
+      "draft": "Nháp",
+      "stopped": "Ngừng bán"
+    },
+    "statuses": {
+      "pending": "Chờ xử lý",
+      "processing": "Đang làm",
+      "completed": "Hoàn tất",
+      "cancelled": "Đã huỷ",
+      "paused": "Tạm ngưng"
+    },
+    "fields": {
+      "name": "Tên món",
+      "namePlaceholder": "Ví dụ: Trà chanh",
+      "nameHint": "Tên hiển thị trên thực đơn và hoá đơn.",
+      "price": "Giá bán",
+      "priceError": "Giá bán phải lớn hơn 0.",
+      "code": "Mã món",
+      "brand": "Thương hiệu",
+      "brandValue": "Chanh Dev",
+      "store": "Cửa hàng",
+      "storePlaceholder": "Chọn cửa hàng",
+      "storeCauGiay": "Cầu Giấy",
+      "storeHoanKiem": "Hoàn Kiếm",
+      "storeDongDa": "Đống Đa",
+      "note": "Ghi chú",
+      "notePlaceholder": "Thông tin thêm cho bếp",
+      "disabled": "Danh mục"
+    },
+    "dialog": {
+      "open": "Mở hộp thoại xoá",
+      "title": "Xoá món này?",
+      "description": "Món sẽ bị gỡ khỏi thực đơn của tất cả cửa hàng. Bạn không thể hoàn tác.",
+      "confirm": "Xoá món"
+    }
   }
 }

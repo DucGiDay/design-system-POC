@@ -20,6 +20,7 @@ colors:
   primary-950: "#00172e"
   violet: "#6039ef"
   violet-text: "#4c2bc4"
+  violet-strong: "#4f2bd9"
   violet-soft: "#eeeafe"
   accent: "#f7941d"
   accent-text: "#b45f06"
@@ -38,9 +39,17 @@ colors:
   success: "#16a34a"
   success-text: "#15803d"
   success-soft: "#e8f7ee"
+  info: "#0284c7"
+  info-text: "#0369a1"
+  info-soft: "#e8f4fb"
+  notification: "#dc2626"
   warning: "#d97706"
+  warning-text: "#b45309"
   warning-soft: "#fdf7f0"
   danger: "#d92d20"
+  danger-text: "#b42318"
+  danger-soft-hover: "#fbe4e2"
+  backdrop: "rgba(15, 23, 42, .4)"
   danger-soft: "#fdf2f2"
 typography:
   display-number:
@@ -113,6 +122,16 @@ rounded:
   md: "10px"
   lg: "14px"
   full: "999px"
+spacing:
+  "2": "2px"
+  "4": "4px"
+  "6": "6px"
+  "8": "8px"
+  "10": "10px"
+  "12": "12px"
+  "14": "14px"
+  "16": "16px"
+  "24": "24px"
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
@@ -141,7 +160,7 @@ components:
     padding: "8px 14px"
   button-danger:
     backgroundColor: "{colors.danger-soft}"
-    textColor: "{colors.danger}"
+    textColor: "{colors.danger-text}"
     rounded: "{rounded.md}"
     padding: "8px 14px"
   input-field:
@@ -189,12 +208,12 @@ components:
     padding: "2px 8px"
   tag-warning:
     backgroundColor: "{colors.warning-soft}"
-    textColor: "{colors.accent-text}"
+    textColor: "{colors.warning-text}"
     rounded: "{rounded.sm}"
     padding: "2px 8px"
   tag-info:
-    backgroundColor: "{colors.primary-tint}"
-    textColor: "{colors.primary-text}"
+    backgroundColor: "{colors.info-soft}"
+    textColor: "{colors.info-text}"
     rounded: "{rounded.sm}"
     padding: "2px 8px"
   tag-neutral:
@@ -204,7 +223,7 @@ components:
     padding: "2px 8px"
   tag-error:
     backgroundColor: "{colors.danger-soft}"
-    textColor: "{colors.danger}"
+    textColor: "{colors.danger-text}"
     rounded: "{rounded.sm}"
     padding: "2px 8px"
   dialog:
@@ -241,7 +260,7 @@ Figma CMS-26 là nguồn gốc. Mọi giá trị dưới đây được trích t
 Bảng màu xám lạnh, sạch, với một màu xanh dương chủ đạo và hai màu phụ có vai trò rất hẹp.
 
 ### Primary
-- **Xanh iPOS** (`primary`): nút chính, trạng thái "đang làm", viền focus của trường nhập, mục được chọn. `primary-strong` dùng cho trạng thái nhấn hoặc đậm hơn. `primary-text` dùng cho link và chữ xanh trên nền sáng. `primary-soft` là vòng focus 3px. `primary-tint` là nền tag thông tin.
+- **Xanh iPOS** (`primary`): nút chính, trạng thái "đang làm", viền focus của trường nhập, mục được chọn. `primary-strong` dùng cho trạng thái nhấn hoặc đậm hơn. `primary-text` dùng cho link và chữ xanh trên nền sáng. `primary-soft` là vòng focus 3px. `primary-tint` là nền trạng thái đang xử lý.
 - **Thang Xanh iPOS** (`primary-50` → `primary-950`): 500 là `primary`, 600 là `primary-strong`, 100 là `primary-soft`, 50 là `primary-tint`. Các bậc còn lại nội suy theo OKLCH cùng hue, không có trong Figma. Component dùng token ngữ nghĩa; thang số chỉ dùng khi cần một bậc chưa có tên (biểu đồ, dark theme). Thang không đổi theo theme.
 
 ### Dark theme
@@ -262,7 +281,7 @@ Chưa có trong Figma, được dựng trong `tokens.css` dưới `[data-theme="
 - **Bề mặt** (`surface`): card, dialog, trường nhập. `ground` là nền section và nền trường chỉ xem. `field` là nền nút nhạt và trạng thái tạm ngưng. `subtle` là nền Card/Khối và hover.
 
 ### Status
-- **Thành công** (`success`, `success-text`, `success-soft`), **Cảnh báo** (`warning`, `warning-soft`), **Lỗi** (`danger`, `danger-soft`). Luôn dùng theo cặp: nền `-soft` đi với chữ đậm cùng họ màu.
+- **Thành công** (`success`, `success-text`, `success-soft`), **Thông tin** (`info`, `info-text`, `info-soft`), **Cảnh báo** (`warning`, `warning-text`, `warning-soft`), **Lỗi** (`danger`, `danger-soft`). Luôn dùng theo cặp: nền `-soft` đi với chữ đậm cùng họ màu.
 
 ### Named Rules
 **The One Action Color Rule.** Xanh iPOS là màu hành động duy nhất. Tím chỉ cho AI, cam chỉ cho nhấn và cảnh báo. Không dùng hai màu này cho nút chính.
@@ -294,7 +313,7 @@ Chưa có trong Figma, được dựng trong `tokens.css` dưới `[data-theme="
 
 ## Layout
 
-Layout cố định cho desktop. Component có chiều rộng chuẩn theo Figma: nav item 216px, search 240px, trường form 350px, KPI card 272px, Card/Khối 560px, dialog 440px. Khoảng cách bên trong theo bước 2/4/6/8/10/12/14/16/24px. Gap giữa phần tử trong component thường là 6–8px, padding card 16px, padding dialog 24px. Spacing chưa được token hoá mà nằm trực tiếp trong `components.css`. Trang tham chiếu không có breakpoint responsive.
+Layout cố định cho desktop. Component có chiều rộng chuẩn theo Figma: nav item 216px, search 240px, trường form 350px, KPI card 272px, Card/Khối 560px, dialog 440px. Khoảng cách bên trong theo bước 2/4/6/8/10/12/14/16/24px. Gap giữa phần tử trong component thường là 6–8px, padding card 16px, padding dialog 24px. Các bước này là token `--space-2` … `--space-24` trong `tokens.css` (tên theo số px). `components.css` vẫn còn ghi px trực tiếp và sẽ chuyển dần sang token. Một số giá trị lẻ theo Figma (ví dụ padding 7px của nút SM) nằm ngoài thang. Trang tham chiếu không có breakpoint responsive.
 
 ## Elevation & Depth
 

@@ -14,6 +14,7 @@
   --primary-tint: #eef4ff;
   --violet: #6039ef;
   --violet-text: #4c2bc4;
+  --violet-strong: #4f2bd9;
   --violet-soft: #eeeafe;
   --accent: #f7941d;
   --accent-text: #b45f06;
@@ -56,16 +57,43 @@
   --success: #16a34a;
   --success-text: #15803d;
   --success-soft: #e8f7ee;
+  --info: #0284c7;
+  --info-text: #0369a1;
+  --info-soft: #e8f4fb;
+  --notification: #dc2626;
   --warning: #d97706;
+  --warning-text: #b45309;
   --warning-soft: #fdf7f0;
   --danger: #d92d20;
+  --danger-text: #b42318;
+  --danger-soft-hover: #fbe4e2;
   --danger-soft: #fdf2f2;
+
+  --backdrop: rgba(15, 23, 42, .4);
+  --shadow-raised: 0 2px 6px rgba(15, 23, 42, .04), 0 1px 2px rgba(15, 23, 42, .06);
+  --shadow-overlay: 0 2px 6px rgba(15, 23, 41, .06), 0 16px 40px rgba(15, 23, 41, .14);
+  --shadow-dialog: 0 16px 40px -4px rgba(15, 23, 41, .14), 0 2px 6px rgba(15, 23, 41, .06);
+  --shadow-tooltip: 0 4px 12px rgba(15, 23, 41, .16);
+  --shadow-inside-stroke: inset 0 0 0 1px var(--line);
+  --focus-ring: 0 0 0 3px var(--primary-soft);
+  --focus-ring-danger: 0 0 0 3px color-mix(in srgb, var(--danger) 20%, transparent);
 
   /* radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-full: 999px;
+
+  /* spacing · tên theo số px trong Figma; sync:design đổi sang rem cho code Vue */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-24: 24px;
 }
 
 /*
@@ -82,6 +110,7 @@
   --primary-tint: var(--primary-900);
   --violet: #9996ff;
   --violet-text: #bbbdff;
+  --violet-strong: #b3b1ff;
   --violet-soft: #222047;
   --accent: #f3993b;
   --accent-text: #febb7d;
@@ -104,11 +133,26 @@
   --success: #54c671;
   --success-text: #84dc95;
   --success-soft: #132a18;
+  --info: #4fb3e8;
+  --info-text: #8fd0f2;
+  --info-soft: #10283a;
+  --notification: #f87171;
   --warning: #ffa65e;
+  --warning-text: #ffc58f;
   --warning-soft: #37210f;
   --danger: #f87967;
+  --danger-text: #fca394;
+  --danger-soft-hover: #4a1f1a;
   --danger-soft: #3a1814;
 
+  --backdrop: rgba(0, 0, 0, .6);
+  --shadow-raised: 0 2px 6px rgba(0, 0, 0, .24), 0 1px 2px rgba(0, 0, 0, .3);
+  --shadow-overlay: 0 2px 6px rgba(0, 0, 0, .3), 0 16px 40px rgba(0, 0, 0, .4);
+  --shadow-dialog: 0 16px 40px -4px rgba(0, 0, 0, .4), 0 2px 6px rgba(0, 0, 0, .3);
+  --shadow-tooltip: 0 4px 12px rgba(0, 0, 0, .4);
+  --shadow-inside-stroke: inset 0 0 0 1px var(--line);
+  --focus-ring: 0 0 0 3px var(--primary-soft);
+  --focus-ring-danger: 0 0 0 3px color-mix(in srgb, var(--danger) 20%, transparent);
   color-scheme: dark;
 }
 

@@ -150,6 +150,18 @@ export default {
                 }
         ]
 },
+      // Bậc spacing CMS-26 trỏ vào token, giữ đúng tên bậc mặc định của Tailwind (fb-p-2 = --space-8)
+      spacing: {
+        0.5: 'var(--space-2)',
+        1: 'var(--space-4)',
+        1.5: 'var(--space-6)',
+        2: 'var(--space-8)',
+        2.5: 'var(--space-10)',
+        3: 'var(--space-12)',
+        3.5: 'var(--space-14)',
+        4: 'var(--space-16)',
+        6: 'var(--space-24)',
+      },
       borderRadius: {
         full: 'var(--radius-full)',
         sm: 'var(--radius-sm)',
