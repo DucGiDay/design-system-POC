@@ -2,14 +2,14 @@
 import { setTableSkin, tableSkin, type TableSkin } from './tableSkin'
 
 const options: { value: TableSkin; label: string; title: string }[] = [
-  { value: 'cms', label: 'CMS-26', title: 'Bảng theo design system CMS-26' },
-  { value: 'vxe', label: 'vxe gốc', title: 'Bảng với giao diện mặc định của vxe-pc-ui' },
+  { value: 'cms', label: 'CMS-26', title: 'Component theo design system CMS-26' },
+  { value: 'vxe', label: 'vxe gốc', title: 'Component với giao diện mặc định của Vxe' },
 ]
 </script>
 
 <template>
-  <div class="table-skin" role="group" aria-label="Giao diện bảng">
-    <span class="table-skin__caption" aria-hidden="true">Bảng</span>
+  <div class="table-skin" role="group" aria-label="Giao diện component">
+    <span class="table-skin__caption" aria-hidden="true">Giao diện</span>
     <button
       v-for="option in options"
       :key="option.value"

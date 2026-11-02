@@ -15,7 +15,7 @@ Cập nhật lần cuối: 2026-11-02
 | 1 | Chốt quyết định | 🟡 Đã ghi mặc định tạm, chưa chốt mục nào |
 | 2 | `AGENTS.md` ở gốc repo | ✅ Đã viết (chưa commit) |
 | 3 | Token hoá spacing, chuẩn hoá icon | 🟡 Spacing xong, icon có `AppIcon` nhưng chưa lấy từ bộ gốc |
-| 4 | Bộ component Vue cơ bản | 🟡 Đợt 1 xong ở `virtual-table-poc`, đợt 2 và đóng gói bảng chưa làm |
+| 4 | Bộ component Vue cơ bản | 🟡 Đợt 1 đã đồng bộ sang cả hai POC; đợt 2 và đóng gói bảng chưa làm |
 | 5 | Mẫu trang | 🟡 Có dashboard ở Option 1; mẫu danh sách, form và cài đặt chưa làm |
 | 6 | Bổ sung thiết kế còn thiếu (Figma) | 🟡 Có quy ước tạm, chờ designer |
 | 7 | Dọn tài liệu tham chiếu | ⬜ |
@@ -64,7 +64,7 @@ Lõi của tính nhất quán. Mỗi component có props và variant rõ, đủ 
 
 ### 7. Đợt 1 (dùng trên mọi màn hình) ✅
 
-Làm trong `virtual-table-poc/src/components/ui/` (chỉ Option 1, theo quyết định ngày 2026-11-02). Xem mọi trạng thái ở route `/ui`. Bảng tra props nằm trong `AGENTS.md`.
+Bộ component nằm ở `src/components/ui/` của cả hai POC. Option 1 có trang `/ui`; Option 2 có `/ui` để so sánh CMS-26 và Vxe gốc. Bảng tra props nằm trong `AGENTS.md`.
 
 | Component | Trạng thái | Ghi chú |
 | --- | --- | --- |
@@ -77,9 +77,9 @@ Làm trong `virtual-table-poc/src/components/ui/` (chỉ Option 1, theo quyết 
 
 Còn lại:
 - Đã xem `/ui` ở 1440×1000 và 1280×720 (2026-11-02): sửa focus ô chỉ xem, quầng đỏ ô lỗi, mũi tên ô số, khoá cuộn khi mở hộp thoại.
-- Token màu còn thiếu vai trò (warning-text, danger-text, backdrop, bóng…): danh sách đề xuất đang chờ duyệt.
+- Token màu nhóm A và B đã được duyệt và bổ sung.
 - Các màn cũ chưa chuyển sang component mới: auth (`auth.scss`), `StatusBadge.vue` và `.fb-button` trong `_components.scss`.
-- `vxe-table-poc` chưa có bộ này. Nếu chọn Option 2 thì chuyển sang (bỏ Tailwind ở trang `/ui`).
+- Bộ đợt 1 đã đồng bộ sang `vxe-table-poc`; nội dung nội bộ dùng tiếng Việt theo mặc định hiện tại, chưa thêm i18n.
 - Chưa có component cho các nút trên header (`cms-header-btn`: gia hạn, ngôn ngữ).
 
 ### 8. Đợt 2

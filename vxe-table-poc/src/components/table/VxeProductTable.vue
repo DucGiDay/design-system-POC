@@ -93,9 +93,12 @@ onBeforeUnmount(() => {
     <div class="toolbar">
       <div class="table-summary"><h2>Sản phẩm</h2><span data-testid="record-count">{{ number.format(tableData.length) }} dòng</span></div>
       <div class="actions">
-        <label class="auto-load"><input v-model="autoLoad" type="checkbox" /> Tự tải khi chạm đáy</label>
-        <button class="secondary" type="button" @click="tableRef?.scrollTo({ top: 0 })">Về đầu bảng</button>
-        <button class="primary" type="button" :disabled="loading" @click="jumpToBottom">Đến cuối bảng</button>
+        <label v-if="tableSkin === 'cms'" class="auto-load"><input v-model="autoLoad" type="checkbox" /> Tự tải khi chạm đáy</label>
+        <vxe-checkbox v-else v-model="autoLoad" content="Tự tải khi chạm đáy" />
+        <button v-if="tableSkin === 'cms'" class="secondary" type="button" @click="tableRef?.scrollTo({ top: 0 })">Về đầu bảng</button>
+        <vxe-button v-else content="Về đầu bảng" @click="tableRef?.scrollTo({ top: 0 })" />
+        <button v-if="tableSkin === 'cms'" class="primary" type="button" :disabled="loading" @click="jumpToBottom">Đến cuối bảng</button>
+        <vxe-button v-else status="primary" :disabled="loading" content="Đến cuối bảng" @click="jumpToBottom" />
       </div>
     </div>
     <div class="table-help" id="table-help">
@@ -140,7 +143,7 @@ onBeforeUnmount(() => {
     <footer class="table-footer">
       <span>Virtual scroll <strong>đang bật</strong> · Khung bảng 600px</span>
       <div class="load-state" role="status" aria-live="polite">
-        <template v-if="error"><span class="error-text">{{ error }}</span><button type="button" class="secondary" @click="loadMore">Thử lại</button></template>
+        <template v-if="error"><span class="error-text">{{ error }}</span><button v-if="tableSkin === 'cms'" type="button" class="secondary" @click="loadMore">Thử lại</button><vxe-button v-else content="Thử lại" @click="loadMore" /></template>
         <span v-else-if="loading">Đang tải thêm 50 dòng…</span>
         <span v-else>{{ batches }} lượt tải thêm · 50 dòng / lượt</span>
       </div>

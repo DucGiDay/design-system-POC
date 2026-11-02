@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, useId } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import AppIcon from '../icon/AppIcon.vue'
+import CmsInput from '../ui/CmsInput.vue'
+import CmsButton from '../ui/CmsButton.vue'
 import AuthLayout from './AuthLayout.vue'
 import RequestAccessDialog from './RequestAccessDialog.vue'
 import SelectCompanyDialog from './SelectCompanyDialog.vue'
@@ -14,7 +16,6 @@ const GENERIC_ERROR = 'Có lỗi xảy ra, mời bạn thử lại!'
 
 const route = useRoute()
 const router = useRouter()
-const ids = { account: useId(), password: useId(), accountError: useId(), passwordError: useId() }
 const form = reactive({ account: '', password: '' })
 const fieldErrors = reactive({ account: '', password: '' })
 const formError = ref('')
@@ -23,8 +24,8 @@ const loading = ref(false)
 const companyChoice = ref<CompanyChoice | null>(null)
 const companyOpen = ref(false)
 const accessOpen = ref(false)
-const accountInput = ref<HTMLInputElement>()
-const passwordInput = ref<HTMLInputElement>()
+const accountInput = ref<InstanceType<typeof CmsInput>>()
+const passwordInput = ref<InstanceType<typeof CmsInput>>()
 // Màn đăng ký chuyển về đây kèm state để báo đăng ký thành công
 const registered = ref(history.state?.notice === 'registered')
 
@@ -80,30 +81,14 @@ async function submit() {
         <p v-if="registered" class="cms-alert cms-alert--success" role="status">Đăng ký thành công, vui lòng đăng nhập để truy cập hệ thống!</p>
         <p v-if="formError" class="cms-alert cms-alert--danger" role="alert">{{ formError }}</p>
 
-        <div class="cms-field" :class="{ 'is-invalid': fieldErrors.account }">
-          <label class="cms-field__label" :for="ids.account">Tài khoản</label>
-          <div class="cms-field__box">
-            <input :id="ids.account" ref="accountInput" v-model="form.account" name="username" autocomplete="username" placeholder="Nhập tài khoản" :aria-invalid="!!fieldErrors.account" :aria-describedby="fieldErrors.account ? ids.accountError : undefined" @input="fieldErrors.account = ''" />
-          </div>
-          <p v-if="fieldErrors.account" :id="ids.accountError" class="cms-field__error">{{ fieldErrors.account }}</p>
-        </div>
-
-        <div class="cms-field" :class="{ 'is-invalid': fieldErrors.password }">
-          <label class="cms-field__label" :for="ids.password">Mật khẩu</label>
-          <div class="cms-field__box">
-            <input :id="ids.password" ref="passwordInput" v-model="form.password" name="password" :type="showPassword ? 'text' : 'password'" autocomplete="current-password" placeholder="Nhập mật khẩu" :aria-invalid="!!fieldErrors.password" :aria-describedby="fieldErrors.password ? ids.passwordError : undefined" @input="fieldErrors.password = ''" />
-            <button type="button" class="cms-field__action" :aria-label="showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'" :aria-pressed="showPassword" :aria-controls="ids.password" @click="showPassword = !showPassword">
-              <AppIcon :name="showPassword ? 'mat-an' : 'mat'" size="1.125rem" />
-            </button>
-          </div>
-          <p v-if="fieldErrors.password" :id="ids.passwordError" class="cms-field__error">{{ fieldErrors.password }}</p>
-        </div>
+        <CmsInput ref="accountInput" v-model="form.account" label="Tài khoản" placeholder="Nhập tài khoản" :error="fieldErrors.account" name="username" autocomplete="username" @input="fieldErrors.account = ''" />
+        <CmsInput ref="passwordInput" v-model="form.password" label="Mật khẩu" placeholder="Nhập mật khẩu" :error="fieldErrors.password" name="password" :type="showPassword ? 'text' : 'password'" autocomplete="current-password" @input="fieldErrors.password = ''">
+          <template #suffix="{ id }"><button type="button" class="cms-field__action" :aria-label="showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'" :aria-pressed="showPassword" :aria-controls="id" @click="showPassword = !showPassword"><AppIcon :name="showPassword ? 'mat-an' : 'mat'" size="1.125rem" /></button></template>
+        </CmsInput>
 
         <RouterLink class="cms-link login-forgot" to="/forgot-password">Quên mật khẩu?</RouterLink>
 
-        <button type="submit" class="cms-btn cms-btn--primary cms-btn--block" :disabled="loading" :aria-busy="loading">
-          <span v-if="loading" class="cms-spinner" aria-hidden="true" />Đăng nhập
-        </button>
+        <CmsButton class="cms-ui-button cms-btn--block" type="submit" variant="primary" :loading="loading">Đăng nhập</CmsButton>
         <RouterLink class="cms-btn cms-btn--secondary cms-btn--block" to="/login-token">Đăng nhập với mã hỗ trợ</RouterLink>
       </form>
 

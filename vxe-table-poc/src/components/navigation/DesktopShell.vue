@@ -185,6 +185,7 @@ onBeforeUnmount(() => {
         <div class="cms-workspace-meta">
           <RouterLink class="cms-stack-label" to="/table" :title="'Mở bảng dữ liệu PoC: ' + stackLabel" aria-label="Mở bảng dữ liệu PoC"><span>Vue 3</span><strong>{{ stackLabel }}</strong></RouterLink>
           <TableSkinToggle />
+          <RouterLink class="cms-stack-label" to="/ui">Component</RouterLink>
           <span class="cms-workspace-brand">Chanh Dev</span>
         </div>
         <nav v-if="isMobile && path.length" class="cms-breadcrumb cms-mobile-breadcrumb" aria-label="Đường dẫn">

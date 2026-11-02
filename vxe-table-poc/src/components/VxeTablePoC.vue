@@ -19,6 +19,7 @@ function log(message: string) {
       </div>
       <div class="page-header__aside">
         <TableSkinToggle />
+        <RouterLink class="docs-link" to="/ui">So sánh component</RouterLink>
         <a class="docs-link" href="https://github.com/x-extends/vxe-table" target="_blank" rel="noreferrer">Tài liệu VxeTable</a>
       </div>
     </header>

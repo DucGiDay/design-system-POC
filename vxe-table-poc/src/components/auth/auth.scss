@@ -6,8 +6,8 @@
 .cms-auth {
   // Trường nhập
   .cms-field { display: flex; flex-direction: column; gap: .375rem; min-width: 0; }
-  .cms-field__label { display: flex; gap: .25rem; align-items: center; color: var(--ink-2); font-size: .8125rem; font-weight: 500; line-height: 1.25rem; }
-  .cms-field__box {
+  .cms-field__label:not(.cms-ui-field *) { display: flex; gap: .25rem; align-items: center; color: var(--ink-2); font-size: .8125rem; font-weight: 500; line-height: 1.25rem; }
+  .cms-field__box:not(.cms-ui-field *) {
     position: relative;
     display: flex;
     gap: .5rem;
@@ -43,8 +43,8 @@
     border-color: var(--danger);
     &:focus-within { box-shadow: 0 0 0 3px var(--danger-soft); }
   }
-  .cms-field__error { color: var(--danger); font-size: .75rem; line-height: 1.125rem; }
-  .cms-field__hint { color: var(--ink-muted); font-size: .75rem; line-height: 1.125rem; }
+  .cms-field__error:not(.cms-ui-field *) { color: var(--danger); font-size: .75rem; line-height: 1.125rem; }
+  .cms-field__hint:not(.cms-ui-field *) { color: var(--ink-muted); font-size: .75rem; line-height: 1.125rem; }
 
   // Nút icon nằm trong ô nhập (hiện/ẩn mật khẩu)
   .cms-field__action {
@@ -66,7 +66,7 @@
   }
 
   // Nút
-  .cms-btn {
+  .cms-btn:not(.cms-ui-button) {
     display: inline-flex;
     gap: .375rem;
     align-items: center;
@@ -88,18 +88,18 @@
     &:disabled { cursor: not-allowed; opacity: .5; }
   }
   .cms-btn--block { width: 100%; }
-  .cms-btn--primary {
+  .cms-btn--primary:not(.cms-ui-button) {
     color: var(--surface);
     background: var(--primary);
     &:hover:not(:disabled) { background: var(--primary-strong); }
   }
-  .cms-btn--secondary {
+  .cms-btn--secondary:not(.cms-ui-button) {
     color: var(--ink-2);
     background: var(--surface);
     box-shadow: var(--shadow-inside-stroke);
     &:hover:not(:disabled) { background: var(--subtle); }
   }
-  .cms-btn--subtle {
+  .cms-btn--subtle:not(.cms-ui-button) {
     color: var(--ink-2);
     background: var(--field);
     &:hover:not(:disabled) { background: var(--line); }

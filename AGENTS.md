@@ -252,6 +252,7 @@ Cả hai POC đều có lệnh `npm run sync:design`, tự chạy mỗi khi `npm
 ### Riêng Option 2 (`vxe-table-poc`)
 
 - Không có Tailwind. Style viết bằng SCSS và dùng token.
+- Bộ component Vue đợt 1 nằm trong `src/components/ui/`, đồng bộ từ Option 1; API theo bảng ở trên. Nội dung nội bộ dùng tiếng Việt, chưa có `vue-i18n`. Xem so sánh CMS-26 và Vxe gốc tại `/ui`.
 - Chỉnh giao diện bảng trong `src/styles/_vxe-theme.scss`, bằng cách gán biến `--vxe-ui-*` sang token.
 - Muốn đặt tag hay trạng thái trong ô: dùng slot `#default` của cột, bên trong dùng class `cms-tag`, `cms-status` như bình thường.
 
