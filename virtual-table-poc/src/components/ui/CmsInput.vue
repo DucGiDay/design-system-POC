@@ -5,7 +5,7 @@ import { useFieldAttrs, type FieldProps } from './field'
 // Ô nhập một dòng. Attr khác (name, autocomplete, maxlength…) được chuyển vào <input>.
 defineOptions({ inheritAttrs: false })
 withDefaults(defineProps<FieldProps & {
-  type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'number'
+  type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'number' | 'date'
   placeholder?: string
 }>(), { type: 'text' })
 const model = defineModel<string>({ default: '' })

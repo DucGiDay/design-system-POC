@@ -12,6 +12,7 @@ defineProps<{ stackLabel: string }>()
 
 // Report A01 shows the sample table; loaded on demand so other pages skip the table bundle.
 const ReportTable = defineAsyncComponent(() => import('../table/VirtualTanStackTable.vue'))
+const DashboardPage = defineAsyncComponent(() => import('../dashboard/DashboardPage.vue'))
 
 const { t } = useI18n()
 const route = useRoute()
@@ -160,7 +161,7 @@ onBeforeUnmount(() => {
     </aside>
 
     <div class="cms-workspace">
-      <header class="cms-workspace-header">
+      <header v-if="activeModule !== 'home' || isMobile" class="cms-workspace-header">
         <div v-if="isMobile" class="cms-mobile-controls">
           <button class="cms-icon-button" type="button" :aria-label="t('shell.openMainMenu')" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'main'" @click="openMenu('main')"><img src="/navigation/menu.svg" width="20" height="20" alt="" /></button>
           <button v-if="activeModule === 'reports'" class="cms-mobile-module" type="button" :aria-label="t('reports.openMenu')" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'reports'" @click="openMenu('reports')">{{ t('modules.reports') }}<img src="/navigation/05f6c.svg" width="14" height="14" alt="" /></button>
@@ -190,10 +191,11 @@ onBeforeUnmount(() => {
           <span class="cms-breadcrumb-divider">/</span><span aria-current="page">{{ selected?.code ?? selected?.label }}</span>
         </nav>
       </header>
-      <main id="cms-content" ref="content" class="cms-content" tabindex="-1">
-        <h1>{{ pageTitle }}</h1>
+      <main id="cms-content" ref="content" class="cms-content" :class="{ 'cms-content--dashboard': activeModule === 'home' }" tabindex="-1">
+        <DashboardPage v-if="activeModule === 'home'" />
+        <h1 v-else>{{ pageTitle }}</h1>
         <ReportTable v-if="activeModule === 'reports' && selected?.id === 'a01'" />
-        <p v-else class="cms-content-placeholder">{{ t('shell.contentPlaceholder', { name: selected?.code ?? t(currentModule.label) }) }}</p>
+        <p v-else-if="activeModule !== 'home'" class="cms-content-placeholder">{{ t('shell.contentPlaceholder', { name: selected?.code ?? t(currentModule.label) }) }}</p>
       </main>
     </div>
 

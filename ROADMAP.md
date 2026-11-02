@@ -16,7 +16,7 @@ Cập nhật lần cuối: 2026-11-02
 | 2 | `AGENTS.md` ở gốc repo | ✅ Đã viết (chưa commit) |
 | 3 | Token hoá spacing, chuẩn hoá icon | 🟡 Spacing xong, icon có `AppIcon` nhưng chưa lấy từ bộ gốc |
 | 4 | Bộ component Vue cơ bản | 🟡 Đợt 1 xong ở `virtual-table-poc`, đợt 2 và đóng gói bảng chưa làm |
-| 5 | Mẫu trang | ⬜ |
+| 5 | Mẫu trang | 🟡 Có dashboard ở Option 1; mẫu danh sách, form và cài đặt chưa làm |
 | 6 | Bổ sung thiết kế còn thiếu (Figma) | 🟡 Có quy ước tạm, chờ designer |
 | 7 | Dọn tài liệu tham chiếu | ⬜ |
 
@@ -90,7 +90,8 @@ Còn lại:
 | Dropdown/Menu | ⬜ | |
 | SearchBox | ⬜ | |
 | BrandPicker, ScopeChip | 🟡 | Đã có trong `MainNavigation.vue` của cả hai POC, chưa tách thành component riêng |
-| Card/KPI, Card/Khối | ⬜ | |
+| Card/KPI, Card/Khối | 🟡 | Option 1 có `CmsMetricCard`, `CmsReportCard` dùng trong dashboard; chưa đồng bộ Option 2 |
+| Segmented | 🟡 | Option 1 có `CmsSegmented`, hỗ trợ nhóm lựa chọn thường và compact |
 | Upload | ⬜ | |
 
 ### 9. Đóng gói bảng theo thư viện đã chọn
@@ -101,7 +102,7 @@ Còn lại:
 - `vxe-table-poc`: `_vxe-theme.scss` đã map một phần biến `--vxe-ui-*` sang token.
 - Còn thiếu: tag trong ô, chân bảng gắn sẵn phân trang.
 
-## Ưu tiên 5 · Mẫu trang (3–5 ngày) ⬜
+## Ưu tiên 5 · Mẫu trang (3–5 ngày) 🟡
 
 Có mẫu trang thì prompt kiểu "tạo trang danh sách món ăn" sẽ ra đúng bố cục.
 
@@ -111,12 +112,16 @@ Có mẫu trang thì prompt kiểu "tạo trang danh sách món ăn" sẽ ra đ�
 
 Đã có sẵn: layout CMS (`DesktopShell`, `MainNavigation`, `ReportTree`) ở cả hai POC.
 
+- [x] Dashboard Option 1 (`virtual-table-poc`, route `/`) theo Figma `136:4080`: banner doanh thu, 4 chỉ số và 9 thẻ báo cáo. Dùng dữ liệu mẫu, chưa kết nối API. Desktop từ 960px giữ phần chào và hàng cửa hàng/ngày tháng, cuộn nội dung bên dưới; mobile dưới 960px cuộn toàn bộ dashboard. Chi tiết và CSV/SVG/PNG là bản xem trước từ dữ liệu mẫu. Xem hướng dẫn và giới hạn tại `virtual-table-poc/src/components/dashboard/README.md`.
+
 ## Ưu tiên 6 · Bổ sung thiết kế còn thiếu (designer làm Figma trước)
 
 - [ ] 13. Trạng thái: error/validation của field, disabled đầy đủ, loading/skeleton, trạng thái trống của bảng
 - [ ] 14. Component mới: Toast, Tabs, DatePicker, Tooltip chung, Breadcrumb
 
 Trong lúc chờ: ✅ đã ghi cách xử lý tạm từng case vào mục "Khi Figma chưa có thiết kế" của `AGENTS.md`. Các chỗ đang dùng cách tạm (`TODO(design)`): `src/components/auth/auth.scss` ở cả hai POC (lỗi validate, disabled, nút đang xử lý, thông báo cấp form); `virtual-table-poc/src/components/ui/` (`CmsButton` disabled và loading, `CmsIconButton` disabled, `CmsField` lỗi validate và disabled).
+
+Dashboard bổ sung một `TODO(design)` tại `virtual-table-poc/src/components/dashboard/DashboardPage.vue`: trạng thái mở của bộ chọn ngày dùng input date gốc trong khung overlay theo quy ước tạm, chờ Figma.
 
 ## Ưu tiên 7 · Dọn tài liệu tham chiếu (làm khi rảnh) ⬜
 

@@ -2,6 +2,9 @@
 name: CMS-26
 description: Design system cho FABI CMS — giao diện quản trị chuỗi F&B, dựng từ Figma CMS-26.
 colors:
+  dashboard-hero-start: "#eaf3ff"
+  dashboard-hero-middle: "#f6faff"
+  dashboard-hero-end: "#dcebff"
   primary: "#0560a6"
   primary-strong: "#044a80"
   primary-text: "#0b4f86"
@@ -52,6 +55,27 @@ colors:
   backdrop: "rgba(15, 23, 42, .4)"
   danger-soft: "#fdf2f2"
 typography:
+  dashboard-revenue:
+    fontFamily: "Be Vietnam Pro, sans-serif"
+    fontSize: "56px"
+    fontWeight: 700
+    lineHeight: "64px"
+    letterSpacing: "-0.03em"
+  metric:
+    fontFamily: "Be Vietnam Pro, sans-serif"
+    fontSize: "26px"
+    fontWeight: 600
+    lineHeight: "32px"
+  report-title:
+    fontFamily: "Be Vietnam Pro, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+    lineHeight: "22px"
+  chart:
+    fontFamily: "Be Vietnam Pro, sans-serif"
+    fontSize: "10px"
+    fontWeight: 400
+    lineHeight: "14px"
   display-number:
     fontFamily: "Be Vietnam Pro, sans-serif"
     fontSize: "44px"
@@ -262,6 +286,7 @@ Bảng màu xám lạnh, sạch, với một màu xanh dương chủ đạo và 
 ### Primary
 - **Xanh iPOS** (`primary`): nút chính, trạng thái "đang làm", viền focus của trường nhập, mục được chọn. `primary-strong` dùng cho trạng thái nhấn hoặc đậm hơn. `primary-text` dùng cho link và chữ xanh trên nền sáng. `primary-soft` là vòng focus 3px. `primary-tint` là nền trạng thái đang xử lý.
 - **Thang Xanh iPOS** (`primary-50` → `primary-950`): 500 là `primary`, 600 là `primary-strong`, 100 là `primary-soft`, 50 là `primary-tint`. Các bậc còn lại nội suy theo OKLCH cùng hue, không có trong Figma. Component dùng token ngữ nghĩa; thang số chỉ dùng khi cần một bậc chưa có tên (biểu đồ, dark theme). Thang không đổi theo theme.
+- **Nền banner dashboard** (`dashboard-hero-start`, `dashboard-hero-middle`, `dashboard-hero-end`): ba điểm màu của banner doanh thu tại Figma `136:4080`. Chỉ dùng cho vùng banner này; dark theme đổi sang `primary-950`, `surface`, `primary-900`.
 
 ### Dark theme
 Chưa có trong Figma, được dựng trong `tokens.css` dưới `[data-theme="dark"]`. Cùng tên token, chỉ đổi giá trị, nên component không cần biết theme. Ứng dụng đặt `data-theme="dark"` trên `<html>`.
@@ -305,6 +330,7 @@ Chưa có trong Figma, được dựng trong `tokens.css` dưới `[data-theme="
 - **Label** (500, 12/16): nhãn nhỏ, chip, tag.
 - **Caption** (400, 12/18): mô tả, chú thích.
 - **Overline** (600, 11/16, +0.6px): nhãn nhóm menu.
+- **Dashboard Revenue / Metric / Report Title / Chart**: vai trò bổ sung từ Figma `136:4080`, lần lượt dùng trong banner doanh thu, giá trị `CmsMetricCard`, tiêu đề `CmsReportCard` và nhãn biểu đồ. Kích thước lấy từ token `--type-dashboard-revenue-*`, `--type-metric-*`, `--type-report-title-*`, `--type-chart-*`; không thay thang chữ của ô bảng.
 
 ### Named Rules
 **The Tight-Large Rule.** Chữ từ 20px trở lên dùng letter-spacing âm. Chữ dưới 20px giữ spacing 0, riêng Overline dùng +0.6px.

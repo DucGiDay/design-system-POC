@@ -6,6 +6,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap");
 
 :root {
+  /* Dashboard CMS-26 · Figma 136:4080 */
+  --dashboard-hero-start: #eaf3ff;
+  --dashboard-hero-middle: #f6faff;
+  --dashboard-hero-end: #dcebff;
+  --type-dashboard-revenue-font-size: 56px;
+  --type-dashboard-revenue-line-height: 64px;
+  --type-metric-font-size: 26px;
+  --type-metric-line-height: 32px;
+  --type-report-title-font-size: 15px;
+  --type-report-title-line-height: 22px;
+  --type-chart-font-size: 10px;
+  --type-chart-line-height: 14px;
   /* brand */
   --primary: #0560a6;
   --primary-strong: #044a80;
@@ -103,6 +115,9 @@
  * Primary chuyển sang bậc sáng (300) nên chữ trên nút chính dùng surface (tối).
  */
 [data-theme="dark"] {
+  --dashboard-hero-start: var(--primary-950);
+  --dashboard-hero-middle: var(--surface);
+  --dashboard-hero-end: var(--primary-900);
   --primary: var(--primary-300);
   --primary-strong: var(--primary-200);
   --primary-text: var(--primary-200);
