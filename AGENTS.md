@@ -24,9 +24,9 @@ Các mục dưới đây chưa được chốt chính thức. Cứ làm theo m�
 
 | Chủ đề | Mặc định tạm | Trạng thái |
 | --- | --- | --- |
-| Thư viện bảng | Đang so sánh hai phương án, mỗi POC một phương án (xem mục "Hai phương án thư viện bảng"). Làm trong POC nào thì dùng stack của POC đó | Chờ chốt |
+| Thư viện bảng | Đang so sánh hai phương án, mỗi POC một phương án (xem mục "Hai phương án thư viện bảng" và `TABLE-COMPARISON.md`). Làm trong POC nào thì dùng stack của POC đó | Chờ chốt |
 | Đơn vị CSS | Trang tham chiếu HTML giữ `px` để khớp Figma. Code Vue mới theo `virtual-table-poc/AGENTS.md`: dùng `rem` (lấy px trong `DESIGN.md` chia 16), `px` chỉ cho viền 1px và các phép đo cần khớp pixel | Chờ chốt |
-| Ngôn ngữ / i18n | Copy viết tiếng Việt. Option 1: mọi chuỗi hiển thị đi qua `vue-i18n` (`virtual-table-poc/src/i18n/locales/vi.json`), không hardcode trong template. Option 2: chưa có `vue-i18n`; phần chữ có sẵn của bảng (nút, thông báo) dùng gói tiếng Việt `vi-VN` của `vxe-pc-ui` | Chờ chốt |
+| Ngôn ngữ / i18n | Copy viết tiếng Việt. Cả hai POC: mọi chuỗi hiển thị đi qua `vue-i18n` (`src/i18n/locales/vi.json`), không hardcode trong template. Option 2: phần chữ có sẵn của bảng (nút, thông báo) dùng gói tiếng Việt `vi-VN` của `vxe-pc-ui` | Chờ chốt |
 | Dark theme | Token có sẵn dưới `[data-theme="dark"]`. Không bắt buộc thiết kế riêng cho dark, nhưng không hardcode màu để dark không bị vỡ | Chờ chốt |
 | Tính năng AI | Màu tím, nút AI và Chip AI chỉ dùng khi màn hình thật sự có tính năng AI (iOne) | Chờ chốt phạm vi |
 | Spacing | Dùng token `--space-2` … `--space-24` (tên theo số px: 2/4/6/8/10/12/14/16/24). `tokens.css` viết px, `sync:design` đổi sang rem cho Vue. Option 1: class Tailwind `fb-p-2`, `fb-gap-3`… đã trỏ sẵn vào token (bậc Tailwind × 4 = số px). `components.css` vẫn còn px trực tiếp, sẽ chuyển dần | Đã token hoá |
@@ -252,7 +252,7 @@ Cả hai POC đều có lệnh `npm run sync:design`, tự chạy mỗi khi `npm
 ### Riêng Option 2 (`vxe-table-poc`)
 
 - Không có Tailwind. Style viết bằng SCSS và dùng token.
-- Bộ component Vue đợt 1 nằm trong `src/components/ui/`, đồng bộ từ Option 1; API theo bảng ở trên. Nội dung nội bộ dùng tiếng Việt, chưa có `vue-i18n`. Xem so sánh CMS-26 và Vxe gốc tại `/ui`.
+- Bộ component Vue đợt 1 nằm trong `src/components/ui/`, đồng bộ từ Option 1; API theo bảng ở trên. Chuỗi hiển thị đi qua `vue-i18n`. Xem so sánh CMS-26 và Vxe gốc tại `/ui`.
 - Chỉnh giao diện bảng trong `src/styles/_vxe-theme.scss`, bằng cách gán biến `--vxe-ui-*` sang token.
 - Muốn đặt tag hay trạng thái trong ô: dùng slot `#default` của cột, bên trong dùng class `cms-tag`, `cms-status` như bình thường.
 

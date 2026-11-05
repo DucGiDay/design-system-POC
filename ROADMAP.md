@@ -28,9 +28,9 @@ Nhanh nhưng chặn mọi việc phía sau. Chưa chốt thì AI và từng dev 
 
 | # | Quyết định | Trạng thái | Hiện tại |
 | --- | --- | --- | --- |
-| 1 | Thư viện bảng: TanStack (`virtual-table-poc`) hay vxe-table (`vxe-table-poc`) | ⬜ Chờ chốt | Hai POC chạy song song, cùng layout và navigation |
+| 1 | Thư viện bảng: TanStack (`virtual-table-poc`) hay vxe-table (`vxe-table-poc`) | ⬜ Chờ chốt | Hai POC chạy song song, cùng layout và navigation. So sánh ngày 05/11 ở `TABLE-COMPARISON.md` (hiệu năng + công sức dev). Bài thử bảng nặng (`/spike`): vxe 76 dòng, TanStack 292 dòng; gộp ô + cột ghim + cuộn ảo chạy đúng trên vxe. Đề xuất vxe. Trên 100k dòng thì xử lý ở server, dù chọn bên nào |
 | 2 | Đơn vị: `px` theo Figma hay `rem`. Ghi rõ ngoại lệ | ⬜ Chờ chốt | Mặc định tạm: trang HTML giữ `px`, code Vue dùng `rem`, `px` cho viền 1px |
-| 3 | i18n: có đa ngôn ngữ hay không | ⬜ Chờ chốt | `virtual-table-poc` đã có `vue-i18n` (vi/en), `vxe-table-poc` chưa có. `PRODUCT.md` vẫn ghi "chưa được quyết định" |
+| 3 | i18n: có đa ngôn ngữ hay không | ⬜ Chờ chốt | Cả hai POC đã có `vue-i18n` (vi/en). `PRODUCT.md` vẫn ghi "chưa được quyết định" |
 | 4 | Phạm vi dark theme và tính năng AI | ⬜ Chờ chốt | Token dark có sẵn, không bắt buộc thiết kế riêng. Tím/nút AI chỉ dùng khi có tính năng AI |
 
 Khi chốt: sửa bảng "Quyết định tạm thời" trong `AGENTS.md`, cập nhật `PRODUCT.md` (mục Ngôn ngữ, AI) và `DESIGN.md` nếu đổi đơn vị.
@@ -79,7 +79,7 @@ Còn lại:
 - Đã xem `/ui` ở 1440×1000 và 1280×720 (2026-11-02): sửa focus ô chỉ xem, quầng đỏ ô lỗi, mũi tên ô số, khoá cuộn khi mở hộp thoại.
 - Token màu nhóm A và B đã được duyệt và bổ sung.
 - Các màn cũ chưa chuyển sang component mới: auth (`auth.scss`), `StatusBadge.vue` và `.fb-button` trong `_components.scss`.
-- Bộ đợt 1 đã đồng bộ sang `vxe-table-poc`; nội dung nội bộ dùng tiếng Việt theo mặc định hiện tại, chưa thêm i18n.
+- Bộ đợt 1 đã đồng bộ sang `vxe-table-poc`; chuỗi hiển thị đi qua `vue-i18n` như Option 1.
 - Chưa có component cho các nút trên header (`cms-header-btn`: gia hạn, ngôn ngữ).
 
 ### 8. Đợt 2

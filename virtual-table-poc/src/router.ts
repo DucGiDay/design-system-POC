@@ -10,6 +10,7 @@ export const router = createRouter({
   routes: [
     ...authRoutes,
     { path: '/table', component: () => import('./components/TableDemo.vue') },
+    { path: '/spike', component: () => import('./spike/SpikePage.vue'), meta: { titleKey: 'spike.title' } },
     { path: '/ui', component: () => import('./components/ui/UiPreview.vue'), meta: { titleKey: 'uiPreview.title' } },
     // The shell resolves module and report path from the URL itself: `/`, `/:module`, `/reports/a/a01/a01-1`.
     { path: '/:segments(.*)*', component: DesktopShell, props: { stackLabel: 'TanStack Table' } },

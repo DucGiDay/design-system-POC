@@ -1,0 +1,33 @@
+/*
+ * Đề xuất từ critique 2026-11-05 (Dashboard vxe-table-poc). CHƯA áp dụng vào source.
+ * File này chỉ được chèn tạm vào trang khi chụp ảnh so sánh "sau".
+ */
+
+/* 1. Tương phản: cặp accent đạt 4,19:1 → 4,81:1 (giữ hue cam, chỉ tối hơn một bậc) */
+:root:not([data-theme='dark']) { --accent-text: #a65705; }
+
+/* 1. Tương phản: mục chưa chọn của Segmented ink-muted 4,36:1 → ink-2 9,48:1 */
+.cms-segmented__item:not(.cms-segmented__item--selected) { color: var(--ink-2); }
+
+/* 1. Cỡ chữ: chữ thân đang dùng token Overline 11px → Caption 12px */
+.cms-dashboard__profit small,
+.cms-dashboard__demo { font-size: var(--type-caption-font-size); }
+
+/* 2. Bố cục: card không bị kéo cao theo card cao nhất trong hàng, card rỗng gọn lại */
+.cms-dashboard__report-grid { align-items: start; }
+.cms-dashboard__report-middle { min-height: 0; }
+.cms-dashboard__empty { min-height: 14rem; }
+/* 2. Chữ "ngày" rơi một mình xuống dòng cuối */
+.cms-dashboard__hint { text-wrap: pretty; }
+
+/* 3. Dark theme: tông trung tính thay cho navy/slate */
+[data-theme='dark'] {
+  --ground: #111213;
+  --surface: #18191b;
+  --subtle: #1e1f22;
+  --field: #26272b;
+  --line: #303236;
+  --line-soft: #242528;
+}
+/* 3. Ảnh empty-state chỉ hợp nền sáng → dịu lại trên nền tối */
+[data-theme='dark'] .cms-dashboard__empty img { opacity: .72; filter: saturate(.8); }

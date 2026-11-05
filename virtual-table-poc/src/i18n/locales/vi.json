@@ -623,5 +623,18 @@
       "payment": "Thanh toán",
       "status": "Trạng thái"
     }
+  },
+  "spike": {
+    "title": "Bài thử bảng nặng",
+    "description": "100.000 dòng · tiêu đề 2 tầng · 2 cột ghim · gộp ô theo hoá đơn · kéo đổi thứ tự và độ rộng cột",
+    "label": "Bảng bài thử",
+    "dragHint": "Kéo để đổi thứ tự cột",
+    "resize": "Đổi độ rộng cột",
+    "group": {
+      "invoice": "Hoá đơn",
+      "place": "Nơi bán",
+      "item": "Món",
+      "pay": "Thanh toán"
+    }
   }
 }
