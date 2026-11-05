@@ -36,12 +36,12 @@ function drill(node: NavNode) {
 <template>
   <section class="cms-mobile-subnav" :aria-label="t('subnav.menuMobile', { name })">
     <header class="cms-mobile-subnav-header">
-      <button class="cms-icon-button cms-back-button" type="button" :aria-label="browseIds.length ? t('subnav.back') : t('subnav.toMainMenu')" @click="back"><img src="/navigation/05f6c.svg" width="14" height="14" alt="" /></button>
+      <button class="cms-icon-button cms-back-button" type="button" :aria-label="browseIds.length ? t('subnav.back') : t('subnav.toMainMenu')" @click="back"><img :src="$pub('navigation/05f6c.svg')" width="14" height="14" alt="" /></button>
       <h2 ref="heading" tabindex="-1">{{ title }}</h2>
-      <button class="cms-icon-button" type="button" :aria-label="t('subnav.closeMenu', { name })" @click="emit('close')"><img src="/navigation/close.svg" width="24" height="24" alt="" /></button>
+      <button class="cms-icon-button" type="button" :aria-label="t('subnav.closeMenu', { name })" @click="emit('close')"><img :src="$pub('navigation/close.svg')" width="24" height="24" alt="" /></button>
     </header>
-    <button class="cms-switch-to-main" type="button" @click="emit('main')"><img src="/navigation/1c7b2.svg" width="18" height="18" alt="" />{{ t('shell.mainMenu') }}</button>
-    <div v-if="nav.search" class="cms-search"><img src="/navigation/a2c6c.svg" width="16" height="16" alt="" /><input v-model="query" type="search" :aria-label="t(nav.search.label)" :placeholder="t(nav.search.placeholderMobile)" /></div>
+    <button class="cms-switch-to-main" type="button" @click="emit('main')"><img :src="$pub('navigation/1c7b2.svg')" width="18" height="18" alt="" />{{ t('shell.mainMenu') }}</button>
+    <div v-if="nav.search" class="cms-search"><img :src="$pub('navigation/a2c6c.svg')" width="16" height="16" alt="" /><input v-model="query" type="search" :aria-label="t(nav.search.label)" :placeholder="t(nav.search.placeholderMobile)" /></div>
     <div class="cms-mobile-subnav-scroll">
       <template v-if="nav.search && query.trim()">
         <p class="cms-mobile-search-count" role="status">{{ matches.length ? t('subnav.resultCount', { n: matches.length }, matches.length) : t(nav.search.notFound) }}</p>
@@ -56,8 +56,8 @@ function drill(node: NavNode) {
             <p v-if="section.label" class="cms-context-section">{{ section.label }}</p>
             <ul class="cms-mobile-subnav-list">
               <li v-for="node in section.nodes" :key="node.id" :class="{ 'is-active': selectedIds.at(-1) === node.id }">
-                <a :href="moduleHref(module, [...browseIds, node.id])" :aria-current="selectedIds.at(-1) === node.id ? 'page' : undefined" @click.prevent="emit('navigate', [...browseIds, node.id])"><img v-if="node.icon" :src="'/navigation/' + node.icon" width="16" height="16" alt="" /><span v-if="node.code" class="cms-subnav-code">{{ node.code }}</span><span>{{ node.label }}</span></a>
-                <button v-if="node.children" type="button" class="cms-mobile-drill-button" :aria-label="t('subnav.viewChildren', { name: nodeName(node) })" @click="drill(node)"><img src="/navigation/05f6c.svg" width="14" height="14" alt="" /></button>
+                <a :href="moduleHref(module, [...browseIds, node.id])" :aria-current="selectedIds.at(-1) === node.id ? 'page' : undefined" @click.prevent="emit('navigate', [...browseIds, node.id])"><img v-if="node.icon" :src="$pub('navigation/') + node.icon" width="16" height="16" alt="" /><span v-if="node.code" class="cms-subnav-code">{{ node.code }}</span><span>{{ node.label }}</span></a>
+                <button v-if="node.children" type="button" class="cms-mobile-drill-button" :aria-label="t('subnav.viewChildren', { name: nodeName(node) })" @click="drill(node)"><img :src="$pub('navigation/05f6c.svg')" width="14" height="14" alt="" /></button>
               </li>
             </ul>
           </template>

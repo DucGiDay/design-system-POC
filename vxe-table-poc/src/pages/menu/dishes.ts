@@ -71,7 +71,7 @@ const all: CityDish[] = Array.from({ length: 173 }, (_, index) => {
     id: base.code ?? code(index),
     code: base.code ?? code(index),
     name: base.name ?? `${names[index % names.length]} ${Math.floor(index / names.length) + 1}`,
-    image: index % 3 === 2 ? undefined : '/mock-dish.jpg',
+    image: index % 3 === 2 ? undefined : `${import.meta.env.BASE_URL}mock-dish.jpg`,
     price: base.price ?? 15_000 + (index % 9) * 5_000,
     vat: base.vat ?? (index > 10 && index % 11 === 0 ? 8 : 0),
     group: base.group ?? dishGroups[index % dishGroups.length]!,

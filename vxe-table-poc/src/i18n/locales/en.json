@@ -151,6 +151,7 @@
     "allAppsOpenMenu": "All apps — Open main menu",
     "darkMode": "Dark mode",
     "language": "Language",
+    "legacyUi": "Back to classic interface",
     "logout": "Sign out",
     "languageSwitch": "Language: {current}. Switch to {next}",
     "scrollUp": "Scroll menu up",
@@ -622,6 +623,19 @@
       "amount": "Amount",
       "payment": "Payment",
       "status": "Status"
+    }
+  },
+  "spike": {
+    "title": "Heavy table spike",
+    "description": "100,000 rows · 2-level header · 2 pinned columns · cells merged by invoice · drag to reorder and resize columns",
+    "label": "Spike table",
+    "dragHint": "Drag to reorder column",
+    "resize": "Resize column",
+    "group": {
+      "invoice": "Invoice",
+      "place": "Point of sale",
+      "item": "Item",
+      "pay": "Payment"
     }
   }
 }

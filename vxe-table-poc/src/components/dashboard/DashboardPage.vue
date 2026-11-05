@@ -113,7 +113,7 @@ function closeDetails(event: FocusEvent, element?: HTMLDetailsElement) { if (!el
 
     <div class="cms-dashboard__filters">
       <details ref="scopeMenu" class="cms-dashboard__scope" @toggle="draftStores = [...selectedStores]" @keydown.esc="scopeMenu?.removeAttribute('open')" @focusout="closeDetails($event, scopeMenu)">
-        <summary><img src="/dashboard/a4a0f.png" width="28" height="28" alt="" /><strong>{{ selectedStores.length === 12 ? t('dashboard.allStores') : t('dashboard.storesSelected', { count: selectedStores.length }) }}</strong><AppIcon name="mui-ten-xuong" size=".875rem" /></summary>
+        <summary><img :src="$pub('dashboard/a4a0f.png')" width="28" height="28" alt="" /><strong>{{ selectedStores.length === 12 ? t('dashboard.allStores') : t('dashboard.storesSelected', { count: selectedStores.length }) }}</strong><AppIcon name="mui-ten-xuong" size=".875rem" /></summary>
         <div class="cms-dashboard__scope-popover"><label><input type="checkbox" :checked="draftStores.length === 12" :indeterminate="draftStores.length > 0 && draftStores.length < 12" @change="draftStores = draftStores.length === 12 ? [] : Array.from({ length: 12 }, (_, i) => i + 1)" />{{ t('dashboard.allStores') }}</label><label v-for="id in 12" :key="id"><input v-model="draftStores" type="checkbox" :value="id" />{{ t(`dashboard.store${id}`) }}</label><CmsButton size="sm" :disabled="!draftStores.length" @click="selectedStores = [...draftStores]; scopeMenu?.removeAttribute('open')">{{ t('dashboard.apply') }}</CmsButton></div>
       </details>
       <div class="cms-dashboard__date-filters">
@@ -126,19 +126,19 @@ function closeDetails(event: FocusEvent, element?: HTMLDetailsElement) { if (!el
     <div class="cms-dashboard__scroll">
     <section class="cms-dashboard__hero" :aria-label="t('dashboard.income')">
       <div class="cms-dashboard__hero-art" aria-hidden="true">
-        <img class="cms-dashboard__glow" src="/dashboard/b091b.svg" alt="" />
-        <img class="cms-dashboard__orbit" src="/dashboard/d4cc0.svg" alt="" />
-        <img class="cms-dashboard__orbit-inner" src="/dashboard/94dee.svg" alt="" />
-        <img class="cms-dashboard__cloud-one" src="/dashboard/e7bf9.svg" alt="" />
-        <img class="cms-dashboard__cloud-two" src="/dashboard/b0589.svg" alt="" />
-        <img class="cms-dashboard__platform" src="/dashboard/2d125.svg" alt="" />
-        <img class="cms-dashboard__platform-line" src="/dashboard/e0d2f.svg" alt="" />
-        <img class="cms-dashboard__laptop" src="/dashboard/9f7d6.png" alt="" />
-        <img class="cms-dashboard__receipt" src="/dashboard/486c5.svg" alt="" />
-        <img class="cms-dashboard__spark" src="/dashboard/c3967.svg" alt="" />
-        <img class="cms-dashboard__floating-bars" src="/dashboard/a52a3.svg" alt="" />
-        <img class="cms-dashboard__floating-line" src="/dashboard/804e1.svg" alt="" />
-        <div class="cms-dashboard__floating-message"><img src="/dashboard/827fd.svg" alt="" /><img src="/dashboard/17e08.svg" alt="" /><img src="/dashboard/428eb.svg" alt="" /><img src="/dashboard/452d3.svg" alt="" /></div>
+        <img class="cms-dashboard__glow" :src="$pub('dashboard/b091b.svg')" alt="" />
+        <img class="cms-dashboard__orbit" :src="$pub('dashboard/d4cc0.svg')" alt="" />
+        <img class="cms-dashboard__orbit-inner" :src="$pub('dashboard/94dee.svg')" alt="" />
+        <img class="cms-dashboard__cloud-one" :src="$pub('dashboard/e7bf9.svg')" alt="" />
+        <img class="cms-dashboard__cloud-two" :src="$pub('dashboard/b0589.svg')" alt="" />
+        <img class="cms-dashboard__platform" :src="$pub('dashboard/2d125.svg')" alt="" />
+        <img class="cms-dashboard__platform-line" :src="$pub('dashboard/e0d2f.svg')" alt="" />
+        <img class="cms-dashboard__laptop" :src="$pub('dashboard/9f7d6.png')" alt="" />
+        <img class="cms-dashboard__receipt" :src="$pub('dashboard/486c5.svg')" alt="" />
+        <img class="cms-dashboard__spark" :src="$pub('dashboard/c3967.svg')" alt="" />
+        <img class="cms-dashboard__floating-bars" :src="$pub('dashboard/a52a3.svg')" alt="" />
+        <img class="cms-dashboard__floating-line" :src="$pub('dashboard/804e1.svg')" alt="" />
+        <div class="cms-dashboard__floating-message"><img :src="$pub('dashboard/827fd.svg')" alt="" /><img :src="$pub('dashboard/17e08.svg')" alt="" /><img :src="$pub('dashboard/428eb.svg')" alt="" /><img :src="$pub('dashboard/452d3.svg')" alt="" /></div>
       </div>
       <div class="cms-dashboard__hero-copy"><div class="cms-dashboard__hero-label"><h2>{{ t(`dashboard.${period === 'today' ? 'revenueToday' : period === 'week' ? 'revenueWeek' : period === 'month' ? 'revenueMonth' : 'revenueCustom'}`) }}</h2><CmsSegmented v-model="basis" compact :options="[{ value: 'net', label: 'NET' }, { value: 'gross', label: 'GROSS' }]" :label="t('dashboard.income')" /></div><div class="cms-dashboard__comparison"><span>+13,9%</span><p>{{ t('dashboard.compare', { amount: money(537840 * scale) }) }}</p></div><p class="cms-dashboard__revenue" aria-live="polite">{{ number(revenue) }}<small>₫</small></p><CmsButton variant="primary" @click="detail('revenue')">{{ t('dashboard.revenueReport') }}<AppIcon name="mui-ten-phai" size="1rem" /></CmsButton></div>
     </section>

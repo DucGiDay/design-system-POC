@@ -186,7 +186,7 @@
   // Palette comes from parent [data-theme="dark"] on <html>; only the Figma-only sidebar surface is local.
   &.is-dark { --cms-sidebar: var(--ground); }
   &.is-dark .cms-module-link > img, &.is-dark .cms-tree-toggle img, &.is-dark .cms-icon-button img, &.is-dark .cms-subnav-link > img, &.is-dark .cms-breadcrumb img { filter: brightness(1.9); }
-  &.is-dark .cms-icon-button img[src="/navigation/menu.svg"] { filter: invert(1); }
+  &.is-dark .cms-icon-button img[src$="/navigation/menu.svg"] { filter: invert(1); }
 }
 @keyframes cms-drawer-in { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 @keyframes cms-drawer-out { from { transform: translateX(0); } to { transform: translateX(-100%); } }

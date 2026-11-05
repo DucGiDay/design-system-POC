@@ -12,7 +12,7 @@ const label = computed(() => shell ? t('subnav.openMenu', { name: shell.moduleNa
 
 <template>
   <button v-if="visible" type="button" class="cms-subnav-toggle" aria-controls="cms-subnav" aria-expanded="false" :aria-label="label" :title="label" @click="shell?.toggleSubNav()">
-    <img src="/navigation/c9074.svg" width="16" height="16" alt="" />
+    <img :src="$pub('navigation/c9074.svg')" width="16" height="16" alt="" />
   </button>
 </template>
 

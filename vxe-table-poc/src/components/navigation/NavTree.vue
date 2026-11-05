@@ -12,14 +12,14 @@ const { t } = useI18n()
     <li v-for="node in nodes" :key="node.id" :class="{ 'is-open': node.children && (searching || expanded.has(node.id)), 'has-children': node.children }">
       <div class="cms-subnav-row" :class="{ 'is-active': selected === node.id }">
         <a :href="moduleHref(module, [...path, node.id])" :aria-current="selected === node.id ? 'page' : undefined" class="cms-subnav-link" @click.prevent="emit('navigate', [...path, node.id])">
-          <img v-if="node.icon" :src="'/navigation/' + node.icon" width="16" height="16" alt="" />
+          <img v-if="node.icon" :src="$pub('navigation/') + node.icon" width="16" height="16" alt="" />
           <span v-if="node.code" class="cms-subnav-code">{{ node.code }}</span>
           <span class="cms-subnav-label">{{ node.label }}</span>
         </a>
         <template v-if="node.children">
           <span v-if="branchCount" class="cms-subnav-count">{{ leafCount(node.children) }}</span>
           <button type="button" class="cms-tree-toggle" :aria-label="t(searching || expanded.has(node.id) ? 'subnav.collapse' : 'subnav.expand', { name: nodeName(node) })" :aria-expanded="searching || expanded.has(node.id)" :aria-controls="'branch-' + node.id" :disabled="searching" @click="emit('toggle', node.id)">
-            <img src="/navigation/05f6c.svg" width="14" height="14" alt="" />
+            <img :src="$pub('navigation/05f6c.svg')" width="14" height="14" alt="" />
           </button>
         </template>
       </div>

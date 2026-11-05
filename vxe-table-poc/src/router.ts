@@ -6,11 +6,14 @@ import DesktopShell from './components/navigation/DesktopShell.vue'
 import { currentLocale, i18n } from './i18n'
 
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // Base "/" chứ không phải BASE_URL: asset build nằm dưới /_v3_host/ nhưng URL trang giữ y như host Vue 2
+  // (cùng URL, nginx chọn host theo cookie ui_version).
+  history: createWebHistory('/'),
   routes: [
     ...authRoutes,
     { path: '/ui', component: () => import('./components/ui/UiCompare.vue') },
     { path: '/table', component: () => import('./components/VxeTablePoC.vue') },
+    { path: '/spike', component: () => import('./spike/SpikePage.vue'), meta: { titleKey: 'spike.title' } },
     // The shell resolves module and report path from the URL itself: `/`, `/:module`, `/reports/a/a01/a01-1`.
     { path: '/:segments(.*)*', component: DesktopShell, props: { stackLabel: 'VxeTable' } },
   ],

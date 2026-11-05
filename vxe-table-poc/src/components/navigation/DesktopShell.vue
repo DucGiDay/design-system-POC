@@ -13,6 +13,7 @@ import { allModules, filterNav, leafCount, moduleHref, navNodes, navPath, nodeNa
 import { BANNERS, useAppBanner } from './app-banner'
 import { shellChromeKey } from '../layout/shell'
 import { pages } from '@/pages'
+import { isMicroPath } from '@/micro/sub-apps'
 import './navigation.scss'
 
 defineProps<{ stackLabel: string }>()
@@ -60,6 +61,8 @@ const total = computed(() => subNav.value ? leafCount(navNodes(subNav.value)) : 
 const page = computed(() => selected.value && (!selected.value.children || selected.value.code) ? (pages[`${activeModule.value}/${selected.value.id}`] ?? pages[`${activeModule.value}/*`]) : undefined)
 const pageComponent = computed(() => page.value && (itemId.value && page.value.detail ? page.value.detail : page.value.list))
 const compact = computed(() => activeModule.value !== 'home' || homeCollapsed.value)
+// URL /micro/* do sub-app vẽ (qiankun), shell chỉ giữ khung điều hướng.
+const isMicro = computed(() => isMicroPath(route.path))
 const mobileParent = computed(() => path.value.length > 1 ? path.value[path.value.length - 2] : undefined)
 const { kind: bannerKind, dismiss: dismissBanner } = useAppBanner()
 
@@ -178,11 +181,11 @@ onBeforeUnmount(() => {
         <h2>{{ moduleName }}</h2>
         <span v-if="subNav.totalCount" class="cms-context-count">{{ total }}</span>
         <button v-if="!subNavCollapsed" ref="subNavToggle" type="button" class="cms-icon-button" :aria-label="t('subnav.closeMenu', { name: moduleName })" aria-controls="cms-subnav" aria-expanded="true" :title="t('subnav.closeMenu', { name: moduleName })" @click="toggleSubNav">
-          <img src="/navigation/c9074.svg" width="16" height="16" alt="" />
+          <img :src="$pub('navigation/c9074.svg')" width="16" height="16" alt="" />
         </button>
       </div>
       <div v-if="subNav.search" class="cms-search">
-        <img src="/navigation/a2c6c.svg" width="16" height="16" alt="" />
+        <img :src="$pub('navigation/a2c6c.svg')" width="16" height="16" alt="" />
         <input v-model="query" type="search" :aria-label="t(subNav.search.label)" :placeholder="t(subNav.search.placeholder)" />
       </div>
       <div class="cms-subnav-scroll">
@@ -199,15 +202,15 @@ onBeforeUnmount(() => {
     <div class="cms-workspace">
       <header v-if="(activeModule !== 'home' && !page) || isMobile" class="cms-workspace-header">
         <div v-if="isMobile" class="cms-mobile-controls">
-          <button class="cms-icon-button" type="button" :aria-label="t('shell.openMainMenu')" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'main'" @click="openMenu('main')"><img src="/navigation/menu.svg" width="20" height="20" alt="" /></button>
-          <button v-if="subNav" class="cms-mobile-module" type="button" :aria-label="t('subnav.openMenu', { name: moduleName })" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'sub'" @click="openMenu('sub')">{{ moduleName }}<img src="/navigation/05f6c.svg" width="14" height="14" alt="" /></button>
+          <button class="cms-icon-button" type="button" :aria-label="t('shell.openMainMenu')" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'main'" @click="openMenu('main')"><img :src="$pub('navigation/menu.svg')" width="20" height="20" alt="" /></button>
+          <button v-if="subNav" class="cms-mobile-module" type="button" :aria-label="t('subnav.openMenu', { name: moduleName })" aria-haspopup="dialog" :aria-expanded="drawerOpen && drawerMode === 'sub'" @click="openMenu('sub')">{{ moduleName }}<img :src="$pub('navigation/05f6c.svg')" width="14" height="14" alt="" /></button>
           <span v-else class="cms-mobile-module">{{ moduleName }}</span>
         </div>
         <nav v-if="!isMobile" class="cms-breadcrumb" :aria-label="t('shell.breadcrumb')">
           <button v-if="subNav && subNavCollapsed" ref="subNavToggle" type="button" class="cms-icon-button" :aria-label="t('subnav.openMenu', { name: moduleName })" aria-controls="cms-subnav" aria-expanded="false" :title="t('subnav.openMenu', { name: moduleName })" @click="toggleSubNav">
-            <img src="/navigation/c9074.svg" width="16" height="16" alt="" />
+            <img :src="$pub('navigation/c9074.svg')" width="16" height="16" alt="" />
           </button>
-          <a :href="moduleHref('home')" @click.prevent="go('home')"><img src="/navigation/19c02.svg" width="18" height="18" :alt="t('modules.home')" /></a>
+          <a :href="moduleHref('home')" @click.prevent="go('home')"><img :src="$pub('navigation/19c02.svg')" width="18" height="18" :alt="t('modules.home')" /></a>
           <template v-if="activeModule !== 'home'">
             <span class="cms-breadcrumb-divider">/</span>
             <a v-if="path.length" :href="moduleHref(activeModule)" @click.prevent="go(activeModule)">{{ moduleName }}</a><span v-else aria-current="page">{{ moduleName }}</span>
@@ -229,10 +232,12 @@ onBeforeUnmount(() => {
           <span class="cms-breadcrumb-divider">/</span><span aria-current="page">{{ selected && nodeName(selected) }}</span>
         </nav>
       </header>
-      <main id="cms-content" ref="content" class="cms-content" :class="{ 'cms-content--dashboard': activeModule === 'home', 'cms-content--page': page }" tabindex="-1">
-        <DashboardPage v-if="activeModule === 'home'" />
-        <component :is="pageComponent" v-else-if="pageComponent" :key="`${activeModule}/${selected?.id}/${itemId ? 'detail' : 'list'}`" :base-href="moduleHref(activeModule, selectedIds)" :item-id="itemId" :node="selected" />
-        <template v-else>
+      <main id="cms-content" ref="content" class="cms-content" :class="{ 'cms-content--dashboard': activeModule === 'home' && !isMicro, 'cms-content--page': page, 'cms-content--micro': isMicro }" tabindex="-1">
+        <!-- Vùng qiankun mount sub-app (src/micro/sub-apps.ts). Luôn có trong DOM để qiankun không mount trước khi Vue vẽ xong. -->
+        <div v-show="isMicro" id="subapp-container" class="cms-subapp-container" />
+        <DashboardPage v-if="!isMicro && activeModule === 'home'" />
+        <component :is="pageComponent" v-else-if="!isMicro && pageComponent" :key="`${activeModule}/${selected?.id}/${itemId ? 'detail' : 'list'}`" :base-href="moduleHref(activeModule, selectedIds)" :item-id="itemId" :node="selected" />
+        <template v-else-if="!isMicro">
           <h1>{{ pageTitle }}</h1>
           <p class="cms-content-placeholder">{{ t('shell.contentPlaceholder', { name: selected ? nodeName(selected) : moduleName }) }}</p>
         </template>

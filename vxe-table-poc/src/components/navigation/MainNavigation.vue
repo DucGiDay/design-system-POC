@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import { hasSession, logout } from '@/components/auth/session'
 import { availableLocales, currentLocale, setLocale } from '@/i18n'
 import { LOCALE_NAMES } from '@/i18n/locales'
+import { switchUiVersion } from '@/ui-version'
 import NavScrollButton from './NavScrollButton.vue'
 import { allModules, extensionModules, home, moduleGroups, moduleHref, type ModuleItem } from './navigation'
 
@@ -22,7 +23,7 @@ async function signOut() {
 }
 // POC có 2 ngôn ngữ nên bấm là xoay vòng; thêm ngôn ngữ thì đổi sang menu chọn
 const nextLocale = computed(() => availableLocales[(availableLocales.indexOf(currentLocale.value) + 1) % availableLocales.length]!)
-const icon = (item: ModuleItem, active: boolean) => '/navigation/' + (active ? item.activeIcon ?? item.icon : item.icon)
+const icon = (item: ModuleItem, active: boolean) => `${import.meta.env.BASE_URL}navigation/` + (active ? item.activeIcon ?? item.icon : item.icon)
 const viewport = ref<HTMLElement>()
 const modules = ref<HTMLElement>()
 const scrollId = useId()
@@ -72,16 +73,16 @@ onBeforeUnmount(() => observer?.disconnect())
   <div class="cms-main-nav" :class="{ 'is-compact': compact }" @pointerover="positionTooltip" @focusin="positionTooltip" @scroll.capture="positionTooltip">
     <div class="cms-brand-row">
       <button v-if="compact" class="cms-rail-toggle cms-icon-button" type="button" :aria-label="t('shell.openMainMenu')" :aria-haspopup="activeModule === 'home' ? undefined : 'dialog'" :aria-expanded="false" :data-tooltip="t('shell.openMainMenu')" @click="emit('toggle')">
-        <img class="cms-rail-wordmark" src="/navigation/73be9.svg" width="39.4561" height="15.8037" alt="" />
-        <img class="cms-rail-menu-icon" src="/navigation/menu.svg" width="20" height="20" alt="" />
+        <img class="cms-rail-wordmark" :src="$pub('navigation/73be9.svg')" width="39.4561" height="15.8037" alt="" />
+        <img class="cms-rail-menu-icon" :src="$pub('navigation/menu.svg')" width="20" height="20" alt="" />
       </button>
       <a v-else :href="moduleHref(home.id)" class="cms-wordmark" :aria-label="t('shell.homeLink')" @click.prevent="emit('navigate', 'home')">
-          <img src="/navigation/866d3.svg" width="93.8816" height="16.5677" alt="FABI CMS" />
-          <span class="cms-powered"><img src="/navigation/4a253.svg" width="45.7232" height="8.76167" alt="Powered by" /><img src="/navigation/01feb.svg" width="36.855" height="7.5432" alt="iPOS.vn" /></span>
+          <img :src="$pub('navigation/866d3.svg')" width="93.8816" height="16.5677" alt="FABI CMS" />
+          <span class="cms-powered"><img :src="$pub('navigation/4a253.svg')" width="45.7232" height="8.76167" alt="Powered by" /><img :src="$pub('navigation/01feb.svg')" width="36.855" height="7.5432" alt="iPOS.vn" /></span>
       </a>
       <button v-if="!compact" type="button" class="cms-icon-button" :aria-label="overlay ? t('shell.closeMainMenu') : t('shell.collapseMainMenu')" @click="emit('toggle')">
-        <img v-if="mobile" src="/navigation/close.svg" width="24" height="24" alt="" />
-        <img v-else src="/navigation/menu.svg" width="20" height="20" alt="" />
+        <img v-if="mobile" :src="$pub('navigation/close.svg')" width="24" height="24" alt="" />
+        <img v-else :src="$pub('navigation/menu.svg')" width="20" height="20" alt="" />
       </button>
     </div>
     <div class="cms-brand-picker" :title="compact ? t('shell.brandTitle', { name: 'Chanh Dev' }) : undefined">
@@ -103,7 +104,7 @@ onBeforeUnmount(() => observer?.disconnect())
         <a v-for="item in group.items" :key="item.id" :href="moduleHref(item.id)" class="cms-module-link" :class="{ 'is-active': activeModule === item.id }" :aria-label="compact ? t(item.label) : undefined" :aria-current="activeModule === item.id ? 'page' : undefined" :data-tooltip="compact ? t(item.label) : undefined" @click.prevent="emit('navigate', item.id)">
           <img :src="icon(item, activeModule === item.id)" width="18" height="18" alt="" />
           <span v-if="!compact">{{ t(item.label) }}</span>
-          <img v-if="!compact && !['orders', 'marketplace', 'accounting'].includes(item.id)" class="cms-module-tail" :src="'/navigation/' + ('external' in item ? 'ad697.svg' : '56280.svg')" width="16" height="16" alt="" />
+          <img v-if="!compact && !['orders', 'marketplace', 'accounting'].includes(item.id)" class="cms-module-tail" :src="$pub('navigation/') + ('external' in item ? 'ad697.svg' : '56280.svg')" width="16" height="16" alt="" />
         </a>
       </section>
       <section v-if="!compact" class="cms-module-group" :aria-label="t('groups.extensionsLabel')">
@@ -114,7 +115,7 @@ onBeforeUnmount(() => observer?.disconnect())
       </section>
       <div v-else class="cms-group-divider" />
       <button type="button" class="cms-module-link cms-apps-link" :aria-label="compact ? t('shell.allAppsOpenMenu') : undefined" :data-tooltip="compact ? t('modules.apps') : undefined" @click="compact ? emit('toggle') : emit('navigate', 'apps')">
-        <img src="/navigation/1c7b2.svg" width="18" height="18" alt="" /><span v-if="!compact">{{ t('modules.apps') }}</span><span v-if="!compact" class="cms-count">{{ allModules.length - 2 }}</span>
+        <img :src="$pub('navigation/1c7b2.svg')" width="18" height="18" alt="" /><span v-if="!compact">{{ t('modules.apps') }}</span><span v-if="!compact" class="cms-count">{{ allModules.length - 2 }}</span>
       </button>
     </nav>
     <div v-if="compact && overflowing" class="cms-rail-scroll-slot">
@@ -124,16 +125,19 @@ onBeforeUnmount(() => observer?.disconnect())
 
     <div class="cms-nav-footer">
       <a :href="moduleHref('support')" class="cms-module-link" :aria-label="compact ? t('modules.support') : undefined" :data-tooltip="compact ? t('modules.support') : undefined" @click.prevent="emit('navigate', 'support')">
-        <img src="/navigation/ed25a.svg" width="18" height="18" alt="" /><span v-if="!compact">{{ t('modules.support') }}</span>
+        <img :src="$pub('navigation/ed25a.svg')" width="18" height="18" alt="" /><span v-if="!compact">{{ t('modules.support') }}</span>
       </a>
       <button class="cms-module-link" type="button" role="switch" :aria-checked="dark" :aria-label="t('shell.darkMode')" :data-tooltip="compact ? t('shell.darkMode') : undefined" @click="emit('theme')">
-        <img src="/navigation/d631a.svg" width="18" height="18" alt="" /><span v-if="!compact">{{ t('shell.darkMode') }}</span><span v-if="!compact" class="cms-switch" :class="{ 'is-on': dark }"><i /></span>
+        <img :src="$pub('navigation/d631a.svg')" width="18" height="18" alt="" /><span v-if="!compact">{{ t('shell.darkMode') }}</span><span v-if="!compact" class="cms-switch" :class="{ 'is-on': dark }"><i /></span>
       </button>
       <button v-if="availableLocales.length > 1" class="cms-module-link" type="button" :aria-label="t('shell.languageSwitch', { current: LOCALE_NAMES[currentLocale], next: LOCALE_NAMES[nextLocale] })" :data-tooltip="compact ? t('shell.language') + ': ' + LOCALE_NAMES[currentLocale] : undefined" @click="setLocale(nextLocale)">
         <span class="cms-locale-code" aria-hidden="true">{{ currentLocale }}</span><span v-if="!compact">{{ t('shell.language') }}</span><span v-if="!compact" class="cms-count">{{ LOCALE_NAMES[currentLocale] }}</span>
       </button>
+      <button class="cms-module-link" type="button" :aria-label="compact ? t('shell.legacyUi') : undefined" :data-tooltip="compact ? t('shell.legacyUi') : undefined" @click="switchUiVersion('v2')">
+        <img :src="$pub('navigation/1c7b2.svg')" width="18" height="18" alt="" /><span v-if="!compact">{{ t('shell.legacyUi') }}</span>
+      </button>
       <button v-if="loggedIn" class="cms-module-link" type="button" :aria-label="compact ? t('shell.logout') : undefined" :data-tooltip="compact ? t('shell.logout') : undefined" :disabled="loggingOut" :aria-busy="loggingOut" @click="signOut">
-        <img src="/navigation/dang-xuat.svg" width="18" height="18" alt="" /><span v-if="!compact">{{ t('shell.logout') }}</span>
+        <img :src="$pub('navigation/dang-xuat.svg')" width="18" height="18" alt="" /><span v-if="!compact">{{ t('shell.logout') }}</span>
       </button>
     </div>
   </div>
