@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-import AppIcon from '../icon/AppIcon.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 import type { FieldProps } from './field'
 
 // Khung trường nhập theo components.css (cms-field): nhãn, ô, dòng gợi ý / lỗi.
@@ -17,7 +17,7 @@ const describedBy = computed(() => {
 <template>
   <div class="cms-field" :class="{ 'cms-field--disabled': disabled }">
     <label v-if="label" class="cms-field__label" :for="id">
-      {{ label }}<span v-if="required" class="cms-field__required" aria-hidden="true">*</span>
+      {{ label }}<span v-if="required" class="cms-field__required" aria-hidden="true">*</span><span v-if="tip" class="cms-field__tip" tabindex="0" :aria-label="tip" :title="tip"><AppIcon name="thong-tin" size=".875rem" /></span>
     </label>
     <div
       class="cms-field__box"
@@ -112,6 +112,12 @@ const describedBy = computed(() => {
 
 // Chỉ xem: nền xám, không viền, kèm icon khoá; không phản hồi rê chuột.
 // Ô vẫn nhận focus (để chọn, sao chép) nên hiện viền đậm, không dùng viền primary của ô sửa được.
+.cms-field__tip {
+  display: inline-flex;
+  color: var(--ink-muted);
+  cursor: help;
+  &:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 50%; }
+}
 .cms-field__box--readonly {
   border-color: transparent;
   background: var(--ground);

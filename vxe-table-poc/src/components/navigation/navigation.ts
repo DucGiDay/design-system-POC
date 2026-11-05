@@ -1,53 +1,78 @@
 export interface ModuleItem {
   id: string
+  /** Khoá i18n của host — render bằng t(label) */
   label: string
   icon: string
   activeIcon?: string
   external?: boolean
 }
 
-export const home: ModuleItem = { id: 'home', label: 'Trang chủ', icon: '19c02.svg', activeIcon: 'ce4a6.svg' }
+export const home: ModuleItem = { id: 'home', label: 'modules.home', icon: '19c02.svg', activeIcon: 'ce4a6.svg' }
 export const moduleGroups = [
-  { label: 'CỬA HÀNG & BÁN HÀNG', items: [
-    { id: 'restaurants', label: 'Nhà hàng', icon: '3bb26.svg' },
-    { id: 'menu', label: 'Thực đơn', icon: '7a99f.svg' },
-    { id: 'promotions', label: 'Chương trình', icon: 'ccdb7.svg' },
-    { id: 'channels', label: 'Kênh bán hàng', icon: '28374.svg' },
-    { id: 'orders', label: 'Nhận đơn đa kênh', icon: 'd6316.svg' },
-    { id: 'canteen', label: 'Canteen', icon: 'b470e.svg' },
-    { id: 'marketplace', label: 'Marketplace', icon: 'e9bed.svg' },
+  { label: 'groups.storeSales', items: [
+    { id: 'restaurants', label: 'modules.restaurants', icon: '3bb26.svg' },
+    { id: 'menu', label: 'modules.menu', icon: '7a99f.svg' },
+    { id: 'promotions', label: 'modules.promotions', icon: 'ccdb7.svg' },
+    { id: 'channels', label: 'modules.channels', icon: '28374.svg' },
+    { id: 'orders', label: 'modules.orders', icon: 'd6316.svg' },
+    { id: 'canteen', label: 'modules.canteen', icon: 'b470e.svg' },
+    { id: 'marketplace', label: 'modules.marketplace', icon: 'e9bed.svg' },
   ] },
-  { label: 'VẬN HÀNH', items: [
-    { id: 'devices', label: 'Thiết bị', icon: '1d3ba.svg' },
-    { id: 'employees', label: 'Nhân viên', icon: '38e0f.svg' },
-    { id: 'attendance', label: 'Chấm công, lương', icon: '4bc3b.svg', external: true },
-    { id: 'inventory', label: 'Kho & Cung ứng', icon: '89e55.svg', external: true },
+  { label: 'groups.operations', items: [
+    { id: 'devices', label: 'modules.devices', icon: '1d3ba.svg' },
+    { id: 'employees', label: 'modules.employees', icon: '38e0f.svg' },
+    { id: 'attendance', label: 'modules.attendance', icon: '4bc3b.svg', external: true },
+    { id: 'inventory', label: 'modules.inventory', icon: '89e55.svg', external: true },
   ] },
-  { label: 'BÁO CÁO & TÀI CHÍNH', items: [
-    { id: 'reports', label: 'Báo cáo', icon: '06ad4.svg', activeIcon: '3507a.svg' },
-    { id: 'accounting', label: 'Kế toán vo', icon: '6ed80.svg' },
-    { id: 'invoices', label: 'Hoá đơn điện tử', icon: '37dd9.svg' },
+  { label: 'groups.reportsFinance', items: [
+    { id: 'reports', label: 'modules.reports', icon: '06ad4.svg', activeIcon: '3507a.svg' },
+    { id: 'accounting', label: 'modules.accounting', icon: '6ed80.svg' },
+    { id: 'invoices', label: 'modules.invoices', icon: '37dd9.svg' },
   ] },
-] satisfies { label: string; items: ModuleItem[] }[]
+] satisfies { /** khoá i18n */ label: string; items: ModuleItem[] }[]
 export const extensionModules: ModuleItem[] = [
-  { id: 'momo', label: 'MoMo', icon: 'b18ad.png' },
-  { id: 'vnpay', label: 'VNPAY-QR', icon: '024d8.png' },
+  { id: 'momo', label: 'modules.momo', icon: 'b18ad.png' },
+  { id: 'vnpay', label: 'modules.vnpay', icon: '024d8.png' },
 ]
 export const allModules: ModuleItem[] = [home, ...moduleGroups.flatMap(group => group.items), ...extensionModules,
-  { id: 'apps', label: 'Tất cả ứng dụng', icon: '1c7b2.svg' },
-  { id: 'support', label: 'Góp ý, hỗ trợ', icon: 'ed25a.svg' },
+  { id: 'apps', label: 'modules.apps', icon: '1c7b2.svg' },
+  { id: 'support', label: 'modules.support', icon: 'ed25a.svg' },
 ]
 
-export interface ReportNode {
+/** Một trang (lá) hoặc nhóm trang trong sidebar con. `id` là một đoạn URL, duy nhất trong cả module. */
+export interface NavNode {
   id: string
+  /** Dữ liệu hiển thị (như API trả về), không phải khoá i18n */
   label: string
   code?: string
   icon?: string
-  children?: ReportNode[]
+  children?: NavNode[]
+}
+
+/** Nhóm mục có nhãn (DANH MỤC, VẬN HÀNH…). Bỏ `label` khi module chỉ có một nhóm không tên. */
+export interface NavSection {
+  label?: string
+  nodes: NavNode[]
+}
+
+/**
+ * Sidebar con (Bảng menu · Sidebar V2) của một module.
+ * Module có mục trong `subNavs` tự có sidebar con desktop, drawer mobile, breadcrumb và URL `/:module/:id/...`.
+ */
+export interface SubNav {
+  sections: NavSection[]
+  /** Nhánh mở sẵn lần đầu vào module */
+  expanded?: string[]
+  /** Bật ô tìm kiếm — khoá i18n cho phần chữ riêng của module */
+  search?: { label: string; placeholder: string; placeholderMobile: string; notFound: string }
+  /** Số trang lá cạnh mỗi nhóm */
+  branchCount?: boolean
+  /** Tổng số trang lá cạnh tiêu đề */
+  totalCount?: boolean
 }
 
 // The A branch demonstrates the requested fourth level. Content remains a placeholder.
-export const reports: ReportNode[] = [
+const reports: NavNode[] = [
   { id: 'a', label: 'Báo cáo A', icon: '20441.svg', children: [
     { id: 'a01', code: 'A01', label: 'Doanh thu bán hàng', children: [
       { id: 'a01-1', code: 'A01.1', label: 'Doanh thu theo cửa hàng' },
@@ -76,12 +101,50 @@ export const reports: ReportNode[] = [
   { id: 'exports', label: 'Xuất báo cáo', icon: 'ff677.svg', children: [{ id: 'f01', code: 'F01', label: 'Lịch sử xuất báo cáo' }] },
 ]
 
-export const moduleHref = (id: string) => id === home.id ? '/' : '/' + id
-export const reportHref = (path: string[]) => ['/reports', ...path].join('/')
-export const reportCount = (nodes: ReportNode[]): number => nodes.reduce((count, node) => count + (node.children ? reportCount(node.children) : 1), 0)
-export function reportPath(ids: string[]): ReportNode[] {
-  const path: ReportNode[] = []
-  let nodes = reports
+// Figma CMS-26 · 457:114 "Bảng menu · Thực đơn". Trang con của các nhóm đang thu gọn là dữ liệu mẫu (đủ 11 trang như design).
+const menu: NavSection[] = [
+  { label: 'Danh mục', nodes: [
+    { id: 'dishes', label: 'Món ăn', icon: 'menu-mon-an.svg', children: [
+      { id: 'dishes-city', label: 'Món ăn tại thành phố' },
+      { id: 'dishes-store', label: 'Món ăn tại cửa hàng' },
+    ] },
+    { id: 'groups', label: 'Nhóm món', icon: 'menu-nhom-mon.svg', children: [
+      { id: 'groups-city', label: 'Nhóm món tại thành phố' },
+      { id: 'groups-store', label: 'Nhóm món tại cửa hàng' },
+    ] },
+    { id: 'types', label: 'Loại món', icon: 'menu-loai-mon.svg' },
+    { id: 'customization', label: 'Customization', icon: 'menu-customization.svg', children: [
+      { id: 'customization-city', label: 'Customization tại thành phố' },
+      { id: 'customization-store', label: 'Customization tại cửa hàng' },
+    ] },
+  ] },
+  { label: 'Vận hành', nodes: [
+    { id: 'schedule', label: 'Lập lịch thực đơn', icon: 'menu-lap-lich.svg' },
+    { id: 'deleted', label: 'Món đã xoá', icon: 'menu-mon-da-xoa.svg', children: [
+      { id: 'deleted-city', label: 'Món đã xoá tại thành phố' },
+      { id: 'deleted-store', label: 'Món đã xoá tại cửa hàng' },
+    ] },
+    { id: 'quantity', label: 'Khai báo số lượng món', icon: 'menu-khai-bao-so-luong.svg' },
+  ] },
+]
+
+/** Thêm sidebar con cho module mới = thêm một mục ở đây; shell không cần sửa. */
+export const subNavs: Partial<Record<string, SubNav>> = {
+  reports: {
+    sections: [{ nodes: reports }],
+    expanded: ['a'],
+    branchCount: true,
+    search: { label: 'reports.search', placeholder: 'reports.searchPlaceholder', placeholderMobile: 'reports.searchPlaceholderMobile', notFound: 'reports.notFound' },
+  },
+  menu: { sections: menu, expanded: ['dishes'], totalCount: true },
+}
+
+export const navNodes = (nav: SubNav): NavNode[] => nav.sections.flatMap(section => section.nodes)
+export const moduleHref = (id: string, path: string[] = []) => id === home.id ? '/' : ['', id, ...path].join('/')
+export const leafCount = (nodes: NavNode[]): number => nodes.reduce((count, node) => count + (node.children ? leafCount(node.children) : 1), 0)
+export const nodeName = (node: NavNode) => node.code ?? node.label
+export function navPath(nodes: NavNode[], ids: string[]): NavNode[] {
+  const path: NavNode[] = []
   for (const id of ids) {
     const node = nodes.find(item => item.id === id)
     if (!node) break
@@ -90,13 +153,13 @@ export function reportPath(ids: string[]): ReportNode[] {
   }
   return path
 }
-const searchable = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase()
-export function filterReports(nodes: ReportNode[], query: string): ReportNode[] {
+const searchable = (value: string) => value.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase()
+export function filterNav(nodes: NavNode[], query: string): NavNode[] {
   const term = searchable(query.trim())
   if (!term) return nodes
   return nodes.flatMap(node => {
     if (searchable(`${node.code ?? ''} ${node.label}`).includes(term)) return [node]
-    const children = node.children ? filterReports(node.children, query) : []
+    const children = node.children ? filterNav(node.children, query) : []
     return children.length ? [{ ...node, children }] : []
   })
 }

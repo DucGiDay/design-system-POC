@@ -6,7 +6,7 @@ import { useFieldAttrs, type FieldProps } from './field'
 // Ô nhập một dòng. Attr khác (name, autocomplete, maxlength…) được chuyển vào <input>.
 defineOptions({ inheritAttrs: false })
 withDefaults(defineProps<FieldProps & {
-  type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'number'
+  type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'number' | 'date'
   placeholder?: string
 }>(), { type: 'text' })
 const input = ref<HTMLInputElement>()
@@ -16,7 +16,7 @@ const { rootAttrs, controlAttrs } = useFieldAttrs()
 </script>
 
 <template>
-  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" class="cms-ui-field" :label :required :hint :error :readonly :disabled>
+  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" class="cms-ui-field" :label :required :tip :hint :error :readonly :disabled>
     <input
       :id
       ref="input"

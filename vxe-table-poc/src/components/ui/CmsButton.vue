@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppIcon from '../icon/AppIcon.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 
 // Nút theo components.css (cms-btn). Mỗi màn chỉ một nút variant="primary"; "ai" chỉ cho tính năng iOne.
 withDefaults(defineProps<{

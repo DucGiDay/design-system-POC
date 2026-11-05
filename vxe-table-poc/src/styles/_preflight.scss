@@ -1,0 +1,15 @@
+@use './table-skin' as skin;
+
+// Phần Tailwind preflight mà component dùng chung (chép từ virtual-table-poc) dựa vào.
+// virtual-table-poc có sẵn qua @tailwind base; ở đây viết tay và chỉ áp lên phần tử của app (không chạm vxe).
+:is(h1, h2, h3, h4, h5, h6)#{skin.$app-owned} { margin: 0; font-size: inherit; font-weight: inherit; }
+:is(ul, ol)#{skin.$app-owned} { margin: 0; padding: 0; list-style: none; }
+:is(dl, dd, figure, blockquote)#{skin.$app-owned} { margin: 0; }
+hr#{skin.$app-owned} { height: 0; border: 0; border-top: 1px solid; color: inherit; }
+a#{skin.$app-owned} { color: inherit; text-decoration: inherit; }
+:is(button, input, select, textarea)#{skin.$app-owned} { margin: 0; padding: 0; color: inherit; font: inherit; line-height: inherit; }
+:is(button, select)#{skin.$app-owned} { text-transform: none; }
+button#{skin.$app-owned} { border: 0; background: transparent; cursor: pointer; }
+:is(img, svg, video)#{skin.$app-owned} { max-width: 100%; vertical-align: middle; }
+img#{skin.$app-owned} { display: block; height: auto; }
+table#{skin.$app-owned} { border-collapse: collapse; border-color: inherit; text-indent: 0; }

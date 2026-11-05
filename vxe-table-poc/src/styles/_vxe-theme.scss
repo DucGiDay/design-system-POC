@@ -17,3 +17,12 @@
   font-variant-numeric: tabular-nums;
 }
 #{skin.$cms} .vxe-header--column { font-weight: 600; }
+
+// vxe ẩn thanh cuộn native của các vùng cuộn bên trong (thân giữa, thân cột ghim trái/phải, header) bằng
+// ::-webkit-scrollbar và tự vẽ thanh cuộn ảo riêng. Chrome bỏ qua ::-webkit-scrollbar khi phần tử có
+// scrollbar-width khác auto, mà shell (.cms-shell * / *) đặt "thin" cho mọi phần tử → mỗi vùng hiện thêm
+// một thanh native. Trả các node của vxe về auto (cả hai skin). :root + [class] = (0,2,0) thắng `.cms-shell *`.
+:root [class*='vxe-'] {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}

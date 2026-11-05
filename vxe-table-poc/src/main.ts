@@ -7,9 +7,10 @@ import 'vxe-table/lib/style.css'
 import './styles/main.scss'
 import App from './App.vue'
 import { router } from './router'
+import { i18n, initLocale } from './i18n'
 import { initTableSkin } from './table-skin/tableSkin'
 
 initTableSkin()
 VxeUI.setI18n('vi-VN', viVN)
 VxeUI.setLanguage('vi-VN')
-createApp(App).use(router).use(VxeUI).use(VxeUITable).mount('#app')
+void initLocale().then(() => createApp(App).use(i18n).use(router).use(VxeUI).use(VxeUITable).mount('#app'))

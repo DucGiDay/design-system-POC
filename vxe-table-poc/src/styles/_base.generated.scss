@@ -83,6 +83,47 @@
   --space-16: 1rem;
   --space-24: 1.5rem;
   --font-sans: "Be Vietnam Pro", sans-serif;
+  --type-display-number-font-weight: 300;
+  --type-display-number-font-size: 44px;
+  --type-display-number-line-height: 52px;
+  --type-display-number-letter-spacing: -1.5px;
+  --type-page-title-font-weight: 600;
+  --type-page-title-font-size: 28px;
+  --type-page-title-line-height: 36px;
+  --type-page-title-letter-spacing: -0.5px;
+  --type-section-font-weight: 600;
+  --type-section-font-size: 20px;
+  --type-section-line-height: 28px;
+  --type-section-letter-spacing: -0.2px;
+  --type-number-md-font-weight: 500;
+  --type-number-md-font-size: 24px;
+  --type-number-md-line-height: 32px;
+  --type-number-md-letter-spacing: -0.5px;
+  --type-card-title-font-weight: 600;
+  --type-card-title-font-size: 16px;
+  --type-card-title-line-height: 24px;
+  --type-body-font-weight: 400;
+  --type-body-font-size: 14px;
+  --type-body-line-height: 22px;
+  --type-body-medium-font-weight: 500;
+  --type-body-medium-font-size: 14px;
+  --type-body-medium-line-height: 22px;
+  --type-body-semibold-font-weight: 600;
+  --type-body-semibold-font-size: 14px;
+  --type-body-semibold-line-height: 22px;
+  --type-cell-font-weight: 400;
+  --type-cell-font-size: 13px;
+  --type-cell-line-height: 20px;
+  --type-label-font-weight: 500;
+  --type-label-font-size: 12px;
+  --type-label-line-height: 16px;
+  --type-caption-font-weight: 400;
+  --type-caption-font-size: 12px;
+  --type-caption-line-height: 18px;
+  --type-overline-font-weight: 600;
+  --type-overline-font-size: 11px;
+  --type-overline-line-height: 16px;
+  --type-overline-letter-spacing: 0.6px;
 }
 
 @mixin tokens-dark {

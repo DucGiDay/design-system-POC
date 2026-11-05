@@ -6,6 +6,8 @@ export interface FieldProps {
   required?: boolean
   /** Dòng gợi ý dưới ô, ẩn khi đang có lỗi */
   hint?: string
+  /** Icon (i) cạnh nhãn, nội dung hiện khi rê / focus */
+  tip?: string
   /** Có nội dung thì ô chuyển sang trạng thái lỗi */
   error?: string
   readonly?: boolean

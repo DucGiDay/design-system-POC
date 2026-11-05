@@ -9,6 +9,7 @@ defineProps<{
 
 <template>
   <header class="cms-page-header">
+    <slot name="leading" />
     <div class="cms-page-header__titles">
       <h1 class="cms-page-header__title">{{ title }}</h1>
       <p v-if="description" class="cms-page-header__desc">{{ description }}</p>

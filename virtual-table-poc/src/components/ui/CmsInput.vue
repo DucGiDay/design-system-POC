@@ -16,7 +16,7 @@ const { rootAttrs, controlAttrs } = useFieldAttrs()
 </script>
 
 <template>
-  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" class="cms-ui-field" :label :required :hint :error :readonly :disabled>
+  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" class="cms-ui-field" :label :required :tip :hint :error :readonly :disabled>
     <input
       :id
       ref="input"

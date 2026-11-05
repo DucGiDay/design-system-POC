@@ -1,23 +1,27 @@
 <script setup lang="ts">
 import { computed, useId, watch } from 'vue'
-import AppIcon from '../icon/AppIcon.vue'
+import { I18nT, useI18n } from 'vue-i18n'
+import AppIcon from '@/components/icon/AppIcon.vue'
 import { pageItems } from './pagination'
 
 // Chân bảng phân trang theo components.css (cms-pagination): tổng số dòng, số dòng mỗi trang, nút trang.
 const props = withDefaults(defineProps<{
   total: number
   pageSizeOptions?: number[]
+  /** Đơn vị trong dòng tổng ("món", "đơn"…); bỏ trống = "dòng" */
+  unit?: string
 }>(), { pageSizeOptions: () => [10, 20, 50, 100] })
 const page = defineModel<number>('page', { default: 1 })
 const pageSize = defineModel<number>('pageSize', { default: 20 })
 
+const { t, locale } = useI18n()
 const rowsId = useId()
 
 const pageCount = computed(() => Math.max(1, Math.ceil(props.total / pageSize.value)))
 const from = computed(() => (props.total === 0 ? 0 : (page.value - 1) * pageSize.value + 1))
 const to = computed(() => Math.min(page.value * pageSize.value, props.total))
 const items = computed(() => pageItems(page.value, pageCount.value))
-const format = (value: number) => new Intl.NumberFormat('vi-VN').format(value)
+const format = (value: number) => new Intl.NumberFormat(locale.value).format(value)
 
 // Đổi số dòng mỗi trang thì về trang 1; dữ liệu ít đi thì kéo trang về trang cuối còn tồn tại
 watch(pageSize, () => { page.value = 1 })
@@ -29,12 +33,16 @@ function go(target: number) {
 </script>
 
 <template>
-  <nav class="cms-pagination" aria-label="Phân trang">
-    <p class="cms-pagination__summary">Hiển thị <b>{{ format(from) }}–{{ format(to) }}</b> trên <b>{{ format(total) }}</b> dòng</p>
+  <nav class="cms-pagination" :aria-label="t('ui.pagination.label')">
+    <I18nT :keypath="unit ? 'ui.pagination.summaryOf' : 'ui.pagination.summary'" tag="p" class="cms-pagination__summary" scope="global">
+      <template #range><b>{{ format(from) }}–{{ format(to) }}</b></template>
+      <template #total><b>{{ format(total) }}</b></template>
+      <template #unit>{{ unit }}</template>
+    </I18nT>
 
     <div class="cms-pagination__controls">
       <div class="cms-pagination__rows">
-        <label :for="rowsId">Số dòng mỗi trang</label>
+        <label :for="rowsId">{{ t('ui.pagination.rowsPerPage') }}</label>
         <span class="cms-pagination__rows-select">
           <select :id="rowsId" v-model.number="pageSize">
             <option v-for="size in pageSizeOptions" :key="size" :value="size">{{ size }}</option>
@@ -50,7 +58,7 @@ function go(target: number) {
           type="button"
           class="cms-pagination-btn cms-pagination-btn--arrow"
           :disabled="page <= 1"
-          aria-label="Trang trước"
+          :aria-label="t('ui.pagination.previous')"
           @click="go(page - 1)"
         >
           <AppIcon name="mui-ten-trai" size="1rem" />
@@ -63,7 +71,7 @@ function go(target: number) {
             class="cms-pagination-btn"
             :class="{ 'cms-pagination-btn--active': item === page }"
             :aria-current="item === page ? 'page' : undefined"
-            :aria-label="`Trang ${item}`"
+            :aria-label="t('ui.pagination.page', { page: item })"
             @click="go(item)"
           >
             {{ format(item) }}
@@ -73,7 +81,7 @@ function go(target: number) {
           type="button"
           class="cms-pagination-btn cms-pagination-btn--arrow"
           :disabled="page >= pageCount"
-          aria-label="Trang sau"
+          :aria-label="t('ui.pagination.next')"
           @click="go(page + 1)"
         >
           <AppIcon name="mui-ten-phai" size="1rem" />
@@ -104,7 +112,8 @@ function go(target: number) {
 
 .cms-pagination__controls {
   display: flex;
-  gap: var(--space-16);
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-16);
   align-items: center;
 }
 

@@ -1,6 +1,7 @@
 @use './tokens';
 // @use './font-sf-pro'; // Comment dòng này để quay về Be Vietnam Pro
 @use './base';
+@use './preflight';
 @use './components';
 @use './vxe-theme';
 @use './layout';

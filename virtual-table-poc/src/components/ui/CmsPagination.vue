@@ -8,6 +8,8 @@ import { pageItems } from './pagination'
 const props = withDefaults(defineProps<{
   total: number
   pageSizeOptions?: number[]
+  /** Đơn vị trong dòng tổng ("món", "đơn"…); bỏ trống = "dòng" */
+  unit?: string
 }>(), { pageSizeOptions: () => [10, 20, 50, 100] })
 const page = defineModel<number>('page', { default: 1 })
 const pageSize = defineModel<number>('pageSize', { default: 20 })
@@ -32,9 +34,10 @@ function go(target: number) {
 
 <template>
   <nav class="cms-pagination" :aria-label="t('ui.pagination.label')">
-    <I18nT keypath="ui.pagination.summary" tag="p" class="cms-pagination__summary" scope="global">
+    <I18nT :keypath="unit ? 'ui.pagination.summaryOf' : 'ui.pagination.summary'" tag="p" class="cms-pagination__summary" scope="global">
       <template #range><b>{{ format(from) }}–{{ format(to) }}</b></template>
       <template #total><b>{{ format(total) }}</b></template>
+      <template #unit>{{ unit }}</template>
     </I18nT>
 
     <div class="cms-pagination__controls">
@@ -109,7 +112,8 @@ function go(target: number) {
 
 .cms-pagination__controls {
   display: flex;
-  gap: var(--space-16);
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-16);
   align-items: center;
 }
 

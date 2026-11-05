@@ -19,7 +19,7 @@ const selectedLabel = computed(() => props.options.find(option => option.value =
 </script>
 
 <template>
-  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" select :label :required :hint :error :readonly :disabled>
+  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" select :label :required :tip :hint :error :readonly :disabled>
     <span v-if="readonly" :id class="cms-field__value" :aria-describedby="describedBy">{{ selectedLabel }}</span>
     <template v-else>
       <select

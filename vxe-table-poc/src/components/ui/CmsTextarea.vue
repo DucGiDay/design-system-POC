@@ -10,7 +10,7 @@ const { rootAttrs, controlAttrs } = useFieldAttrs()
 </script>
 
 <template>
-  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" multiline :label :required :hint :error :readonly :disabled>
+  <CmsField v-slot="{ id, describedBy, invalid }" v-bind="rootAttrs" multiline :label :required :tip :hint :error :readonly :disabled>
     <textarea
       :id
       v-model="model"

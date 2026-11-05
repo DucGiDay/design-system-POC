@@ -1,7 +1,8 @@
 @use './base.generated' as base;
 @use './table-skin' as skin;
 
-button#{skin.$app-owned} {
+// Nút kiểu cũ của trang /table: chỉ áp cho class primary / secondary, không chạm nút của component mới
+button:is(.primary, .secondary)#{skin.$app-owned} {
   @include base.button;
   @include base.button-md;
 

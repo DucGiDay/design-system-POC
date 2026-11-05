@@ -20,6 +20,11 @@ const toRem = ({ prop, value }) => {
   return { prop, value: `${parseFloat(value) / 16}rem` }
 }
 const properties = [...declarations(tokens, ':root').map(toRem), { prop: '--font-sans', value: font.value }]
+// Typography also as custom properties (--type-<name>-<prop>), same as virtual-table-poc, so shared Vue components work in both POCs.
+tokens.walkRules(/^.cms-text-/, rule => {
+  const name = rule.selector.slice('.cms-text-'.length)
+  for (const decl of declarations(tokens, rule.selector)) properties.push({ prop: `--type-${name}-${decl.prop}`, value: decl.value })
+})
 let output = '// GENERATED from ../../tokens.css and ../../components.css. Do not edit.\n'
 tokens.walkAtRules('import', rule => { output += `@import ${rule.params};\n` })
 output += `\n@mixin tokens {\n${lines(properties)}\n}\n`

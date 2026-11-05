@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
-import AppIcon from '../icon/AppIcon.vue'
+import { useI18n } from 'vue-i18n'
+import AppIcon from '@/components/icon/AppIcon.vue'
 import { lockPageScroll, unlockPageScroll } from './scroll-lock'
 
 // Hộp thoại theo components.css (cms-dialog), dựng trên <dialog> gốc: khoá focus, Esc để đóng, nền mờ.
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<{
 }>(), { width: '27.5rem', closable: true })
 const open = defineModel<boolean>('open', { default: false })
 
+const { t } = useI18n()
 const dialog = ref<HTMLDialogElement>()
 const titleId = useId()
 const descriptionId = useId()
@@ -76,7 +78,7 @@ function onBackdropClick(event: MouseEvent) {
           <h2 :id="titleId" class="cms-dialog__title">{{ title }}</h2>
           <p v-if="description" :id="descriptionId" class="cms-dialog__desc">{{ description }}</p>
         </div>
-        <button v-if="closable" type="button" class="cms-dialog__close" aria-label="Đóng" @click="close">
+        <button v-if="closable" type="button" class="cms-dialog__close" :aria-label="t('ui.dialog.close')" @click="close">
           <AppIcon name="dong" size="1.125rem" />
         </button>
       </header>

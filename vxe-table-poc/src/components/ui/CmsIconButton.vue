@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppIcon from '../icon/AppIcon.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 
 // Nút chỉ có icon theo components.css (cms-icon-btn). `label` bắt buộc vì nút không có chữ.
 withDefaults(defineProps<{
